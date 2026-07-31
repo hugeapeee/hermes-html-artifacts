@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HWM AI Ops Roadmap — Low Hanging Fruit</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --paper: #ffffff;
+      --paper-2: #fbfcfe;
+      --ink: #172033;
+      --muted: #647087;
+      --subtle: #8b95a7;
+      --line: #dfe4ec;
+      --line-2: #edf0f5;
+      --blue: #1b61c9;
+      --blue-2: #e8f1ff;
+      --green: #107c41;
+      --green-2: #e9f7ef;
+      --amber: #b25b00;
+      --amber-2: #fff3df;
+      --red: #b42318;
+      --red-2: #fff0ee;
+      --purple: #6a3fd9;
+      --purple-2: #f1ecff;
+      --shadow: 0 22px 60px rgba(23, 32, 51, .08), 0 2px 8px rgba(23, 32, 51, .06);
+      --radius: 22px;
+      --radius-sm: 12px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 12% -8%, rgba(27, 97, 201, .10), transparent 32%),
+        linear-gradient(180deg, #fbfcfe 0%, var(--bg) 42%, #f2f4f8 100%);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.45;
+      letter-spacing: .01em;
+    }
+
+    .page {
+      width: min(1500px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 28px 0 44px;
+    }
+
+    .hero {
+      background: rgba(255,255,255,.84);
+      border: 1px solid rgba(223, 228, 236, .9);
+      border-radius: calc(var(--radius) + 10px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(340px, .75fr);
+      gap: 26px;
+      padding: 34px;
+      border-bottom: 1px solid var(--line-2);
+      background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(247,250,255,.88));
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      width: fit-content;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 760;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      background: var(--blue-2);
+      border: 1px solid rgba(27, 97, 201, .15);
+      border-radius: 999px;
+      padding: 7px 10px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 4vw, 58px);
+      line-height: .98;
+      letter-spacing: -.045em;
+      text-wrap: balance;
+    }
+
+    .lead {
+      margin: 16px 0 0;
+      max-width: 860px;
+      color: var(--muted);
+      font-size: clamp(16px, 1.5vw, 20px);
+      text-wrap: pretty;
+    }
+
+    .decision-card {
+      align-self: stretch;
+      background: #101828;
+      color: #fff;
+      border-radius: 24px;
+      padding: 24px;
+      display: grid;
+      align-content: space-between;
+      min-height: 240px;
+    }
+
+    .decision-card h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -.015em;
+    }
+
+    .decision-card ol {
+      margin: 0;
+      padding-left: 20px;
+      color: rgba(255,255,255,.82);
+      font-size: 14px;
+    }
+
+    .decision-card li { margin: 8px 0; }
+    .decision-card strong { color: #fff; }
+
+    .legend {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      padding: 18px 20px 20px;
+      background: var(--paper);
+    }
+
+    .legend-item {
+      border: 1px solid var(--line-2);
+      background: var(--paper-2);
+      border-radius: 16px;
+      padding: 14px;
+      min-height: 108px;
+    }
+
+    .legend-item b {
+      display: inline-flex;
+      min-width: 38px;
+      height: 28px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .legend-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .p1 b, .tag.p1 { color: var(--green); background: var(--green-2); border-color: rgba(16,124,65,.18); }
+    .p2 b, .tag.p2 { color: var(--blue); background: var(--blue-2); border-color: rgba(27,97,201,.18); }
+    .p3 b, .tag.p3 { color: var(--purple); background: var(--purple-2); border-color: rgba(106,63,217,.18); }
+    .p4 b, .tag.p4 { color: var(--amber); background: var(--amber-2); border-color: rgba(178,91,0,.18); }
+    .p5 b, .tag.p5 { color: var(--red); background: var(--red-2); border-color: rgba(180,35,24,.18); }
+
+    .section {
+      margin-top: 24px;
+      background: rgba(255,255,255,.90);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 34px rgba(23, 32, 51, .05);
+      overflow: hidden;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 24px 26px 18px;
+      border-bottom: 1px solid var(--line-2);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(22px, 2vw, 30px);
+      letter-spacing: -.03em;
+    }
+
+    .section-head p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 820px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .filter-btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 9px 12px;
+      font: 700 12px/1 var(--sans);
+      cursor: pointer;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+      min-height: 38px;
+    }
+
+    .filter-btn:hover { transform: translateY(-1px); border-color: #c9d1df; }
+    .filter-btn.active { background: #101828; color: #fff; border-color: #101828; }
+
+    .top-five {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      padding: 20px;
+      background: #fff;
+    }
+
+    .top-card {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px 16px 15px;
+      background: linear-gradient(180deg, #fff, #fbfcff);
+      min-height: 170px;
+    }
+
+    .top-card .num {
+      font-family: var(--mono);
+      color: var(--subtle);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .top-card h3 {
+      margin: 10px 0 8px;
+      font-size: 16px;
+      line-height: 1.18;
+      letter-spacing: -.02em;
+    }
+
+    .top-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .matrix-wrap {
+      overflow: auto;
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      min-width: 1180px;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: #f8fafc;
+      color: #3f4a5f;
+      text-align: left;
+      font-size: 12px;
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    tbody td {
+      vertical-align: top;
+      padding: 16px 14px;
+      border-bottom: 1px solid var(--line-2);
+      font-size: 14px;
+    }
+
+    tbody tr:hover td { background: #fbfdff; }
+    tbody tr.hidden { display: none; }
+
+    .col-priority { width: 96px; }
+    .col-category { width: 170px; }
+    .col-item { width: 250px; }
+    .col-ai { width: 310px; }
+    .col-hwm { width: 330px; }
+    .col-step { width: 270px; }
+    .col-order { width: 68px; text-align: right; }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .category {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #f2f4f8;
+      color: #475467;
+      font-size: 12px;
+      font-weight: 760;
+      line-height: 1.1;
+    }
+
+    .item-title {
+      display: block;
+      font-weight: 820;
+      font-size: 15px;
+      letter-spacing: -.012em;
+      line-height: 1.22;
+      margin-bottom: 7px;
+    }
+
+    .small-note {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .fit {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .fit-badge {
+      display: inline-flex;
+      white-space: nowrap;
+      border-radius: 999px;
+      padding: 5px 8px;
+      font-size: 11px;
+      font-weight: 850;
+      line-height: 1;
+      border: 1px solid transparent;
+      margin-top: 1px;
+    }
+
+    .fit-now { color: var(--green); background: var(--green-2); border-color: rgba(16,124,65,.18); }
+    .fit-high { color: var(--blue); background: var(--blue-2); border-color: rgba(27,97,201,.18); }
+    .fit-data { color: var(--amber); background: var(--amber-2); border-color: rgba(178,91,0,.18); }
+    .fit-later { color: var(--muted); background: #f4f6f9; border-color: var(--line); }
+
+    .category-board {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      padding: 20px;
+      background: #fff;
+    }
+
+    .category-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 15px;
+      background: #fff;
+    }
+
+    .category-card h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      letter-spacing: -.012em;
+    }
+
+    .category-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .category-card li { margin: 6px 0; }
+
+    .footer-note {
+      padding: 18px 22px;
+      background: #101828;
+      color: rgba(255,255,255,.72);
+      font-size: 13px;
+    }
+
+    .footer-note strong { color: #fff; }
+
+    @media (max-width: 1120px) {
+      .hero-top { grid-template-columns: 1fr; }
+      .legend, .top-five, .category-board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 680px) {
+      .page { width: min(100vw - 18px, 1500px); padding-top: 10px; }
+      .hero-top { padding: 22px; }
+      .legend, .top-five, .category-board { grid-template-columns: 1fr; }
+      .section-head { display: block; padding: 20px; }
+      .controls { justify-content: flex-start; margin-top: 14px; }
+      .decision-card { min-height: auto; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; padding: 0; }
+      .hero, .section { box-shadow: none; border-color: #d0d5dd; }
+      .controls { display: none; }
+      thead th { position: static; }
+      table { min-width: 0; font-size: 11px; }
+      tbody td, thead th { padding: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-top">
+        <div>
+          <div class="eyebrow">HWM · AI Ops Roadmap</div>
+          <h1 id="page-title">Bảng ưu tiên low-hanging fruit cho HWM</h1>
+          <p class="lead">Gom nhóm theo category, sắp xếp theo độ ưu tiên, và có cột so sánh từng mục với tình hình HWM hiện tại. Mục tiêu là nhìn nhanh: cái nào nên làm trước, vì sao, và bước đầu tiên là gì.</p>
+        </div>
+        <aside class="decision-card" aria-label="Nguyên tắc ưu tiên">
+          <div>
+            <h2>Nguyên tắc chọn ưu tiên</h2>
+            <ol>
+              <li><strong>Input đã có sẵn</strong>: call note, Gmail, Drive, Trello, proposal, Klaviyo data.</li>
+              <li><strong>Ít rủi ro</strong>: AI draft/check/flag, người vẫn duyệt.</li>
+              <li><strong>Đánh đúng pain HWM</strong>: rơi việc, thiếu doc, QA, client risk.</li>
+              <li><strong>Tạo nền cho hệ thống sau</strong>: SOP, health score, reporting, training library.</li>
+            </ol>
+          </div>
+        </aside>
+      </div>
+      <div class="legend" aria-label="Chú giải ưu tiên">
+        <div class="legend-item p1"><b>P1</b><p>Làm trước nhất: sát pain, dễ thắng, ít phụ thuộc data phức tạp.</p></div>
+        <div class="legend-item p2"><b>P2</b><p>Làm sau P1: leverage cao nhưng cần chuẩn hóa template/data.</p></div>
+        <div class="legend-item p3"><b>P3</b><p>Có giá trị khi quy trình và dữ liệu nền đã sạch hơn.</p></div>
+        <div class="legend-item p4"><b>P4</b><p>Nice-to-have hoặc cần thêm hệ thống nội bộ trước.</p></div>
+        <div class="legend-item p5"><b>P5</b><p>Admin/HR/cost saving: nên có, nhưng chưa phải đòn bẩy chính.</p></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="top-five-title">
+      <div class="section-head">
+        <div>
+          <h2 id="top-five-title">5 mục nên triển khai đầu tiên</h2>
+          <p>Nếu chỉ chọn một sprint đầu để tạo momentum cho HWM, Não sẽ bắt đầu bằng 5 mục này.</p>
+        </div>
+      </div>
+      <div class="top-five">
+        <article class="top-card"><span class="num">01 · P1</span><h3>Client call → recap + Trello task</h3><p>Giảm rơi việc ngay lập tức, tận dụng transcript/note sẵn có.</p></article>
+        <article class="top-card"><span class="num">02 · P1</span><h3>Weekly client update</h3><p>Giữ client yên tâm, giảm “im lặng vận hành”, dễ review trước khi gửi.</p></article>
+        <article class="top-card"><span class="num">03 · P1</span><h3>Deliverable QA cho Klaviyo</h3><p>Bắt lỗi link, segment, logic, brand voice, naming trước khi gửi khách.</p></article>
+        <article class="top-card"><span class="num">04 · P1</span><h3>Loom/voice note → SOP/QC</h3><p>Scale know-how của Thảo/Điệp mà không ép người giỏi viết doc từ đầu.</p></article>
+        <article class="top-card"><span class="num">05 · P2</span><h3>Client health score v1</h3><p>Cho manager nhìn nhanh account nào đỏ/vàng/xanh và cần can thiệp.</p></article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="category-title">
+      <div class="section-head">
+        <div>
+          <h2 id="category-title">Gom nhóm theo category</h2>
+          <p>Nhìn theo cụm năng lực thay vì nhìn từng automation rời rạc.</p>
+        </div>
+      </div>
+      <div class="category-board">
+        <article class="category-card"><h3>1. Client Ops Layer</h3><ul><li>Client brief</li><li>Call recap</li><li>Weekly update</li><li>Trello task hygiene</li></ul></article>
+        <article class="category-card"><h3>2. Klaviyo QA + Watchdog</h3><ul><li>Deliverable QA</li><li>Performance alert</li><li>Anomaly detection</li><li>Monthly report</li></ul></article>
+        <article class="category-card"><h3>3. Training Library</h3><ul><li>Loom → SOP</li><li>QC checklist</li><li>Đúng/sai examples</li><li>Escalation rule</li></ul></article>
+        <article class="category-card"><h3>4. Account Intelligence</h3><ul><li>Client health score</li><li>Scope creep flag</li><li>Profitability phase 2</li><li>Renewal/churn risk</li></ul></article>
+        <article class="category-card"><h3>5. Content/Sales Asset Mining</h3><ul><li>Proposal insight library</li><li>Transcript → content</li><li>Case study/testimonial</li><li>Lost deal resurrection</li></ul></article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="matrix-title">
+      <div class="section-head">
+        <div>
+          <h2 id="matrix-title">Bảng roadmap chi tiết</h2>
+          <p>Dùng filter để xem theo priority. Bảng vẫn giữ thứ tự ưu tiên tổng thể từ trên xuống dưới.</p>
+        </div>
+        <div class="controls" role="group" aria-label="Lọc theo priority">
+          <button class="filter-btn active" data-filter="all">Tất cả</button>
+          <button class="filter-btn" data-filter="P1">P1</button>
+          <button class="filter-btn" data-filter="P2">P2</button>
+          <button class="filter-btn" data-filter="P3">P3</button>
+          <button class="filter-btn" data-filter="P4">P4</button>
+          <button class="filter-btn" data-filter="P5">P5</button>
+        </div>
+      </div>
+      <div class="matrix-wrap">
+        <table aria-describedby="matrix-title">
+          <thead>
+            <tr>
+              <th class="col-order">#</th>
+              <th class="col-priority">Ưu tiên</th>
+              <th class="col-category">Category</th>
+              <th class="col-item">Mục</th>
+              <th class="col-ai">AI làm gì</th>
+              <th class="col-hwm">So với HWM hiện tại</th>
+              <th class="col-step">Next step</th>
+            </tr>
+          </thead>
+          <tbody id="roadmap-body"></tbody>
+        </table>
+      </div>
+      <div class="footer-note"><strong>Ghi chú:</strong> Đây là roadmap triển khai theo logic “AI làm lớp ops/check/draft trước, human vẫn quyết định cuối”. Không nên nhảy ngay vào agent phức tạp khi template, SOP và data source chưa sạch.</div>
+    </section>
+  </main>
+
+  <script>
+    const rows = [
+      {p:'P1', cat:'Client Ops', item:'Client call → recap + Trello task', note:'Call xong là có recap, internal note, owner, deadline, risk, next step.', ai:'Đọc transcript/voice note/call note → tạo recap cho client, note nội bộ và Trello cards có owner/deadline.', fit:'fit-now', badge:'Làm ngay', hwm:'Rất sát. HWM đã dùng Trello + Google Workspace; pain chính là rơi context/rơi task sau call.', step:'Chuẩn hóa 1 template recap + 1 template Trello task.'},
+      {p:'P1', cat:'Client Ops', item:'Meeting prep brief', note:'Một trang brief trước mỗi client call.', ai:'Tóm tắt 3 trao đổi gần nhất, open tasks, performance, complaint, blocker và câu cần hỏi.', fit:'fit-now', badge:'Làm ngay', hwm:'Rất hợp. Giảm việc Emma phải mò lại Gmail/Drive/Trello trước call.', step:'Tạo Client Brief Template cho từng account.'},
+      {p:'P1', cat:'Client Ops', item:'Weekly client update', note:'Email/update tuần nào cũng có, human chỉ review.', ai:'Draft update: tuần này làm gì, kết quả đáng chú ý, blocker, tuần sau làm gì, cần client approve/cung cấp gì.', fit:'fit-now', badge:'Làm ngay', hwm:'Low hanging fruit mạnh. Giảm im lặng vận hành và giảm cảm giác client bị bỏ rơi.', step:'Chạy pilot với 2–3 account trước.'},
+      {p:'P1', cat:'Training Library', item:'Loom/voice note → SOP/QC/checklist', note:'Biến know-how trực giác thành tài liệu training.', ai:'Từ Loom/voice note tạo SOP, checklist, ví dụ đúng/sai, escalation rule, QC criteria.', fit:'fit-now', badge:'Làm ngay', hwm:'Đúng đau điểm HWM: Thảo/Điệp có nhiều know-how nhưng không nên bị ép ngồi viết doc từ đầu.', step:'Bắt đầu bằng 3 Loom: QC flow, setup flow, audit account.'},
+      {p:'P1', cat:'Klaviyo QA', item:'Deliverable QA trước khi gửi khách', note:'Check campaign/flow/report trước khi ship.', ai:'So deliverable với brief, brand guideline, segment, link, logic flow, offer, naming, deadline.', fit:'fit-now', badge:'Làm ngay', hwm:'Cực sát Klaviyo/email work. Giảm lỗi nhỏ nhưng gây mất niềm tin lớn.', step:'Làm QC checklist chuẩn cho campaign + flow.'},
+      {p:'P1', cat:'Klaviyo Watchdog', item:'Klaviyo/retention performance watchdog', note:'Cảnh báo trước khi client phát hiện.', ai:'Flag flow revenue giảm, campaign underperform, unsubscribe/spam tăng, list growth tụt, tracking/event lỗi.', fit:'fit-high', badge:'Rất hợp', hwm:'Rất cần. Đây là lớp bảo vệ delivery và client trust.', step:'Bản v1 dùng threshold từ Sheet/export; API để phase sau.'},
+      {p:'P1', cat:'Content/Sales Asset', item:'Proposal/audit cũ → insight library', note:'Biến kho proposal thành content, sales snippet, training.', ai:'Mine proposal cũ thành insight ẩn danh, checklist, objection, content angle, sales snippet.', fit:'fit-now', badge:'Đã có nền', hwm:'Rất sát. HWM đã có kho proposal trên Drive và workflow insight queue đang tiềm năng.', step:'Duy trì batch Emma duyệt insight hằng tuần.'},
+
+      {p:'P2', cat:'Account Intelligence', item:'Client health score v1', note:'Account đỏ/vàng/xanh theo tháng.', ai:'Score theo result, sentiment, workload, response time, complaints, scope creep, renewal/churn risk.', fit:'fit-high', badge:'Rất hợp', hwm:'Rất nên làm. Nhưng phải định nghĩa scoring rõ để không biến thành cảm tính mới.', step:'Tạo Sheet scorecard v1: 6–8 tiêu chí, chấm bán tự động.'},
+      {p:'P2', cat:'Scope Control', item:'Scope creep flag', note:'Request mới có in-scope không?', ai:'So request từ client với SOW/scope ban đầu; flag in-scope, out-of-scope hoặc cần clarify.', fit:'fit-high', badge:'Rất hợp', hwm:'Agency rất dễ bị request “nhỏ nhỏ” cộng dồn thành quá tải.', step:'Gom SOW/scope từng client vào format dễ đọc.'},
+      {p:'P2', cat:'Client Ops', item:'Onboarding chain', note:'Kickoff → checklist/access/30-day plan.', ai:'Biến câu trả lời kickoff thành setup checklist, access request, first 30 days plan.', fit:'fit-high', badge:'Rất hợp', hwm:'Hợp nếu HWM onboarding client đều; giúp giảm miss access/setup step.', step:'Chuẩn hóa onboarding form + access checklist.'},
+      {p:'P2', cat:'PM / Trello', item:'PM agent trên Trello', note:'Daily/weekly task hygiene.', ai:'Nhắc task due hôm nay, overdue, không owner, blocked, lời hứa chưa thấy hoàn thành.', fit:'fit-high', badge:'Rất hợp', hwm:'HWM dùng Trello nên nên tận dụng Trello làm source-of-truth thay vì thêm tool mới.', step:'Tạo daily digest ngắn cho Emma.'},
+      {p:'P2', cat:'QA / Process', item:'SOP compliance audit', note:'Check có làm đúng process không.', ai:'Sample deliverables hằng tuần và check với SOP/QC checklist.', fit:'fit-data', badge:'Cần SOP', hwm:'Quan trọng khi scale team, nhưng phải có SOP trước thì AI mới audit được.', step:'Làm sau khi có 3–5 SOP/QC checklist đầu tiên.'},
+      {p:'P2', cat:'Reporting', item:'Monthly client performance report', note:'Report tự pull data và draft sẵn.', ai:'Tổng hợp số liệu Klaviyo/client data thành report ngắn: result, issue, action, ask.', fit:'fit-data', badge:'Cần data', hwm:'Rất hợp, nhưng data source phải ổn định để report không bị thủ công trá hình.', step:'Chốt report template + data sheet/API source.'},
+      {p:'P2', cat:'Reporting', item:'Anomaly agent', note:'Spend spike, conversion drop, tracking break.', ai:'Theo dõi metric chính và gửi alert khi vượt threshold hoặc tụt bất thường.', fit:'fit-high', badge:'Rất hợp', hwm:'Cực có giá trị cho retention/Klaviyo vì giảm rủi ro client báo lỗi trước.', step:'Bản đầu chỉ alert 5–7 metric quan trọng nhất.'},
+      {p:'P2', cat:'Sales', item:'Pre-call brief cho prospect', note:'Sales call vào là có context.', ai:'Tóm tắt prospect, audit cũ, pain, last interaction, suggested angle và next questions.', fit:'fit-high', badge:'Rất hợp', hwm:'Hợp với sales/proposal process của HWM, nhất là khi có proposal/audit cũ.', step:'Dùng Drive proposal + Gmail + note làm input.'},
+      {p:'P2', cat:'Sales', item:'Recap email sau sales call', note:'Follow-up có context thật.', ai:'Draft email recap theo pain, objection, next step, lời hứa trong call.', fit:'fit-high', badge:'Rất hợp', hwm:'Dễ triển khai nếu có transcript/call note; giảm follow-up chung chung.', step:'Tạo template recap sales riêng cho HWM.'},
+
+      {p:'P3', cat:'Sales', item:'Follow-up builder', note:'Sequence dựa trên điều khách thật sự nói.', ai:'Tạo follow-up sequence và nhắc rep nếu follow-up chưa gửi.', fit:'fit-data', badge:'Cần pipeline', hwm:'Có giá trị, nhưng cần sales pipeline/status rõ hơn để không thành random reminder.', step:'Làm sau khi recap sales chạy ổn.'},
+      {p:'P3', cat:'Sales', item:'Lead resurrection', note:'Kéo lại closed-lost sau 3/6/9 tháng.', ai:'Quét lost deals/proposal cũ, lấy transcript/context cũ để draft reconnect email.', fit:'fit-data', badge:'Cần status', hwm:'Rất hay với lost proposals, nhưng cần biết proposal nào lost, lý do gì, lúc nào.', step:'Gắn status/lost reason cho proposal pipeline.'},
+      {p:'P3', cat:'Sales Training', item:'Call scorecard', note:'Chấm sales/client call theo tiêu chí.', ai:'Auto-grade agenda, pain, objection, next step, talk ratio, qualification criteria.', fit:'fit-data', badge:'Cần tiêu chí', hwm:'Hữu ích để training team nhưng cần scorecard chuẩn trước.', step:'Làm scorecard đơn giản trước, chưa cần tự động hoàn toàn.'},
+      {p:'P3', cat:'Team Ops', item:'Off-call performance', note:'Đo phần việc không nằm trong call.', ai:'Theo dõi response time, turnaround, task completion, missed deadline.', fit:'fit-later', badge:'Cẩn trọng', hwm:'Có ích khi team lớn hơn, nhưng dễ nhạy cảm nếu dùng như công cụ soi người.', step:'Bắt đầu như ops health, không dùng để phán xét cá nhân quá sớm.'},
+      {p:'P3', cat:'Data Hygiene', item:'Data hygiene', note:'Dọn nguồn dữ liệu vận hành.', ai:'Flag stale deal, blank next step, unlogged call, task không owner.', fit:'fit-high', badge:'Hợp', hwm:'Nên ưu tiên Trello hygiene trước CRM hygiene vì Trello là source-of-truth hiện tại.', step:'Tạo rule: card nào bắt buộc có owner/deadline/status.'},
+      {p:'P3', cat:'People Management', item:'1:1 prep brief', note:'Manager có context trước buổi 1:1.', ai:'Tóm tắt task done/missed, blocker, feedback, điểm nên khen, điểm cần hỏi, commitment lần trước.', fit:'fit-later', badge:'Sau', hwm:'Có ích cho Emma/Điệp khi quản lý team, nhưng cần task/feedback data sạch hơn.', step:'Làm sau Trello/task digest.'},
+      {p:'P3', cat:'People Management', item:'New hire ramp checklist', note:'Theo dõi 30/60/90 ngày.', ai:'Check milestone, skill gap, training còn thiếu, flag người mới đang chậm.', fit:'fit-later', badge:'Sau', hwm:'Rất hợp khi HWM tuyển/thêm người vận hành.', step:'Gắn với training library từ Loom/SOP.'},
+      {p:'P3', cat:'Content', item:'Transcript → case study/testimonial/content', note:'Lôi tài sản từ call recording.', ai:'Tìm testimonial, case study angle, objection, content idea từ sales/client call.', fit:'fit-high', badge:'Rất hợp', hwm:'Mỏ vàng cho HWM, nhưng cần permission/anonymization kỹ.', step:'Bắt đầu internal-only, chưa public ngay.'},
+
+      {p:'P4', cat:'Inbox', item:'Inbox triage', note:'Email nào quan trọng, email nào cần xử lý.', ai:'Lọc spam, surface email quan trọng, detect deadline/request cần phản hồi.', fit:'fit-later', badge:'Sau', hwm:'Hữu ích nhưng dễ nhiễu nếu rule chưa rõ; không phải pain lớn nhất ngay lúc này.', step:'Làm sau client update/brief vì cùng dùng Gmail.'},
+      {p:'P4', cat:'EA / Calendar', item:'EA agent', note:'Nhắc lịch, chuẩn bị tài liệu.', ai:'Trước call nhắc call để làm gì, cần chuẩn bị file/data/context nào.', fit:'fit-later', badge:'Sau', hwm:'Hữu ích nhưng không phải đòn bẩy lớn bằng client ops/QA/training.', step:'Gắn vào calendar sau khi client brief chạy ổn.'},
+      {p:'P4', cat:'Knowledge Base', item:'Knowledge agent', note:'Hỏi là biết template/SOP ở đâu.', ai:'Trả lời từ Drive/docs: report template ở đâu, SOP nào áp dụng, checklist nào cần dùng.', fit:'fit-high', badge:'Rất hợp', hwm:'Rất hợp khi training library lớn dần; hiện cần gom tài liệu trước.', step:'Làm sau khi SOP/docs đã đủ và có naming/folder chuẩn.'},
+      {p:'P4', cat:'Finance / Ops', item:'CFO agent', note:'Forecast, AR chasing, cash warning.', ai:'Tạo forecast, mid-month financials, AR chasing, cash/cost warning.', fit:'fit-data', badge:'Cần finance data', hwm:'Có giá trị nhưng cần đưa finance data vào hệ thống an toàn và rõ quyền truy cập.', step:'Chỉ làm khi HWM muốn tích hợp finance data.'},
+      {p:'P4', cat:'Finance / Reporting', item:'Margin per account / profitability', note:'Profitability theo client.', ai:'Tính margin/client dựa trên revenue, workload, hours, cost nếu có data.', fit:'fit-data', badge:'Phase 2', hwm:'Rất đáng làm nhưng cần time/cost/revenue data đủ sạch.', step:'Đưa vào client health score phase 2.'},
+
+      {p:'P5', cat:'Admin / Security', item:'Access audit', note:'Người offboard còn login không?', ai:'Check account/tool access, flag người đã offboard hoặc access không còn cần thiết.', fit:'fit-later', badge:'Monthly', hwm:'Quan trọng về security nhưng không tạo leverage vận hành ngay.', step:'Làm monthly checklist bán tự động.'},
+      {p:'P5', cat:'Admin / Cost', item:'Software spend audit', note:'Seat/app không ai dùng.', ai:'Check seat không login 60 ngày, app ít dùng, cost bất thường.', fit:'fit-later', badge:'Quarterly', hwm:'Có thể tiết kiệm tiền, nhưng không cấp bách bằng client ops/QA.', step:'Chạy mỗi quý.'},
+      {p:'P5', cat:'People / Culture', item:'Birthday/work anniversary reminder', note:'Nhắc dịp nhỏ nhưng dễ quên.', ai:'Nhắc sinh nhật/kỷ niệm làm việc và gợi ý lời nhắn.', fit:'fit-later', badge:'Nice-to-have', hwm:'Có ích cho culture nhưng chưa phải ưu tiên.', step:'Để sau.'},
+      {p:'P5', cat:'People / Culture', item:'Satisfaction pulse', note:'Survey mood/engagement định kỳ.', ai:'Gửi survey ngắn, score theo trend, flag người có mood tụt nhiều tháng.', fit:'fit-later', badge:'Sau', hwm:'Hữu ích khi team lớn hơn; hiện chưa cần ưu tiên nếu team còn nhỏ.', step:'Chỉ làm khi cadence quản lý người đã ổn.'},
+      {p:'P5', cat:'People / Review', item:'Review cycle prep', note:'Draft performance review từ dữ liệu 90 ngày.', ai:'Gom call grades, QA, completed work, feedback để draft review.', fit:'fit-data', badge:'Cần nền', hwm:'Cần nhiều dữ liệu nền; chưa nên làm trước.', step:'Làm sau khi scorecard + Trello hygiene + QA log ổn.'}
+    ];
+
+    const body = document.getElementById('roadmap-body');
+
+    function priorityClass(p) { return p.toLowerCase(); }
+
+    function renderRows() {
+      body.innerHTML = rows.map((r, idx) => `
+        <tr data-priority="${r.p}">
+          <td class="col-order"><span class="small-note">${String(idx + 1).padStart(2, '0')}</span></td>
+          <td class="col-priority"><span class="tag ${priorityClass(r.p)}">${r.p}</span></td>
+          <td class="col-category"><span class="category">${r.cat}</span></td>
+          <td class="col-item"><span class="item-title">${r.item}</span><span class="small-note">${r.note}</span></td>
+          <td class="col-ai">${r.ai}</td>
+          <td class="col-hwm"><div class="fit"><span class="fit-badge ${r.fit}">${r.badge}</span><span>${r.hwm}</span></div></td>
+          <td class="col-step">${r.step}</td>
+        </tr>`).join('');
+    }
+
+    renderRows();
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('#roadmap-body tr').forEach(row => {
+          row.classList.toggle('hidden', filter !== 'all' && row.dataset.priority !== filter);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
