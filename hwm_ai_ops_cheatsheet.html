@@ -1,0 +1,993 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="HWM AI Ops Cheatsheet: Part 1 và Part 2 trên cùng một trang."><title>HWM AI Ops Cheatsheet - Part 1 & Part 2</title><style>
+    :root {
+      --bg: #f6f7f9;
+      --paper: #ffffff;
+      --paper-2: #fbfcfe;
+      --ink: #172033;
+      --muted: #647087;
+      --subtle: #8b95a7;
+      --line: #dfe4ec;
+      --line-2: #edf0f5;
+      --blue: #1b61c9;
+      --blue-2: #e8f1ff;
+      --green: #107c41;
+      --green-2: #e9f7ef;
+      --amber: #b25b00;
+      --amber-2: #fff3df;
+      --red: #b42318;
+      --red-2: #fff0ee;
+      --purple: #6a3fd9;
+      --purple-2: #f1ecff;
+      --shadow: 0 22px 60px rgba(23, 32, 51, .08), 0 2px 8px rgba(23, 32, 51, .06);
+      --radius: 22px;
+      --radius-sm: 12px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 12% -8%, rgba(27, 97, 201, .10), transparent 32%),
+        linear-gradient(180deg, #fbfcfe 0%, var(--bg) 42%, #f2f4f8 100%);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.45;
+      letter-spacing: .01em;
+    }
+
+    .page {
+      width: min(1500px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 28px 0 44px;
+    }
+
+    .hero {
+      background: rgba(255,255,255,.84);
+      border: 1px solid rgba(223, 228, 236, .9);
+      border-radius: calc(var(--radius) + 10px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(340px, .75fr);
+      gap: 26px;
+      padding: 34px;
+      border-bottom: 1px solid var(--line-2);
+      background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(247,250,255,.88));
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      width: fit-content;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 760;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      background: var(--blue-2);
+      border: 1px solid rgba(27, 97, 201, .15);
+      border-radius: 999px;
+      padding: 7px 10px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 4vw, 58px);
+      line-height: .98;
+      letter-spacing: -.045em;
+      text-wrap: balance;
+    }
+
+    .lead {
+      margin: 16px 0 0;
+      max-width: 860px;
+      color: var(--muted);
+      font-size: clamp(16px, 1.5vw, 20px);
+      text-wrap: pretty;
+    }
+
+    .decision-card {
+      align-self: stretch;
+      background: #101828;
+      color: #fff;
+      border-radius: 24px;
+      padding: 24px;
+      display: grid;
+      align-content: space-between;
+      min-height: 240px;
+    }
+
+    .decision-card h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -.015em;
+    }
+
+    .decision-card ol {
+      margin: 0;
+      padding-left: 20px;
+      color: rgba(255,255,255,.82);
+      font-size: 14px;
+    }
+
+    .decision-card li { margin: 8px 0; }
+    .decision-card strong { color: #fff; }
+
+    .legend {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      padding: 18px 20px 20px;
+      background: var(--paper);
+    }
+
+    .legend-item {
+      border: 1px solid var(--line-2);
+      background: var(--paper-2);
+      border-radius: 16px;
+      padding: 14px;
+      min-height: 108px;
+    }
+
+    .legend-item b {
+      display: inline-flex;
+      min-width: 38px;
+      height: 28px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .legend-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .p1 b, .tag.p1 { color: var(--green); background: var(--green-2); border-color: rgba(16,124,65,.18); }
+    .p2 b, .tag.p2 { color: var(--blue); background: var(--blue-2); border-color: rgba(27,97,201,.18); }
+    .p3 b, .tag.p3 { color: var(--purple); background: var(--purple-2); border-color: rgba(106,63,217,.18); }
+    .p4 b, .tag.p4 { color: var(--amber); background: var(--amber-2); border-color: rgba(178,91,0,.18); }
+    .p5 b, .tag.p5 { color: var(--red); background: var(--red-2); border-color: rgba(180,35,24,.18); }
+
+    .section {
+      margin-top: 24px;
+      background: rgba(255,255,255,.90);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 34px rgba(23, 32, 51, .05);
+      overflow: hidden;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 24px 26px 18px;
+      border-bottom: 1px solid var(--line-2);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(22px, 2vw, 30px);
+      letter-spacing: -.03em;
+    }
+
+    .section-head p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 820px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .filter-btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 9px 12px;
+      font: 700 12px/1 var(--sans);
+      cursor: pointer;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+      min-height: 38px;
+    }
+
+    .filter-btn:hover { transform: translateY(-1px); border-color: #c9d1df; }
+    .filter-btn.active { background: #101828; color: #fff; border-color: #101828; }
+
+    .top-five {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      padding: 20px;
+      background: #fff;
+    }
+
+    .top-card {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px 16px 15px;
+      background: linear-gradient(180deg, #fff, #fbfcff);
+      min-height: 170px;
+    }
+
+    .top-card .num {
+      font-family: var(--mono);
+      color: var(--subtle);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .top-card h3 {
+      margin: 10px 0 8px;
+      font-size: 16px;
+      line-height: 1.18;
+      letter-spacing: -.02em;
+    }
+
+    .top-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .matrix-wrap {
+      overflow: auto;
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      min-width: 1180px;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: #f8fafc;
+      color: #3f4a5f;
+      text-align: left;
+      font-size: 12px;
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    tbody td {
+      vertical-align: top;
+      padding: 16px 14px;
+      border-bottom: 1px solid var(--line-2);
+      font-size: 14px;
+    }
+
+    tbody tr:hover td { background: #fbfdff; }
+    tbody tr.hidden { display: none; }
+
+    .col-priority { width: 96px; }
+    .col-category { width: 170px; }
+    .col-item { width: 250px; }
+    .col-ai { width: 310px; }
+    .col-hwm { width: 330px; }
+    .col-step { width: 270px; }
+    .col-order { width: 68px; text-align: right; }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .category {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #f2f4f8;
+      color: #475467;
+      font-size: 12px;
+      font-weight: 760;
+      line-height: 1.1;
+    }
+
+    .item-title {
+      display: block;
+      font-weight: 820;
+      font-size: 15px;
+      letter-spacing: -.012em;
+      line-height: 1.22;
+      margin-bottom: 7px;
+    }
+
+    .small-note {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .fit {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .fit-badge {
+      display: inline-flex;
+      white-space: nowrap;
+      border-radius: 999px;
+      padding: 5px 8px;
+      font-size: 11px;
+      font-weight: 850;
+      line-height: 1;
+      border: 1px solid transparent;
+      margin-top: 1px;
+    }
+
+    .fit-now { color: var(--green); background: var(--green-2); border-color: rgba(16,124,65,.18); }
+    .fit-high { color: var(--blue); background: var(--blue-2); border-color: rgba(27,97,201,.18); }
+    .fit-data { color: var(--amber); background: var(--amber-2); border-color: rgba(178,91,0,.18); }
+    .fit-later { color: var(--muted); background: #f4f6f9; border-color: var(--line); }
+
+    .category-board {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      padding: 20px;
+      background: #fff;
+    }
+
+    .category-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 15px;
+      background: #fff;
+    }
+
+    .category-card h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      letter-spacing: -.012em;
+    }
+
+    .category-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .category-card li { margin: 6px 0; }
+
+    .footer-note {
+      padding: 18px 22px;
+      background: #101828;
+      color: rgba(255,255,255,.72);
+      font-size: 13px;
+    }
+
+    .footer-note strong { color: #fff; }
+
+    @media (max-width: 1120px) {
+      .hero-top { grid-template-columns: 1fr; }
+      .legend, .top-five, .category-board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 680px) {
+      .page { width: min(100vw - 18px, 1500px); padding-top: 10px; }
+      .hero-top { padding: 22px; }
+      .legend, .top-five, .category-board { grid-template-columns: 1fr; }
+      .section-head { display: block; padding: 20px; }
+      .controls { justify-content: flex-start; margin-top: 14px; }
+      .decision-card { min-height: auto; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; padding: 0; }
+      .hero, .section { box-shadow: none; border-color: #d0d5dd; }
+      .controls { display: none; }
+      thead th { position: static; }
+      table { min-width: 0; font-size: 11px; }
+      tbody td, thead th { padding: 8px; }
+    }
+  </style>
+<style>
+/* Impeccable refresh: strategic operating memo */
+:root{--bg:#edf1f6;--paper:#fff;--paper-2:#f6f8fb;--ink:#15223a;--muted:#5b6b84;--subtle:#8190a6;--line:#d7deea;--line-2:#e8edf4;--blue:#1559d6;--blue-2:#eaf1ff;--green:#087a4b;--green-2:#e7f6ef;--amber:#a95b00;--amber-2:#fff1dd;--red:#b52b2b;--red-2:#ffeded;--purple:#6d43d6;--purple-2:#f1edff;--shadow:0 16px 44px rgba(20,34,58,.08);--radius:10px;--radius-sm:7px;--sans:"Avenir Next",Avenir,"SF Pro Text","Helvetica Neue",Arial,sans-serif;--mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+::selection{background:#cfe0ff;color:#0e2f70}html{background:var(--bg)}body{background:linear-gradient(180deg,#f5f7fa 0,#edf1f6 460px,#e9eef5 100%);color:var(--ink);font-family:var(--sans);letter-spacing:0;overflow-x:hidden}.page{width:min(1440px,calc(100vw - 32px));padding:18px 0 56px}
+.series-nav{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:0 2px 12px;padding:10px 2px;color:#40516d;font-size:13px}.series-name{font-weight:750}.series-links{display:flex;gap:6px}.series-links a{display:inline-flex;align-items:center;min-height:36px;padding:8px 13px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.7);text-decoration:none;font-weight:720;transition:.18s}.series-links a:hover{transform:translateY(-1px);border-color:#aebbd0}.series-links a:focus-visible,.filter-btn:focus-visible,.search-input:focus-visible{outline:3px solid rgba(21,89,214,.22);outline-offset:2px}.series-links a[aria-current=page]{background:var(--ink);border-color:var(--ink);color:#fff}
+.hero{border-radius:10px;border:1px solid #cdd6e4;background:#fff;box-shadow:var(--shadow)}.hero-top{grid-template-columns:minmax(0,1.42fr) minmax(320px,.58fr);gap:36px;padding:42px;background:linear-gradient(135deg,#fff,#fbfcff 72%,#f3f6fb)}.eyebrow{background:transparent;border:0;border-radius:0;padding:0;margin-bottom:18px;color:var(--blue);font-size:11px;letter-spacing:.16em}h1{font-size:clamp(40px,4.2vw,64px);line-height:.98;letter-spacing:-.04em;max-width:880px;overflow-wrap:anywhere}.lead{font-size:18px;line-height:1.55;max-width:760px;color:var(--muted);margin-top:20px}.decision-card{border-radius:8px;background:#132037;min-height:250px;padding:28px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}.decision-card h2{font-size:18px}.decision-card ol{font-size:14px;line-height:1.55;padding-left:21px}.decision-card li{margin:10px 0}
+.legend{grid-template-columns:repeat(5,1fr);gap:0;padding:0 18px;border-top:1px solid var(--line-2);background:#fff}.legend-item{border:0;border-right:1px solid var(--line-2);border-radius:0;background:transparent;min-height:108px;padding:18px 20px}.legend-item:last-child{border-right:0}.legend-item b{height:auto;min-width:0;padding:5px 9px;margin-bottom:10px}.legend-item p{line-height:1.45}
+.section{margin-top:16px;border:1px solid #d1d9e5;border-radius:10px;box-shadow:0 8px 24px rgba(20,34,58,.045);background:#fff}.section-head{align-items:center;padding:25px 28px 20px}.section-head h2,h2{font-size:clamp(24px,2.2vw,32px);letter-spacing:-.025em}.section-head p{font-size:14px;line-height:1.55;margin-top:7px}
+.top-five,.top-ten{background:var(--paper-2);padding:16px;gap:10px}.top-five{grid-template-columns:repeat(4,minmax(0,1fr))}.top-five .top-card:first-child{grid-column:span 2;grid-row:span 2;background:#1559d6;color:#fff;border-color:#1559d6}.top-five .top-card:nth-child(2),.top-five .top-card:nth-child(3){grid-column:span 2}.top-ten{grid-template-columns:repeat(4,minmax(0,1fr))}.top-ten .top-card:first-child,.top-ten .top-card:nth-child(2){grid-column:span 2}.top-ten .top-card:first-child{background:#1559d6;color:#fff;border-color:#1559d6}.top-card{border:1px solid #d8e0eb;border-radius:7px;padding:18px;min-height:142px;background:#fff;box-shadow:0 2px 7px rgba(20,34,58,.025)}.top-card .num{color:#71819a;font-size:11px;letter-spacing:.04em}.top-card h3{font-size:16px;line-height:1.25;margin:14px 0 7px}.top-card p{font-size:13px;line-height:1.5}.top-card:first-child .num,.top-card:first-child p{color:rgba(255,255,255,.78)}
+.category-board{gap:0;padding:0 18px 18px;background:#fff}.category-card{border:0;border-top:3px solid #b8c9e5;border-radius:0;padding:16px;background:transparent;min-width:0}.category-card h3{font-size:14px;line-height:1.3}.category-card ul{font-size:13px;line-height:1.45}.category-card li{margin:7px 0}.loop-strip{background:#d8e0eb}.loop-step{padding:19px 20px;min-height:122px}.loop-step b{font-size:11px}.loop-step strong{font-size:16px}.loop-step span{line-height:1.45}
+.controls{gap:7px}.filter-btn{border-color:#d4dce8;background:#fff;min-height:36px;padding:9px 13px}.filter-btn:hover{border-color:#9eacc0}.filter-btn.active{background:var(--ink);border-color:var(--ink)}.search-input{border-color:#d4dce8;background:#f9fbfd;min-height:38px;color:var(--ink)}
+.matrix-wrap{background:#fff;overscroll-behavior-x:contain;scrollbar-color:#aebbd0 #edf1f6;scrollbar-width:thin}table{min-width:1240px;font-variant-numeric:tabular-nums}thead th{background:#eff3f8;color:#40506a;padding:14px 13px;border-bottom-color:#cdd7e5;font-size:11px;letter-spacing:.07em}tbody td{padding:16px 13px;font-size:13.5px;line-height:1.52;border-bottom-color:#e5eaf1}tbody tr:nth-child(even) td{background:#fbfcfe}tbody tr:hover td{background:#f3f7fd}.item-title{font-size:14.5px;line-height:1.25}.small-note{font-size:12.5px;line-height:1.45;margin-top:6px}.category{background:#edf1f6;color:#41516a;border-radius:6px;padding:6px 9px;line-height:1.2}.tag,.fit-badge{border-radius:6px}.fit-badge{font-size:10.5px;padding:5px 7px}.footer-note{background:#132037;padding:17px 22px;line-height:1.55}
+@media(max-width:1120px){.hero-top{grid-template-columns:1fr}.legend{grid-template-columns:repeat(3,1fr)}.top-five,.top-ten{grid-template-columns:repeat(2,minmax(0,1fr))}.top-five .top-card:first-child,.top-five .top-card:nth-child(2),.top-five .top-card:nth-child(3),.top-ten .top-card:first-child,.top-ten .top-card:nth-child(2){grid-column:auto;grid-row:auto}.category-board{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){body{background:#edf1f6}.page{width:min(100vw - 16px,1440px);padding:8px 0 32px}.series-nav{margin:0 8px 8px;padding:5px 0;align-items:flex-start}.series-name{font-size:12px;line-height:34px}.series-links{overflow-x:auto;max-width:64vw;padding-bottom:3px}.series-links a{white-space:nowrap;min-height:34px;padding:7px 11px;font-size:12px}.hero,.section{border-radius:8px}.hero-top{padding:28px 22px 22px;gap:24px}.eyebrow{font-size:10px;margin-bottom:14px;letter-spacing:.13em}h1{font-size:34px;line-height:1.03;letter-spacing:-.035em;max-width:100%}.lead{font-size:15.5px;line-height:1.55;margin-top:16px}.decision-card{padding:23px 22px;min-height:auto;border-radius:7px}.decision-card h2{font-size:17px}.decision-card ol{font-size:13px}.legend{grid-template-columns:1fr 1fr;padding:0 12px}.legend-item{padding:15px 12px;min-height:112px;border-bottom:1px solid var(--line-2)}.legend-item:nth-child(2n){border-right:0}.legend-item:last-child{grid-column:1/-1;min-height:auto}.legend-item p{font-size:12.5px}.section{margin-top:12px}.section-head{display:block;padding:21px 20px 17px}.section-head h2,h2{font-size:23px;line-height:1.15}.section-head p{font-size:13px}.controls{justify-content:flex-start;margin-top:15px}.search-input{width:100%}.top-five,.top-ten{grid-template-columns:1fr;padding:12px;gap:8px}.top-five .top-card:first-child,.top-five .top-card:nth-child(2),.top-five .top-card:nth-child(3),.top-ten .top-card:first-child,.top-ten .top-card:nth-child(2){grid-column:auto;grid-row:auto}.top-card{min-height:auto;padding:17px}.top-card h3{margin:10px 0 5px}.top-card:first-child{background:#1559d6!important;color:#fff!important}.category-board{grid-template-columns:1fr;padding:0 18px 16px}.category-card{padding:14px 2px 12px}.loop-strip{grid-template-columns:1fr}.loop-step{min-height:auto;padding:16px 20px}
+.matrix-wrap{overflow:visible;padding:0 10px 12px}table{display:block;min-width:0;width:100%}thead{display:none}tbody{display:block}tbody tr{display:grid;grid-template-columns:46px 72px minmax(0,1fr);padding:16px 14px;margin:0 0 9px;border:1px solid #d7dfeb;border-radius:7px;background:#fff;box-shadow:0 2px 6px rgba(20,34,58,.025)}tbody tr:nth-child(even) td,tbody tr:hover td{background:transparent}tbody td{border:0!important;background:transparent!important;padding:5px 4px;font-size:13px;min-width:0;overflow-wrap:anywhere}tbody td:nth-child(1),tbody td:nth-child(2),tbody td:nth-child(3){display:block;grid-column:auto;padding-bottom:10px}tbody td:nth-child(n+4){display:grid;grid-template-columns:82px minmax(0,1fr);gap:10px;grid-column:1/-1;padding:11px 2px;border-top:1px solid #e5eaf1!important}tbody td:nth-child(n+4)::before{content:attr(data-label);font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#728199;padding-top:2px}.item-title{font-size:14px}.small-note{font-size:12.5px}.category{display:inline-flex;white-space:normal}.fit{grid-template-columns:1fr}.fit-badge{width:max-content;margin-bottom:5px}.footer-note{border-radius:0 0 7px 7px}.col-order{text-align:left}}
+@media(max-width:680px){.series-nav{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}.series-name{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.series-links{max-width:none;overflow:visible}.hero-top>*{min-width:0}h1{font-size:32px;overflow-wrap:anywhere;word-break:normal}.legend-item,.top-card,.category-card{min-width:0;overflow:hidden}.legend-item p,.top-card h3,.top-card p,.section-head h2,.section-head p{overflow-wrap:anywhere}.matrix-wrap,table,tbody,tbody tr{max-width:100%}tbody td:nth-child(n+4)>*{min-width:0;overflow-wrap:anywhere}tbody td:nth-child(4) .item-title,tbody td:nth-child(4) .small-note{grid-column:2}.fit{min-width:0}.fit>span:last-child{overflow-wrap:anywhere}}
+@media print{.series-nav{display:none}.page{width:100%}tbody tr{break-inside:avoid}}
+</style>
+<style>
+    :root {
+      --bg: #f6f7f9;
+      --paper: #ffffff;
+      --paper-2: #fbfcfe;
+      --ink: #172033;
+      --muted: #647087;
+      --subtle: #8b95a7;
+      --line: #dfe4ec;
+      --line-2: #edf0f5;
+      --blue: #1b61c9;
+      --blue-2: #e8f1ff;
+      --green: #107c41;
+      --green-2: #e9f7ef;
+      --amber: #b25b00;
+      --amber-2: #fff3df;
+      --red: #b42318;
+      --red-2: #fff0ee;
+      --purple: #6a3fd9;
+      --purple-2: #f1ecff;
+      --shadow: 0 22px 60px rgba(23, 32, 51, .08), 0 2px 8px rgba(23, 32, 51, .06);
+      --radius: 22px;
+      --radius-sm: 12px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 12% -8%, rgba(27, 97, 201, .10), transparent 32%),
+        linear-gradient(180deg, #fbfcfe 0%, var(--bg) 42%, #f2f4f8 100%);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.45;
+      letter-spacing: .01em;
+    }
+
+    .page {
+      width: min(1500px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 28px 0 44px;
+    }
+
+    .hero {
+      background: rgba(255,255,255,.84);
+      border: 1px solid rgba(223, 228, 236, .9);
+      border-radius: calc(var(--radius) + 10px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(340px, .75fr);
+      gap: 26px;
+      padding: 34px;
+      border-bottom: 1px solid var(--line-2);
+      background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(247,250,255,.88));
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      width: fit-content;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 760;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      background: var(--blue-2);
+      border: 1px solid rgba(27, 97, 201, .15);
+      border-radius: 999px;
+      padding: 7px 10px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 4vw, 58px);
+      line-height: .98;
+      letter-spacing: -.045em;
+      text-wrap: balance;
+    }
+
+    .lead {
+      margin: 16px 0 0;
+      max-width: 860px;
+      color: var(--muted);
+      font-size: clamp(16px, 1.5vw, 20px);
+      text-wrap: pretty;
+    }
+
+    .decision-card {
+      align-self: stretch;
+      background: #101828;
+      color: #fff;
+      border-radius: 24px;
+      padding: 24px;
+      display: grid;
+      align-content: space-between;
+      min-height: 240px;
+    }
+
+    .decision-card h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -.015em;
+    }
+
+    .decision-card ol {
+      margin: 0;
+      padding-left: 20px;
+      color: rgba(255,255,255,.82);
+      font-size: 14px;
+    }
+
+    .decision-card li { margin: 8px 0; }
+    .decision-card strong { color: #fff; }
+
+    .legend {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      padding: 18px 20px 20px;
+      background: var(--paper);
+    }
+
+    .legend-item {
+      border: 1px solid var(--line-2);
+      background: var(--paper-2);
+      border-radius: 16px;
+      padding: 14px;
+      min-height: 108px;
+    }
+
+    .legend-item b {
+      display: inline-flex;
+      min-width: 38px;
+      height: 28px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .legend-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .p1 b, .tag.p1 { color: var(--green); background: var(--green-2); border-color: rgba(16,124,65,.18); }
+    .p2 b, .tag.p2 { color: var(--blue); background: var(--blue-2); border-color: rgba(27,97,201,.18); }
+    .p3 b, .tag.p3 { color: var(--purple); background: var(--purple-2); border-color: rgba(106,63,217,.18); }
+    .p4 b, .tag.p4 { color: var(--amber); background: var(--amber-2); border-color: rgba(178,91,0,.18); }
+    .p5 b, .tag.p5 { color: var(--red); background: var(--red-2); border-color: rgba(180,35,24,.18); }
+
+    .section {
+      margin-top: 24px;
+      background: rgba(255,255,255,.90);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 34px rgba(23, 32, 51, .05);
+      overflow: hidden;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 24px 26px 18px;
+      border-bottom: 1px solid var(--line-2);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(22px, 2vw, 30px);
+      letter-spacing: -.03em;
+    }
+
+    .section-head p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 820px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .filter-btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 9px 12px;
+      font: 700 12px/1 var(--sans);
+      cursor: pointer;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+      min-height: 38px;
+    }
+
+    .filter-btn:hover { transform: translateY(-1px); border-color: #c9d1df; }
+    .filter-btn.active { background: #101828; color: #fff; border-color: #101828; }
+
+    .top-five {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      padding: 20px;
+      background: #fff;
+    }
+
+    .top-card {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px 16px 15px;
+      background: linear-gradient(180deg, #fff, #fbfcff);
+      min-height: 170px;
+    }
+
+    .top-card .num {
+      font-family: var(--mono);
+      color: var(--subtle);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .top-card h3 {
+      margin: 10px 0 8px;
+      font-size: 16px;
+      line-height: 1.18;
+      letter-spacing: -.02em;
+    }
+
+    .top-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .matrix-wrap {
+      overflow: auto;
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      min-width: 1180px;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: #f8fafc;
+      color: #3f4a5f;
+      text-align: left;
+      font-size: 12px;
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    tbody td {
+      vertical-align: top;
+      padding: 16px 14px;
+      border-bottom: 1px solid var(--line-2);
+      font-size: 14px;
+    }
+
+    tbody tr:hover td { background: #fbfdff; }
+    tbody tr.hidden { display: none; }
+
+    .col-priority { width: 96px; }
+    .col-category { width: 170px; }
+    .col-item { width: 250px; }
+    .col-ai { width: 310px; }
+    .col-hwm { width: 330px; }
+    .col-step { width: 270px; }
+    .col-order { width: 68px; text-align: right; }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .category {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #f2f4f8;
+      color: #475467;
+      font-size: 12px;
+      font-weight: 760;
+      line-height: 1.1;
+    }
+
+    .item-title {
+      display: block;
+      font-weight: 820;
+      font-size: 15px;
+      letter-spacing: -.012em;
+      line-height: 1.22;
+      margin-bottom: 7px;
+    }
+
+    .small-note {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .fit {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .fit-badge {
+      display: inline-flex;
+      white-space: nowrap;
+      border-radius: 999px;
+      padding: 5px 8px;
+      font-size: 11px;
+      font-weight: 850;
+      line-height: 1;
+      border: 1px solid transparent;
+      margin-top: 1px;
+    }
+
+    .fit-now { color: var(--green); background: var(--green-2); border-color: rgba(16,124,65,.18); }
+    .fit-high { color: var(--blue); background: var(--blue-2); border-color: rgba(27,97,201,.18); }
+    .fit-data { color: var(--amber); background: var(--amber-2); border-color: rgba(178,91,0,.18); }
+    .fit-later { color: var(--muted); background: #f4f6f9; border-color: var(--line); }
+
+    .category-board {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      padding: 20px;
+      background: #fff;
+    }
+
+    .category-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 15px;
+      background: #fff;
+    }
+
+    .category-card h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      letter-spacing: -.012em;
+    }
+
+    .category-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .category-card li { margin: 6px 0; }
+
+    .footer-note {
+      padding: 18px 22px;
+      background: #101828;
+      color: rgba(255,255,255,.72);
+      font-size: 13px;
+    }
+
+    .footer-note strong { color: #fff; }
+
+    @media (max-width: 1120px) {
+      .hero-top { grid-template-columns: 1fr; }
+      .legend, .top-five, .category-board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 680px) {
+      .page { width: min(100vw - 18px, 1500px); padding-top: 10px; }
+      .hero-top { padding: 22px; }
+      .legend, .top-five, .category-board { grid-template-columns: 1fr; }
+      .section-head { display: block; padding: 20px; }
+      .controls { justify-content: flex-start; margin-top: 14px; }
+      .decision-card { min-height: auto; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; padding: 0; }
+      .hero, .section { box-shadow: none; border-color: #d0d5dd; }
+      .controls { display: none; }
+      thead th { position: static; }
+      table { min-width: 0; font-size: 11px; }
+      tbody td, thead th { padding: 8px; }
+    }
+  
+.top-ten{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;padding:20px;background:#fff}.loop-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line)}.loop-step{background:#fff;padding:18px;min-height:112px}.loop-step b{display:block;color:var(--blue);font-family:var(--mono);font-size:12px;margin-bottom:8px}.loop-step strong{display:block;font-size:15px;margin-bottom:5px}.loop-step span{color:var(--muted);font-size:13px}.search-input{min-height:38px;width:min(260px,100%);border:1px solid var(--line);border-radius:999px;padding:9px 14px;font:600 12px/1 var(--sans);outline:none}.search-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(27,97,201,.1)}.source-note a{color:#9ec5ff}@media(max-width:1120px){.top-ten,.loop-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:680px){.top-ten,.loop-strip{grid-template-columns:1fr}.search-input{width:100%}}</style>
+<style>
+/* Impeccable refresh: strategic operating memo */
+:root{--bg:#edf1f6;--paper:#fff;--paper-2:#f6f8fb;--ink:#15223a;--muted:#5b6b84;--subtle:#8190a6;--line:#d7deea;--line-2:#e8edf4;--blue:#1559d6;--blue-2:#eaf1ff;--green:#087a4b;--green-2:#e7f6ef;--amber:#a95b00;--amber-2:#fff1dd;--red:#b52b2b;--red-2:#ffeded;--purple:#6d43d6;--purple-2:#f1edff;--shadow:0 16px 44px rgba(20,34,58,.08);--radius:10px;--radius-sm:7px;--sans:"Avenir Next",Avenir,"SF Pro Text","Helvetica Neue",Arial,sans-serif;--mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+::selection{background:#cfe0ff;color:#0e2f70}html{background:var(--bg)}body{background:linear-gradient(180deg,#f5f7fa 0,#edf1f6 460px,#e9eef5 100%);color:var(--ink);font-family:var(--sans);letter-spacing:0;overflow-x:hidden}.page{width:min(1440px,calc(100vw - 32px));padding:18px 0 56px}
+.series-nav{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:0 2px 12px;padding:10px 2px;color:#40516d;font-size:13px}.series-name{font-weight:750}.series-links{display:flex;gap:6px}.series-links a{display:inline-flex;align-items:center;min-height:36px;padding:8px 13px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.7);text-decoration:none;font-weight:720;transition:.18s}.series-links a:hover{transform:translateY(-1px);border-color:#aebbd0}.series-links a:focus-visible,.filter-btn:focus-visible,.search-input:focus-visible{outline:3px solid rgba(21,89,214,.22);outline-offset:2px}.series-links a[aria-current=page]{background:var(--ink);border-color:var(--ink);color:#fff}
+.hero{border-radius:10px;border:1px solid #cdd6e4;background:#fff;box-shadow:var(--shadow)}.hero-top{grid-template-columns:minmax(0,1.42fr) minmax(320px,.58fr);gap:36px;padding:42px;background:linear-gradient(135deg,#fff,#fbfcff 72%,#f3f6fb)}.eyebrow{background:transparent;border:0;border-radius:0;padding:0;margin-bottom:18px;color:var(--blue);font-size:11px;letter-spacing:.16em}h1{font-size:clamp(40px,4.2vw,64px);line-height:.98;letter-spacing:-.04em;max-width:880px;overflow-wrap:anywhere}.lead{font-size:18px;line-height:1.55;max-width:760px;color:var(--muted);margin-top:20px}.decision-card{border-radius:8px;background:#132037;min-height:250px;padding:28px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}.decision-card h2{font-size:18px}.decision-card ol{font-size:14px;line-height:1.55;padding-left:21px}.decision-card li{margin:10px 0}
+.legend{grid-template-columns:repeat(5,1fr);gap:0;padding:0 18px;border-top:1px solid var(--line-2);background:#fff}.legend-item{border:0;border-right:1px solid var(--line-2);border-radius:0;background:transparent;min-height:108px;padding:18px 20px}.legend-item:last-child{border-right:0}.legend-item b{height:auto;min-width:0;padding:5px 9px;margin-bottom:10px}.legend-item p{line-height:1.45}
+.section{margin-top:16px;border:1px solid #d1d9e5;border-radius:10px;box-shadow:0 8px 24px rgba(20,34,58,.045);background:#fff}.section-head{align-items:center;padding:25px 28px 20px}.section-head h2,h2{font-size:clamp(24px,2.2vw,32px);letter-spacing:-.025em}.section-head p{font-size:14px;line-height:1.55;margin-top:7px}
+.top-five,.top-ten{background:var(--paper-2);padding:16px;gap:10px}.top-five{grid-template-columns:repeat(4,minmax(0,1fr))}.top-five .top-card:first-child{grid-column:span 2;grid-row:span 2;background:#1559d6;color:#fff;border-color:#1559d6}.top-five .top-card:nth-child(2),.top-five .top-card:nth-child(3){grid-column:span 2}.top-ten{grid-template-columns:repeat(4,minmax(0,1fr))}.top-ten .top-card:first-child,.top-ten .top-card:nth-child(2){grid-column:span 2}.top-ten .top-card:first-child{background:#1559d6;color:#fff;border-color:#1559d6}.top-card{border:1px solid #d8e0eb;border-radius:7px;padding:18px;min-height:142px;background:#fff;box-shadow:0 2px 7px rgba(20,34,58,.025)}.top-card .num{color:#71819a;font-size:11px;letter-spacing:.04em}.top-card h3{font-size:16px;line-height:1.25;margin:14px 0 7px}.top-card p{font-size:13px;line-height:1.5}.top-card:first-child .num,.top-card:first-child p{color:rgba(255,255,255,.78)}
+.category-board{gap:0;padding:0 18px 18px;background:#fff}.category-card{border:0;border-top:3px solid #b8c9e5;border-radius:0;padding:16px;background:transparent;min-width:0}.category-card h3{font-size:14px;line-height:1.3}.category-card ul{font-size:13px;line-height:1.45}.category-card li{margin:7px 0}.loop-strip{background:#d8e0eb}.loop-step{padding:19px 20px;min-height:122px}.loop-step b{font-size:11px}.loop-step strong{font-size:16px}.loop-step span{line-height:1.45}
+.controls{gap:7px}.filter-btn{border-color:#d4dce8;background:#fff;min-height:36px;padding:9px 13px}.filter-btn:hover{border-color:#9eacc0}.filter-btn.active{background:var(--ink);border-color:var(--ink)}.search-input{border-color:#d4dce8;background:#f9fbfd;min-height:38px;color:var(--ink)}
+.matrix-wrap{background:#fff;overscroll-behavior-x:contain;scrollbar-color:#aebbd0 #edf1f6;scrollbar-width:thin}table{min-width:1240px;font-variant-numeric:tabular-nums}thead th{background:#eff3f8;color:#40506a;padding:14px 13px;border-bottom-color:#cdd7e5;font-size:11px;letter-spacing:.07em}tbody td{padding:16px 13px;font-size:13.5px;line-height:1.52;border-bottom-color:#e5eaf1}tbody tr:nth-child(even) td{background:#fbfcfe}tbody tr:hover td{background:#f3f7fd}.item-title{font-size:14.5px;line-height:1.25}.small-note{font-size:12.5px;line-height:1.45;margin-top:6px}.category{background:#edf1f6;color:#41516a;border-radius:6px;padding:6px 9px;line-height:1.2}.tag,.fit-badge{border-radius:6px}.fit-badge{font-size:10.5px;padding:5px 7px}.footer-note{background:#132037;padding:17px 22px;line-height:1.55}
+@media(max-width:1120px){.hero-top{grid-template-columns:1fr}.legend{grid-template-columns:repeat(3,1fr)}.top-five,.top-ten{grid-template-columns:repeat(2,minmax(0,1fr))}.top-five .top-card:first-child,.top-five .top-card:nth-child(2),.top-five .top-card:nth-child(3),.top-ten .top-card:first-child,.top-ten .top-card:nth-child(2){grid-column:auto;grid-row:auto}.category-board{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){body{background:#edf1f6}.page{width:min(100vw - 16px,1440px);padding:8px 0 32px}.series-nav{margin:0 8px 8px;padding:5px 0;align-items:flex-start}.series-name{font-size:12px;line-height:34px}.series-links{overflow-x:auto;max-width:64vw;padding-bottom:3px}.series-links a{white-space:nowrap;min-height:34px;padding:7px 11px;font-size:12px}.hero,.section{border-radius:8px}.hero-top{padding:28px 22px 22px;gap:24px}.eyebrow{font-size:10px;margin-bottom:14px;letter-spacing:.13em}h1{font-size:34px;line-height:1.03;letter-spacing:-.035em;max-width:100%}.lead{font-size:15.5px;line-height:1.55;margin-top:16px}.decision-card{padding:23px 22px;min-height:auto;border-radius:7px}.decision-card h2{font-size:17px}.decision-card ol{font-size:13px}.legend{grid-template-columns:1fr 1fr;padding:0 12px}.legend-item{padding:15px 12px;min-height:112px;border-bottom:1px solid var(--line-2)}.legend-item:nth-child(2n){border-right:0}.legend-item:last-child{grid-column:1/-1;min-height:auto}.legend-item p{font-size:12.5px}.section{margin-top:12px}.section-head{display:block;padding:21px 20px 17px}.section-head h2,h2{font-size:23px;line-height:1.15}.section-head p{font-size:13px}.controls{justify-content:flex-start;margin-top:15px}.search-input{width:100%}.top-five,.top-ten{grid-template-columns:1fr;padding:12px;gap:8px}.top-five .top-card:first-child,.top-five .top-card:nth-child(2),.top-five .top-card:nth-child(3),.top-ten .top-card:first-child,.top-ten .top-card:nth-child(2){grid-column:auto;grid-row:auto}.top-card{min-height:auto;padding:17px}.top-card h3{margin:10px 0 5px}.top-card:first-child{background:#1559d6!important;color:#fff!important}.category-board{grid-template-columns:1fr;padding:0 18px 16px}.category-card{padding:14px 2px 12px}.loop-strip{grid-template-columns:1fr}.loop-step{min-height:auto;padding:16px 20px}
+.matrix-wrap{overflow:visible;padding:0 10px 12px}table{display:block;min-width:0;width:100%}thead{display:none}tbody{display:block}tbody tr{display:grid;grid-template-columns:46px 72px minmax(0,1fr);padding:16px 14px;margin:0 0 9px;border:1px solid #d7dfeb;border-radius:7px;background:#fff;box-shadow:0 2px 6px rgba(20,34,58,.025)}tbody tr:nth-child(even) td,tbody tr:hover td{background:transparent}tbody td{border:0!important;background:transparent!important;padding:5px 4px;font-size:13px;min-width:0;overflow-wrap:anywhere}tbody td:nth-child(1),tbody td:nth-child(2),tbody td:nth-child(3){display:block;grid-column:auto;padding-bottom:10px}tbody td:nth-child(n+4){display:grid;grid-template-columns:82px minmax(0,1fr);gap:10px;grid-column:1/-1;padding:11px 2px;border-top:1px solid #e5eaf1!important}tbody td:nth-child(n+4)::before{content:attr(data-label);font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#728199;padding-top:2px}.item-title{font-size:14px}.small-note{font-size:12.5px}.category{display:inline-flex;white-space:normal}.fit{grid-template-columns:1fr}.fit-badge{width:max-content;margin-bottom:5px}.footer-note{border-radius:0 0 7px 7px}.col-order{text-align:left}}
+@media(max-width:680px){.series-nav{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}.series-name{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.series-links{max-width:none;overflow:visible}.hero-top>*{min-width:0}h1{font-size:32px;overflow-wrap:anywhere;word-break:normal}.legend-item,.top-card,.category-card{min-width:0;overflow:hidden}.legend-item p,.top-card h3,.top-card p,.section-head h2,.section-head p{overflow-wrap:anywhere}.matrix-wrap,table,tbody,tbody tr{max-width:100%}tbody td:nth-child(n+4)>*{min-width:0;overflow-wrap:anywhere}tbody td:nth-child(4) .item-title,tbody td:nth-child(4) .small-note{grid-column:2}.fit{min-width:0}.fit>span:last-child{overflow-wrap:anywhere}}
+@media print{.series-nav{display:none}.page{width:100%}tbody tr{break-inside:avoid}}
+</style><style id="combined-page">
+html{scroll-behavior:smooth;scroll-padding-top:76px}.page{padding-top:10px}.combined-nav{position:sticky;top:10px;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:18px;margin:0 2px 14px;padding:9px 10px 9px 16px;border:1px solid rgba(205,214,228,.9);border-radius:999px;background:rgba(255,255,255,.9);box-shadow:0 10px 28px rgba(20,34,58,.08);backdrop-filter:blur(14px)}.combined-nav strong{font-size:13px}.combined-nav-links{display:flex;gap:6px}.combined-nav a{display:inline-flex;align-items:center;min-height:36px;padding:8px 13px;border-radius:999px;text-decoration:none;font-size:12px;font-weight:750;color:#40516d}.combined-nav a:hover,.combined-nav a:focus-visible{background:#eaf1ff;color:#1559d6}.combined-nav a:focus-visible{outline:3px solid rgba(21,89,214,.2);outline-offset:2px}.combined-cover{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:36px;margin-bottom:16px;padding:46px 44px;border:1px solid #cdd6e4;border-radius:10px;background:#132037;color:#fff;box-shadow:var(--shadow)}.combined-kicker{margin:0 0 12px;color:#8eb5ff;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.combined-cover h1{margin:0;color:#fff;font-size:clamp(44px,5vw,72px);line-height:.96;letter-spacing:-.04em}.combined-cover .cover-lead{max-width:720px;margin:18px 0 0;color:rgba(255,255,255,.76);font-size:17px;line-height:1.55}.combined-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}.combined-stats a{min-width:150px;padding:18px;border:1px solid rgba(255,255,255,.16);border-radius:8px;background:rgba(255,255,255,.06);color:#fff;text-decoration:none}.combined-stats strong{display:block;font-size:28px;line-height:1}.combined-stats span{display:block;margin-top:7px;color:rgba(255,255,255,.68);font-size:12px}.part-block{position:relative}.part-block+.part-block{margin-top:28px;padding-top:28px;border-top:1px solid #c9d3e1}.part-block>.hero{scroll-margin-top:76px}.part-title{font-size:clamp(40px,4.2vw,64px);line-height:.98;letter-spacing:-.04em;max-width:880px;overflow-wrap:anywhere}.part-block .series-nav{display:none}
+@media(max-width:760px){html{scroll-padding-top:68px}.page{width:min(100vw - 16px,1440px)}.combined-nav{top:6px;margin-bottom:10px;padding:7px 8px 7px 12px;border-radius:8px}.combined-nav strong{max-width:116px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.combined-nav-links{overflow-x:auto}.combined-nav a{min-height:34px;padding:7px 10px;white-space:nowrap}.combined-cover{grid-template-columns:1fr;padding:30px 22px;gap:24px}.combined-cover h1{font-size:38px}.combined-cover .cover-lead{font-size:15px}.combined-stats{width:100%}.combined-stats a{min-width:0}.part-title{font-size:32px;line-height:1.03}.part-block+.part-block{margin-top:18px;padding-top:18px}}
+@media print{.combined-nav{display:none}.combined-cover{break-after:avoid}.part-block{break-before:page}}
+</style></head><body><main class="page"><nav class="combined-nav" aria-label="Điều hướng cheatsheet"><strong>HWM AI Ops Cheatsheet</strong><span class="combined-nav-links"><a href="#overview">Tổng quan</a><a href="#part1">Part 1</a><a href="#part2">Part 2</a></span></nav><header class="combined-cover" id="overview"><div><p class="combined-kicker">HWM · AI Ops</p><h1>AI Ops Cheatsheet</h1><p class="cover-lead">Part 1 chọn việc nên làm trước. Part 2 biến các cơ hội đó thành vòng vận hành có kiểm soát.</p></div><div class="combined-stats"><a href="#part1"><strong>34</strong><span>cơ hội trong Part 1</span></a><a href="#part2"><strong>50</strong><span>automation trong Part 2</span></a></div></header><section aria-label="Part 1" class="part-block" id="part1"><section aria-labelledby="page-title" class="hero">
+<div class="hero-top">
+<div>
+<div class="eyebrow">HWM · AI Ops Roadmap</div>
+<h2 class="part-title" id="page-title">Bảng ưu tiên low-hanging fruit cho HWM</h2>
+<p class="lead">Gom nhóm theo category, sắp xếp theo độ ưu tiên, và có cột so sánh từng mục với tình hình HWM hiện tại. Mục tiêu là nhìn nhanh: cái nào nên làm trước, vì sao, và bước đầu tiên là gì.</p>
+</div>
+<aside aria-label="Nguyên tắc ưu tiên" class="decision-card">
+<div>
+<h2>Nguyên tắc chọn ưu tiên</h2>
+<ol>
+<li><strong>Input đã có sẵn</strong>: call note, Gmail, Drive, Trello, proposal, Klaviyo data.</li>
+<li><strong>Ít rủi ro</strong>: AI draft/check/flag, người vẫn duyệt.</li>
+<li><strong>Đánh đúng pain HWM</strong>: rơi việc, thiếu doc, QA, client risk.</li>
+<li><strong>Tạo nền cho hệ thống sau</strong>: SOP, health score, reporting, training library.</li>
+</ol>
+</div>
+</aside>
+</div>
+<div aria-label="Chú giải ưu tiên" class="legend">
+<div class="legend-item p1"><b>P1</b><p>Làm trước nhất: sát pain, dễ thắng, ít phụ thuộc data phức tạp.</p></div>
+<div class="legend-item p2"><b>P2</b><p>Làm sau P1: leverage cao nhưng cần chuẩn hóa template/data.</p></div>
+<div class="legend-item p3"><b>P3</b><p>Có giá trị khi quy trình và dữ liệu nền đã sạch hơn.</p></div>
+<div class="legend-item p4"><b>P4</b><p>Nice-to-have hoặc cần thêm hệ thống nội bộ trước.</p></div>
+<div class="legend-item p5"><b>P5</b><p>Admin/HR/cost saving: nên có, nhưng chưa phải đòn bẩy chính.</p></div>
+</div>
+</section><section aria-labelledby="top-five-title" class="section">
+<div class="section-head">
+<div>
+<h2 id="top-five-title">5 mục nên triển khai đầu tiên</h2>
+<p>Nếu chỉ chọn một sprint đầu để tạo momentum cho HWM, Não sẽ bắt đầu bằng 5 mục này.</p>
+</div>
+</div>
+<div class="top-five">
+<article class="top-card"><span class="num">01 · P1</span><h3>Client call → recap + Trello task</h3><p>Giảm rơi việc ngay lập tức, tận dụng transcript/note sẵn có.</p></article>
+<article class="top-card"><span class="num">02 · P1</span><h3>Weekly client update</h3><p>Giữ client yên tâm, giảm “im lặng vận hành”, dễ review trước khi gửi.</p></article>
+<article class="top-card"><span class="num">03 · P1</span><h3>Deliverable QA cho Klaviyo</h3><p>Bắt lỗi link, segment, logic, brand voice, naming trước khi gửi khách.</p></article>
+<article class="top-card"><span class="num">04 · P1</span><h3>Loom/voice note → SOP/QC</h3><p>Scale know-how của Thảo/Điệp mà không ép người giỏi viết doc từ đầu.</p></article>
+<article class="top-card"><span class="num">05 · P2</span><h3>Client health score v1</h3><p>Cho manager nhìn nhanh account nào đỏ/vàng/xanh và cần can thiệp.</p></article>
+</div>
+</section><section aria-labelledby="category-title" class="section">
+<div class="section-head">
+<div>
+<h2 id="category-title">Gom nhóm theo category</h2>
+<p>Nhìn theo cụm năng lực thay vì nhìn từng automation rời rạc.</p>
+</div>
+</div>
+<div class="category-board">
+<article class="category-card"><h3>1. Client Ops Layer</h3><ul><li>Client brief</li><li>Call recap</li><li>Weekly update</li><li>Trello task hygiene</li></ul></article>
+<article class="category-card"><h3>2. Klaviyo QA + Watchdog</h3><ul><li>Deliverable QA</li><li>Performance alert</li><li>Anomaly detection</li><li>Monthly report</li></ul></article>
+<article class="category-card"><h3>3. Training Library</h3><ul><li>Loom → SOP</li><li>QC checklist</li><li>Đúng/sai examples</li><li>Escalation rule</li></ul></article>
+<article class="category-card"><h3>4. Account Intelligence</h3><ul><li>Client health score</li><li>Scope creep flag</li><li>Profitability phase 2</li><li>Renewal/churn risk</li></ul></article>
+<article class="category-card"><h3>5. Content/Sales Asset Mining</h3><ul><li>Proposal insight library</li><li>Transcript → content</li><li>Case study/testimonial</li><li>Lost deal resurrection</li></ul></article>
+</div>
+</section><section aria-labelledby="matrix-title" class="section">
+<div class="section-head">
+<div>
+<h2 id="matrix-title">Bảng roadmap chi tiết</h2>
+<p>Dùng filter để xem theo priority. Bảng vẫn giữ thứ tự ưu tiên tổng thể từ trên xuống dưới.</p>
+</div>
+<div aria-label="Lọc theo priority" class="controls" role="group">
+<button class="filter-btn active" data-filter="all">Tất cả</button>
+<button class="filter-btn" data-filter="P1">P1</button>
+<button class="filter-btn" data-filter="P2">P2</button>
+<button class="filter-btn" data-filter="P3">P3</button>
+<button class="filter-btn" data-filter="P4">P4</button>
+<button class="filter-btn" data-filter="P5">P5</button>
+</div>
+</div>
+<div class="matrix-wrap">
+<table aria-describedby="matrix-title">
+<thead>
+<tr>
+<th class="col-order">#</th>
+<th class="col-priority">Ưu tiên</th>
+<th class="col-category">Category</th>
+<th class="col-item">Mục</th>
+<th class="col-ai">AI làm gì</th>
+<th class="col-hwm">So với HWM hiện tại</th>
+<th class="col-step">Next step</th>
+</tr>
+</thead>
+<tbody id="roadmap-body-1"></tbody>
+</table>
+</div>
+<div class="footer-note"><strong>Ghi chú:</strong> Đây là roadmap triển khai theo logic “AI làm lớp ops/check/draft trước, human vẫn quyết định cuối”. Không nên nhảy ngay vào agent phức tạp khi template, SOP và data source chưa sạch.</div>
+</section></section><section aria-label="Part 2" class="part-block" id="part2"><section class="hero"><div class="hero-top"><div><div class="eyebrow">HWM · AI Ops Roadmap · Part 2/6</div><h2 class="part-title">50 automation: gate, watchdog và feedback loop</h2><p class="lead">Part 2 chuyển từ “AI tạo thêm output” sang hệ thống vận hành khép kín: kiểm tra trước khi launch, theo dõi khi không ai nhìn, giữ lại bài học và dùng kết quả cũ để làm vòng sau tốt hơn.</p></div><aside class="decision-card"><div><h2>Cách đọc roadmap</h2><ol><li><strong>P1:</strong> giảm lỗi trực tiếp trong Klaviyo.</li><li><strong>P2:</strong> giữ kiến thức, nâng chất lượng tuyển và onboarding.</li><li><strong>P3:</strong> cần data, rubric hoặc SOP nền.</li><li><strong>P4:</strong> ngoài core HWM hoặc để sau.</li></ol></div></aside></div><div class="legend"><div class="legend-item p1"><b>P1</b><p>Làm trước: tác động trực tiếp lên QA, doanh thu và client trust.</p></div><div class="legend-item p2"><b>P2</b><p>Làm kế tiếp: leverage cao, cần template và owner rõ.</p></div><div class="legend-item p3"><b>P3</b><p>Chỉ tốt khi scorecard, data và SOP đã sạch.</p></div><div class="legend-item p4"><b>P4</b><p>Ý hay nhưng ngoài core hoặc chưa đáng ưu tiên.</p></div><div class="legend-item p5"><b>Rule</b><p>AI draft/check/flag; người vẫn duyệt và xử lý ngoại lệ.</p></div></div></section><section class="section"><div class="section-head"><div><h2>Vòng kín quan trọng hơn số lượng output</h2><p>Năm cơ chế xuyên suốt toàn bộ Part 2.</p></div></div><div class="loop-strip"><div class="loop-step"><b>01</b><strong>Gate</strong><span>Chưa đạt chuẩn thì chưa đi tiếp.</span></div><div class="loop-step"><b>02</b><strong>Watchdog</strong><span>Tự nhìn khi không có người theo dõi.</span></div><div class="loop-step"><b>03</b><strong>Sweeper</strong><span>Quét định kỳ lỗi nhỏ dễ bị quên.</span></div><div class="loop-step"><b>04</b><strong>Ledger</strong><span>Lưu test, kết quả và bằng chứng.</span></div><div class="loop-step"><b>05</b><strong>Feedback loop</strong><span>Winner → brief → test → lưu kết quả.</span></div></div></section><section class="section"><div class="section-head"><div><h2>10 automation HWM nên ưu tiên</h2><p>Không cố làm cả 50. Đây là nhóm tạo leverage tốt nhất theo context hiện tại của HWM.</p></div></div><div class="top-ten"><article class="top-card"><span class="num">01 · P1</span><h3>Email/flow pre-flight gate</h3><p>Chặn lỗi trước khi campaign hoặc flow được bật live.</p></article><article class="top-card"><span class="num">02 · P1</span><h3>Promo &amp; coupon sync</h3><p>Offer, coupon, thời gian và landing page phải khớp nhau.</p></article><article class="top-card"><span class="num">03 · P1</span><h3>Anomaly watchdog</h3><p>Báo bất thường trước khi client là người phát hiện.</p></article><article class="top-card"><span class="num">04 · P1</span><h3>Winner-to-brief</h3><p>Winner của vòng trước nuôi brief vòng sau.</p></article><article class="top-card"><span class="num">05 · P1</span><h3>Campaign post-mortem</h3><p>Mỗi promotion đều để lại bài học dùng lại được.</p></article><article class="top-card"><span class="num">06 · P1</span><h3>Job scope splitter</h3><p>Tuyển cho judgment, không tuyển cho throughput agent đã xử lý.</p></article><article class="top-card"><span class="num">07 · P2</span><h3>Day-one provisioning</h3><p>Access và tool sẵn trước ngày đầu.</p></article><article class="top-card"><span class="num">08 · P2</span><h3>First-week + ramp</h3><p>Lịch học, task thật và milestone rõ từ tuần đầu.</p></article><article class="top-card"><span class="num">09 · P2</span><h3>Roleplay agent</h3><p>Luyện client communication và escalation trước khi gặp khách thật.</p></article><article class="top-card"><span class="num">10 · P2</span><h3>Client content collector</h3><p>Tự nhắc promo calendar, asset, approval và access.</p></article></div></section><section class="section"><div class="section-head"><div><h2>4 nhóm trong Part 2</h2><p>Advertising được chuyển ngữ sang Klaviyo/email; SEO được giữ như pattern vận hành để tái sử dụng khi phù hợp.</p></div></div><div class="category-board"><article class="category-card"><h3>1. Advertising → Klaviyo</h3><ul><li>Launch gate &amp; QA</li><li>Watchdog</li><li>Winner → brief</li><li>Post-mortem</li></ul></article><article class="category-card"><h3>2. SEO patterns</h3><ul><li>Gate trước publish</li><li>Sweeper định kỳ</li><li>Audit → owner</li><li>Recheck sau hạn</li></ul></article><article class="category-card"><h3>3. Talent Pipeline</h3><ul><li>Job scope splitter</li><li>Tuyển &amp; xác minh</li><li>Provisioning</li><li>Ramp &amp; roleplay</li></ul></article><article class="category-card"><h3>4. Content / Social</h3><ul><li>Chase input</li><li>Rights tracking</li><li>Evergreen</li><li>Format mix</li></ul></article></div></section><section class="section"><div class="section-head"><div><h2>Bảng chi tiết đủ 50 automation</h2><p>Lọc theo priority hoặc tìm theo từ khóa. Nhóm ưu tiên HWM xuất hiện trước.</p></div><div class="controls"><input class="search-input" id="search-2" placeholder="Tìm automation, category…" type="search"/><button class="filter-btn active" data-filter="all">Tất cả</button><button class="filter-btn" data-filter="P1">P1</button><button class="filter-btn" data-filter="P2">P2</button><button class="filter-btn" data-filter="P3">P3</button><button class="filter-btn" data-filter="P4">P4</button></div></div><div class="matrix-wrap"><table><thead><tr><th class="col-order">#</th><th>Ưu tiên</th><th class="col-category">Category</th><th class="col-item">Automation</th><th class="col-ai">AI / hệ thống làm gì</th><th class="col-hwm">So với HWM</th><th class="col-step">Next step</th></tr></thead><tbody id="roadmap-body-2"></tbody></table></div><div class="footer-note source-note"><strong>Nguồn &amp; cách hiểu:</strong> Tổng hợp Part 2 từ bài của Jordan Ross. Tuyên bố “2x profit” là quan điểm của tác giả, không phải kết quả được bảo đảm. Giá trị thực tế cần đo bằng lỗi giảm, thời gian chờ giảm, số bài học được tái sử dụng và chất lượng quyết định. · <a href="https://x.com/jordan_ross_8f/status/2086156210190098866">Bài gốc trên X</a></div></section></section></main><script id="combined-roadmap-app">
+const rows1=[{"p":"P1","cat":"Client Ops","item":"Client call → recap + Trello task","note":"Call xong là có recap, internal note, owner, deadline, risk, next step.","ai":"Đọc transcript/voice note/call note → tạo recap cho client, note nội bộ và Trello cards có owner/deadline.","fit":"fit-now","badge":"Làm ngay","hwm":"Rất sát. HWM đã dùng Trello + Google Workspace; pain chính là rơi context/rơi task sau call.","step":"Chuẩn hóa 1 template recap + 1 template Trello task."},{"p":"P1","cat":"Client Ops","item":"Meeting prep brief","note":"Một trang brief trước mỗi client call.","ai":"Tóm tắt 3 trao đổi gần nhất, open tasks, performance, complaint, blocker và câu cần hỏi.","fit":"fit-now","badge":"Làm ngay","hwm":"Rất hợp. Giảm việc Emma phải mò lại Gmail/Drive/Trello trước call.","step":"Tạo Client Brief Template cho từng account."},{"p":"P1","cat":"Client Ops","item":"Weekly client update","note":"Email/update tuần nào cũng có, human chỉ review.","ai":"Draft update: tuần này làm gì, kết quả đáng chú ý, blocker, tuần sau làm gì, cần client approve/cung cấp gì.","fit":"fit-now","badge":"Làm ngay","hwm":"Low hanging fruit mạnh. Giảm im lặng vận hành và giảm cảm giác client bị bỏ rơi.","step":"Chạy pilot với 2–3 account trước."},{"p":"P1","cat":"Training Library","item":"Loom/voice note → SOP/QC/checklist","note":"Biến know-how trực giác thành tài liệu training.","ai":"Từ Loom/voice note tạo SOP, checklist, ví dụ đúng/sai, escalation rule, QC criteria.","fit":"fit-now","badge":"Làm ngay","hwm":"Đúng đau điểm HWM: Thảo/Điệp có nhiều know-how nhưng không nên bị ép ngồi viết doc từ đầu.","step":"Bắt đầu bằng 3 Loom: QC flow, setup flow, audit account."},{"p":"P1","cat":"Klaviyo QA","item":"Deliverable QA trước khi gửi khách","note":"Check campaign/flow/report trước khi ship.","ai":"So deliverable với brief, brand guideline, segment, link, logic flow, offer, naming, deadline.","fit":"fit-now","badge":"Làm ngay","hwm":"Cực sát Klaviyo/email work. Giảm lỗi nhỏ nhưng gây mất niềm tin lớn.","step":"Làm QC checklist chuẩn cho campaign + flow."},{"p":"P1","cat":"Klaviyo Watchdog","item":"Klaviyo/retention performance watchdog","note":"Cảnh báo trước khi client phát hiện.","ai":"Flag flow revenue giảm, campaign underperform, unsubscribe/spam tăng, list growth tụt, tracking/event lỗi.","fit":"fit-high","badge":"Rất hợp","hwm":"Rất cần. Đây là lớp bảo vệ delivery và client trust.","step":"Bản v1 dùng threshold từ Sheet/export; API để phase sau."},{"p":"P1","cat":"Content/Sales Asset","item":"Proposal/audit cũ → insight library","note":"Biến kho proposal thành content, sales snippet, training.","ai":"Mine proposal cũ thành insight ẩn danh, checklist, objection, content angle, sales snippet.","fit":"fit-now","badge":"Đã có nền","hwm":"Rất sát. HWM đã có kho proposal trên Drive và workflow insight queue đang tiềm năng.","step":"Duy trì batch Emma duyệt insight hằng tuần."},{"p":"P2","cat":"Account Intelligence","item":"Client health score v1","note":"Account đỏ/vàng/xanh theo tháng.","ai":"Score theo result, sentiment, workload, response time, complaints, scope creep, renewal/churn risk.","fit":"fit-high","badge":"Rất hợp","hwm":"Rất nên làm. Nhưng phải định nghĩa scoring rõ để không biến thành cảm tính mới.","step":"Tạo Sheet scorecard v1: 6–8 tiêu chí, chấm bán tự động."},{"p":"P2","cat":"Scope Control","item":"Scope creep flag","note":"Request mới có in-scope không?","ai":"So request từ client với SOW/scope ban đầu; flag in-scope, out-of-scope hoặc cần clarify.","fit":"fit-high","badge":"Rất hợp","hwm":"Agency rất dễ bị request “nhỏ nhỏ” cộng dồn thành quá tải.","step":"Gom SOW/scope từng client vào format dễ đọc."},{"p":"P2","cat":"Client Ops","item":"Onboarding chain","note":"Kickoff → checklist/access/30-day plan.","ai":"Biến câu trả lời kickoff thành setup checklist, access request, first 30 days plan.","fit":"fit-high","badge":"Rất hợp","hwm":"Hợp nếu HWM onboarding client đều; giúp giảm miss access/setup step.","step":"Chuẩn hóa onboarding form + access checklist."},{"p":"P2","cat":"PM / Trello","item":"PM agent trên Trello","note":"Daily/weekly task hygiene.","ai":"Nhắc task due hôm nay, overdue, không owner, blocked, lời hứa chưa thấy hoàn thành.","fit":"fit-high","badge":"Rất hợp","hwm":"HWM dùng Trello nên nên tận dụng Trello làm source-of-truth thay vì thêm tool mới.","step":"Tạo daily digest ngắn cho Emma."},{"p":"P2","cat":"QA / Process","item":"SOP compliance audit","note":"Check có làm đúng process không.","ai":"Sample deliverables hằng tuần và check với SOP/QC checklist.","fit":"fit-data","badge":"Cần SOP","hwm":"Quan trọng khi scale team, nhưng phải có SOP trước thì AI mới audit được.","step":"Làm sau khi có 3–5 SOP/QC checklist đầu tiên."},{"p":"P2","cat":"Reporting","item":"Monthly client performance report","note":"Report tự pull data và draft sẵn.","ai":"Tổng hợp số liệu Klaviyo/client data thành report ngắn: result, issue, action, ask.","fit":"fit-data","badge":"Cần data","hwm":"Rất hợp, nhưng data source phải ổn định để report không bị thủ công trá hình.","step":"Chốt report template + data sheet/API source."},{"p":"P2","cat":"Reporting","item":"Anomaly agent","note":"Spend spike, conversion drop, tracking break.","ai":"Theo dõi metric chính và gửi alert khi vượt threshold hoặc tụt bất thường.","fit":"fit-high","badge":"Rất hợp","hwm":"Cực có giá trị cho retention/Klaviyo vì giảm rủi ro client báo lỗi trước.","step":"Bản đầu chỉ alert 5–7 metric quan trọng nhất."},{"p":"P2","cat":"Sales","item":"Pre-call brief cho prospect","note":"Sales call vào là có context.","ai":"Tóm tắt prospect, audit cũ, pain, last interaction, suggested angle và next questions.","fit":"fit-high","badge":"Rất hợp","hwm":"Hợp với sales/proposal process của HWM, nhất là khi có proposal/audit cũ.","step":"Dùng Drive proposal + Gmail + note làm input."},{"p":"P2","cat":"Sales","item":"Recap email sau sales call","note":"Follow-up có context thật.","ai":"Draft email recap theo pain, objection, next step, lời hứa trong call.","fit":"fit-high","badge":"Rất hợp","hwm":"Dễ triển khai nếu có transcript/call note; giảm follow-up chung chung.","step":"Tạo template recap sales riêng cho HWM."},{"p":"P3","cat":"Sales","item":"Follow-up builder","note":"Sequence dựa trên điều khách thật sự nói.","ai":"Tạo follow-up sequence và nhắc rep nếu follow-up chưa gửi.","fit":"fit-data","badge":"Cần pipeline","hwm":"Có giá trị, nhưng cần sales pipeline/status rõ hơn để không thành random reminder.","step":"Làm sau khi recap sales chạy ổn."},{"p":"P3","cat":"Sales","item":"Lead resurrection","note":"Kéo lại closed-lost sau 3/6/9 tháng.","ai":"Quét lost deals/proposal cũ, lấy transcript/context cũ để draft reconnect email.","fit":"fit-data","badge":"Cần status","hwm":"Rất hay với lost proposals, nhưng cần biết proposal nào lost, lý do gì, lúc nào.","step":"Gắn status/lost reason cho proposal pipeline."},{"p":"P3","cat":"Sales Training","item":"Call scorecard","note":"Chấm sales/client call theo tiêu chí.","ai":"Auto-grade agenda, pain, objection, next step, talk ratio, qualification criteria.","fit":"fit-data","badge":"Cần tiêu chí","hwm":"Hữu ích để training team nhưng cần scorecard chuẩn trước.","step":"Làm scorecard đơn giản trước, chưa cần tự động hoàn toàn."},{"p":"P3","cat":"Team Ops","item":"Off-call performance","note":"Đo phần việc không nằm trong call.","ai":"Theo dõi response time, turnaround, task completion, missed deadline.","fit":"fit-later","badge":"Cẩn trọng","hwm":"Có ích khi team lớn hơn, nhưng dễ nhạy cảm nếu dùng như công cụ soi người.","step":"Bắt đầu như ops health, không dùng để phán xét cá nhân quá sớm."},{"p":"P3","cat":"Data Hygiene","item":"Data hygiene","note":"Dọn nguồn dữ liệu vận hành.","ai":"Flag stale deal, blank next step, unlogged call, task không owner.","fit":"fit-high","badge":"Hợp","hwm":"Nên ưu tiên Trello hygiene trước CRM hygiene vì Trello là source-of-truth hiện tại.","step":"Tạo rule: card nào bắt buộc có owner/deadline/status."},{"p":"P3","cat":"People Management","item":"1:1 prep brief","note":"Manager có context trước buổi 1:1.","ai":"Tóm tắt task done/missed, blocker, feedback, điểm nên khen, điểm cần hỏi, commitment lần trước.","fit":"fit-later","badge":"Sau","hwm":"Có ích cho Emma/Điệp khi quản lý team, nhưng cần task/feedback data sạch hơn.","step":"Làm sau Trello/task digest."},{"p":"P3","cat":"People Management","item":"New hire ramp checklist","note":"Theo dõi 30/60/90 ngày.","ai":"Check milestone, skill gap, training còn thiếu, flag người mới đang chậm.","fit":"fit-later","badge":"Sau","hwm":"Rất hợp khi HWM tuyển/thêm người vận hành.","step":"Gắn với training library từ Loom/SOP."},{"p":"P3","cat":"Content","item":"Transcript → case study/testimonial/content","note":"Lôi tài sản từ call recording.","ai":"Tìm testimonial, case study angle, objection, content idea từ sales/client call.","fit":"fit-high","badge":"Rất hợp","hwm":"Mỏ vàng cho HWM, nhưng cần permission/anonymization kỹ.","step":"Bắt đầu internal-only, chưa public ngay."},{"p":"P4","cat":"Inbox","item":"Inbox triage","note":"Email nào quan trọng, email nào cần xử lý.","ai":"Lọc spam, surface email quan trọng, detect deadline/request cần phản hồi.","fit":"fit-later","badge":"Sau","hwm":"Hữu ích nhưng dễ nhiễu nếu rule chưa rõ; không phải pain lớn nhất ngay lúc này.","step":"Làm sau client update/brief vì cùng dùng Gmail."},{"p":"P4","cat":"EA / Calendar","item":"EA agent","note":"Nhắc lịch, chuẩn bị tài liệu.","ai":"Trước call nhắc call để làm gì, cần chuẩn bị file/data/context nào.","fit":"fit-later","badge":"Sau","hwm":"Hữu ích nhưng không phải đòn bẩy lớn bằng client ops/QA/training.","step":"Gắn vào calendar sau khi client brief chạy ổn."},{"p":"P4","cat":"Knowledge Base","item":"Knowledge agent","note":"Hỏi là biết template/SOP ở đâu.","ai":"Trả lời từ Drive/docs: report template ở đâu, SOP nào áp dụng, checklist nào cần dùng.","fit":"fit-high","badge":"Rất hợp","hwm":"Rất hợp khi training library lớn dần; hiện cần gom tài liệu trước.","step":"Làm sau khi SOP/docs đã đủ và có naming/folder chuẩn."},{"p":"P4","cat":"Finance / Ops","item":"CFO agent","note":"Forecast, AR chasing, cash warning.","ai":"Tạo forecast, mid-month financials, AR chasing, cash/cost warning.","fit":"fit-data","badge":"Cần finance data","hwm":"Có giá trị nhưng cần đưa finance data vào hệ thống an toàn và rõ quyền truy cập.","step":"Chỉ làm khi HWM muốn tích hợp finance data."},{"p":"P4","cat":"Finance / Reporting","item":"Margin per account / profitability","note":"Profitability theo client.","ai":"Tính margin/client dựa trên revenue, workload, hours, cost nếu có data.","fit":"fit-data","badge":"Phase 2","hwm":"Rất đáng làm nhưng cần time/cost/revenue data đủ sạch.","step":"Đưa vào client health score phase 2."},{"p":"P5","cat":"Admin / Security","item":"Access audit","note":"Người offboard còn login không?","ai":"Check account/tool access, flag người đã offboard hoặc access không còn cần thiết.","fit":"fit-later","badge":"Monthly","hwm":"Quan trọng về security nhưng không tạo leverage vận hành ngay.","step":"Làm monthly checklist bán tự động."},{"p":"P5","cat":"Admin / Cost","item":"Software spend audit","note":"Seat/app không ai dùng.","ai":"Check seat không login 60 ngày, app ít dùng, cost bất thường.","fit":"fit-later","badge":"Quarterly","hwm":"Có thể tiết kiệm tiền, nhưng không cấp bách bằng client ops/QA.","step":"Chạy mỗi quý."},{"p":"P5","cat":"People / Culture","item":"Birthday/work anniversary reminder","note":"Nhắc dịp nhỏ nhưng dễ quên.","ai":"Nhắc sinh nhật/kỷ niệm làm việc và gợi ý lời nhắn.","fit":"fit-later","badge":"Nice-to-have","hwm":"Có ích cho culture nhưng chưa phải ưu tiên.","step":"Để sau."},{"p":"P5","cat":"People / Culture","item":"Satisfaction pulse","note":"Survey mood/engagement định kỳ.","ai":"Gửi survey ngắn, score theo trend, flag người có mood tụt nhiều tháng.","fit":"fit-later","badge":"Sau","hwm":"Hữu ích khi team lớn hơn; hiện chưa cần ưu tiên nếu team còn nhỏ.","step":"Chỉ làm khi cadence quản lý người đã ổn."},{"p":"P5","cat":"People / Review","item":"Review cycle prep","note":"Draft performance review từ dữ liệu 90 ngày.","ai":"Gom call grades, QA, completed work, feedback để draft review.","fit":"fit-data","badge":"Cần nền","hwm":"Cần nhiều dữ liệu nền; chưa nên làm trước.","step":"Làm sau khi scorecard + Trello hygiene + QA log ổn."}];
+const rows2=[{"p":"P1","cat":"Advertising → Klaviyo","item":"Pre-flight launch gate","note":"Chỉ cho launch sau khi naming, budget, geo, exclusion, conversion event và bid strategy qua checklist.","ai":"Chỉ cho launch sau khi naming, budget, geo, exclusion, conversion event và bid strategy qua checklist.","fit":"fit-now","badge":"Làm trước","hwm":"Chuyển thành email/flow gate: subject, preheader, links, coupon, segment, suppression, tracking, mobile; flow thêm trigger, filter, delay và exit condition.","step":"Chuẩn hóa checklist campaign + flow; pilot trên 2 account."},{"p":"P1","cat":"Advertising → Klaviyo","item":"Promo & coupon sync checker","note":"So offer, coupon, điều kiện, timezone và thời gian chạy giữa ads với website.","ai":"So offer, coupon, điều kiện, timezone và thời gian chạy giữa ads với website.","fit":"fit-now","badge":"Làm trước","hwm":"Rất sát HWM: email, coupon, promo calendar và website phải cùng một nguồn sự thật.","step":"Chuẩn hóa promo calendar và owner xác nhận."},{"p":"P1","cat":"Advertising → Klaviyo","item":"Weekend / anomaly watchdog","note":"Theo dõi spend và tín hiệu bất thường khi team nghỉ; vượt ngưỡng thì escalate.","ai":"Theo dõi spend và tín hiệu bất thường khi team nghỉ; vượt ngưỡng thì escalate.","fit":"fit-now","badge":"Làm trước","hwm":"Chuyển thành flow/campaign watchdog: revenue, send volume, bounce, spam, unsubscribe, conversion và event/flow ngừng chạy.","step":"Bản v1 chỉ theo dõi 5–7 tín hiệu, có owner và ngưỡng rõ."},{"p":"P1","cat":"Advertising → Klaviyo","item":"Winner-to-brief loop","note":"Phân tích winner thành hook, format, angle và brief cho vòng tiếp theo.","ai":"Phân tích winner thành hook, format, angle và brief cho vòng tiếp theo.","fit":"fit-now","badge":"Làm trước","hwm":"Rất hợp HWM; biến winner thành brief có bằng chứng thay vì dựa vào trí nhớ từng người.","step":"Định nghĩa winner và schema brief trước."},{"p":"P1","cat":"Advertising → Klaviyo","item":"Campaign post-mortem","note":"Mỗi campaign kết thúc đều có debrief: đã hứa gì, xảy ra gì, lần sau đổi gì.","ai":"Mỗi campaign kết thúc đều có debrief: đã hứa gì, xảy ra gì, lần sau đổi gì.","fit":"fit-now","badge":"Làm trước","hwm":"Rất hợp để giữ bài học campaign trong tài sản công ty.","step":"Tạo mẫu debrief 1 trang, chạy sau 3 campaign liên tiếp."},{"p":"P1","cat":"Talent Pipeline","item":"Job scope splitter","note":"Tách role thành task; đánh dấu việc agent đã xử lý và phần còn cần judgment.","ai":"Tách role thành task; đánh dấu việc agent đã xử lý và phần còn cần judgment.","fit":"fit-now","badge":"Làm trước","hwm":"Nên chạy trước mọi đợt tuyển của HWM để JD phản ánh phần việc thật còn lại.","step":"Dùng bảng Task / Agent / Human / KPI trước khi viết JD."},{"p":"P2","cat":"Talent Pipeline","item":"Day-one provisioning","note":"Account, access, tool và permission sẵn trước ngày đầu.","ai":"Account, access, tool và permission sẵn trước ngày đầu.","fit":"fit-high","badge":"Rất hợp","hwm":"Rất hợp HWM; giảm downtime và tránh onboarding bằng trí nhớ.","step":"Tạo access matrix theo role và least privilege."},{"p":"P2","cat":"Talent Pipeline","item":"First-week calendar","note":"Tự xếp intro, training, shadowing và task thật đầu tiên.","ai":"Tự xếp intro, training, shadowing và task thật đầu tiên.","fit":"fit-high","badge":"Rất hợp","hwm":"Nối trực tiếp với training Klaviyo và kho SOP/QC của Điệp.","step":"Thiết kế calendar mẫu cho từng role."},{"p":"P2","cat":"Talent Pipeline","item":"Ramp tracker","note":"Theo dõi milestone và nhắc manager khi người mới chậm tiến độ.","ai":"Theo dõi milestone và nhắc manager khi người mới chậm tiến độ.","fit":"fit-high","badge":"Rất hợp","hwm":"Rất có giá trị nhưng cần milestone và QA score rõ.","step":"Định nghĩa ramp 7/30/60/90 ngày."},{"p":"P2","cat":"Talent Pipeline","item":"Roleplay agent","note":"Cho người mới luyện client call, objection và escalation trước khi gặp khách thật.","ai":"Cho người mới luyện client call, objection và escalation trước khi gặp khách thật.","fit":"fit-high","badge":"Rất hợp","hwm":"Rất hợp để train AM/Klaviyo specialist về communication.","step":"Viết 10 scenario đã ẩn danh và rubric pass/fail."},{"p":"P2","cat":"Content & Social","item":"Client content collector","note":"Tự nhắc client gửi raw photo, founder clip và asset đã hứa; quá hạn thì escalate.","ai":"Tự nhắc client gửi raw photo, founder clip và asset đã hứa; quá hạn thì escalate.","fit":"fit-high","badge":"Rất hợp","hwm":"Top 10 HWM: mở rộng thành promo calendar, asset, approval và access còn thiếu.","step":"Tạo request checklist và cadence nhắc 7/3/1 ngày."},{"p":"P2","cat":"Advertising → Klaviyo","item":"Landing page pre-spend QA","note":"Kiểm tra tốc độ, form, mobile, thank-you page và tracking trước khi đưa traffic vào.","ai":"Kiểm tra tốc độ, form, mobile, thank-you page và tracking trước khi đưa traffic vào.","fit":"fit-high","badge":"Rất hợp","hwm":"Dùng như pre-send QA cho campaign lớn có landing page quan trọng.","step":"Gắn vào launch gate theo điều kiện."},{"p":"P2","cat":"Advertising → Klaviyo","item":"Account structure auditor","note":"Rà naming, cấu trúc, setting drift và asset bị bỏ quên theo quý.","ai":"Rà naming, cấu trúc, setting drift và asset bị bỏ quên theo quý.","fit":"fit-high","badge":"Rất hợp","hwm":"Chuyển gần như nguyên vẹn sang Klaviyo: flow cũ còn live, segment mồ côi, naming và cấu hình lệch chuẩn.","step":"Chạy quarterly audit từ checklist chuẩn."},{"p":"P2","cat":"Advertising → Klaviyo","item":"Offer test ledger","note":"Lưu mỗi offer đã test cùng audience và kết quả.","ai":"Lưu mỗi offer đã test cùng audience và kết quả.","fit":"fit-high","badge":"Rất hợp","hwm":"Là bộ nhớ nền cho winner-to-brief và post-mortem.","step":"Tạo ledger tối thiểu: offer, segment, creative, metric, kết luận."},{"p":"P2","cat":"SEO pattern","item":"Broken link & 404 sweeper","note":"Crawl hằng tuần, ưu tiên lỗi làm mất nhiều link equity.","ai":"Crawl hằng tuần, ưu tiên lỗi làm mất nhiều link equity.","fit":"fit-high","badge":"Rất hợp","hwm":"Pattern rất hợp: quét link campaign/flow trước send và flow live hằng tháng.","step":"Gộp link checker vào launch gate."},{"p":"P2","cat":"SEO pattern","item":"Content brief generator","note":"Gom SERP structure, competitor gap, entity và internal-link target thành brief.","ai":"Gom SERP structure, competitor gap, entity và internal-link target thành brief.","fit":"fit-high","badge":"Rất hợp","hwm":"Tái dùng pattern cho email brief: past winner, competitor, segment, offer và angle.","step":"Dùng chung schema với winner-to-brief."},{"p":"P2","cat":"SEO pattern","item":"Pre-publish on-page gate","note":"Check meta, heading, alt, schema và brief compliance trước publish.","ai":"Check meta, heading, alt, schema và brief compliance trước publish.","fit":"fit-high","badge":"Rất hợp","hwm":"Cùng pattern với email gate; không cần hệ thống riêng.","step":"Tái dùng gate engine với checklist khác."},{"p":"P2","cat":"SEO pattern","item":"Scheduled technical audit","note":"Crawl định kỳ, ưu tiên lỗi và giao thẳng cho đúng owner.","ai":"Crawl định kỳ, ưu tiên lỗi và giao thẳng cho đúng owner.","fit":"fit-high","badge":"Rất hợp","hwm":"Bài học quan trọng: audit Klaviyo phải tạo Trello card, owner, deadline và recheck; không chết trong PDF.","step":"Chuẩn hóa severity và rule tạo card."},{"p":"P2","cat":"Talent Pipeline","item":"Freelancer bench manager","note":"Theo dõi freelancer theo skill, rate, availability và QA score.","ai":"Theo dõi freelancer theo skill, rate, availability và QA score.","fit":"fit-high","badge":"Rất hợp","hwm":"Rất hợp agency cần surge capacity.","step":"Dùng Trello/Sheet làm source-of-truth."},{"p":"P2","cat":"Content & Social","item":"Evergreen recycler","note":"Đưa top performer trở lại lịch theo decay schedule và làm mới vừa đủ.","ai":"Đưa top performer trở lại lịch theo decay schedule và làm mới vừa đủ.","fit":"fit-high","badge":"Rất hợp","hwm":"Áp dụng cho winning email angle, seasonal framework và content giáo dục.","step":"Nối với winner ledger và human freshness check."},{"p":"P2","cat":"Content & Social","item":"Format mix analyzer","note":"So tỷ trọng format với kết quả và đề xuất rebalance.","ai":"So tỷ trọng format với kết quả và đề xuất rebalance.","fit":"fit-high","badge":"Rất hợp","hwm":"Rất hợp: so plain text, designed, promo, educational, founder-led theo kết quả thật.","step":"Chốt taxonomy format và metric."},{"p":"P3","cat":"Talent Pipeline","item":"Sourcing sweeper","note":"Match profile với role scorecard và tạo shortlist có giải thích.","ai":"Match profile với role scorecard và tạo shortlist có giải thích.","fit":"fit-data","badge":"Cần nền","hwm":"Chỉ hiệu quả khi scorecard tuyển dụng đủ rõ.","step":"Làm scorecard trước; không auto-reject."},{"p":"P3","cat":"Talent Pipeline","item":"Candidate rediscovery","note":"Quét database ứng viên cũ trước khi sourcing mới.","ai":"Quét database ứng viên cũ trước khi sourcing mới.","fit":"fit-data","badge":"Cần nền","hwm":"Tiết kiệm thời gian nếu lịch sử ứng viên được lưu có cấu trúc.","step":"Chuẩn hóa skill, status và lý do không chọn."},{"p":"P3","cat":"Talent Pipeline","item":"Portfolio verifier","note":"Kiểm tra claimed work có live và attributable hay không.","ai":"Kiểm tra claimed work có live và attributable hay không.","fit":"fit-data","badge":"Cần nền","hwm":"Hợp với design/copy/Klaviyo, nhưng chỉ dùng để tạo câu hỏi, không tự kết luận.","step":"Tạo checklist evidence cho interview."},{"p":"P3","cat":"Talent Pipeline","item":"Ghosting prevention","note":"Mọi ứng viên đều nhận status update tới khi bị từ chối.","ai":"Mọi ứng viên đều nhận status update tới khi bị từ chối.","fit":"fit-data","badge":"Cần nền","hwm":"Dễ làm, tốt cho employer brand.","step":"Tạo template theo stage và SLA phản hồi."},{"p":"P3","cat":"Talent Pipeline","item":"Interview scheduler","note":"Ứng viên tự đặt lịch theo availability thật và timezone.","ai":"Ứng viên tự đặt lịch theo availability thật và timezone.","fit":"fit-data","badge":"Cần nền","hwm":"Google Workspace đã sẵn, triển khai ít rủi ro.","step":"Tạo booking page theo role/panel."},{"p":"P3","cat":"Talent Pipeline","item":"Panel debrief compiler","note":"Gom scorecard, chỉ ra bất đồng và chuẩn bị decision meeting.","ai":"Gom scorecard, chỉ ra bất đồng và chuẩn bị decision meeting.","fit":"fit-data","badge":"Cần nền","hwm":"Hữu ích khi nhiều interviewer; cần khóa scorecard trước khi xem điểm nhau.","step":"Chuẩn hóa scorecard và evidence field."},{"p":"P3","cat":"Talent Pipeline","item":"Pre-start drip","note":"Gửi paperwork, intro và kỳ vọng trong hai tuần trước start date.","ai":"Gửi paperwork, intro và kỳ vọng trong hai tuần trước start date.","fit":"fit-data","badge":"Cần nền","hwm":"Dễ làm, giảm khoảng trống sau accepted offer.","step":"Soạn chuỗi 3–4 email theo mốc."},{"p":"P4","cat":"Advertising → Klaviyo","item":"Product feed sentinel","note":"Quét hằng ngày item bị từ chối, thiếu thuộc tính, sai giá hoặc hết hàng.","ai":"Quét hằng ngày item bị từ chối, thiếu thuộc tính, sai giá hoặc hết hàng.","fit":"fit-later","badge":"Để sau","hwm":"Chỉ cần sớm nếu HWM chịu trách nhiệm dynamic product block/catalog.","step":"Pilot với client có catalog phức tạp."},{"p":"P4","cat":"Advertising → Klaviyo","item":"Disapproval monitor","note":"Phát hiện ads bị từ chối trong ngày, giải thích policy và draft bản sửa.","ai":"Phát hiện ads bị từ chối trong ngày, giải thích policy và draft bản sửa.","fit":"fit-later","badge":"Để sau","hwm":"Ngoài core Klaviyo; giữ lại nếu HWM mở paid media.","step":"Chưa ưu tiên."},{"p":"P4","cat":"Advertising → Klaviyo","item":"Exclusion list hygiene","note":"Đồng bộ customer list và suppression audience định kỳ.","ai":"Đồng bộ customer list và suppression audience định kỳ.","fit":"fit-later","badge":"Để sau","hwm":"Áp dụng tốt cho suppression và segment hygiene trong Klaviyo.","step":"Thêm freshness check vào audit tháng."},{"p":"P4","cat":"Advertising → Klaviyo","item":"Creative factory","note":"Từ brief tạo nhiều creative variant để strategist chọn và chỉnh.","ai":"Từ brief tạo nhiều creative variant để strategist chọn và chỉnh.","fit":"fit-later","badge":"Để sau","hwm":"Tăng throughput subject, hook, angle, CTA; chưa nên ưu tiên trước QA và feedback loop.","step":"Chỉ sinh variant từ brief có constraint và reference."},{"p":"P4","cat":"Advertising → Klaviyo","item":"CRO hypothesis queue","note":"Từ dữ liệu funnel tạo backlog giả thuyết, xếp theo tác động dự kiến.","ai":"Từ dữ liệu funnel tạo backlog giả thuyết, xếp theo tác động dự kiến.","fit":"fit-later","badge":"Để sau","hwm":"Có ích khi HWM có đủ dữ liệu site/funnel và quyền can thiệp CRO.","step":"Làm sau ledger và reporting."},{"p":"P4","cat":"SEO pattern","item":"Schema generator","note":"Draft structured data theo page type và validate trước deploy.","ai":"Draft structured data theo page type và validate trước deploy.","fit":"fit-later","badge":"Để sau","hwm":"Ngoài core HWM.","step":"Chưa ưu tiên."},{"p":"P4","cat":"SEO pattern","item":"Redirect map builder","note":"Tạo và kiểm tra URL cũ → mới trước migration.","ai":"Tạo và kiểm tra URL cũ → mới trước migration.","fit":"fit-later","badge":"Để sau","hwm":"Chỉ liên quan khi email đang trỏ URL cũ.","step":"Phối hợp với client khi migration."},{"p":"P4","cat":"SEO pattern","item":"Migration sentinel","note":"Theo dõi ranking, traffic và crawl error 30 ngày sau migration.","ai":"Theo dõi ranking, traffic và crawl error 30 ngày sau migration.","fit":"fit-later","badge":"Để sau","hwm":"Ngoài core HWM.","step":"Chưa ưu tiên."},{"p":"P4","cat":"SEO pattern","item":"Cannibalization checker","note":"Phát hiện hai page tranh cùng query và draft phương án gộp/tách.","ai":"Phát hiện hai page tranh cùng query và draft phương án gộp/tách.","fit":"fit-later","badge":"Để sau","hwm":"Ngoài core HWM.","step":"Chưa ưu tiên."},{"p":"P4","cat":"SEO pattern","item":"Sitemap & orphan hygiene","note":"Bắt orphan page, noindex conflict, canonical sai và sitemap stale.","ai":"Bắt orphan page, noindex conflict, canonical sai và sitemap stale.","fit":"fit-later","badge":"Để sau","hwm":"Ngoài core HWM.","step":"Chưa ưu tiên."},{"p":"P4","cat":"SEO pattern","item":"Log file analyzer","note":"Tóm tắt crawl-budget waste bằng ngôn ngữ dễ hiểu.","ai":"Tóm tắt crawl-budget waste bằng ngôn ngữ dễ hiểu.","fit":"fit-later","badge":"Để sau","hwm":"Không liên quan delivery hiện tại.","step":"Chưa ưu tiên."},{"p":"P4","cat":"SEO pattern","item":"Hreflang validator","note":"Kiểm tra định kỳ website đa vùng/ngôn ngữ.","ai":"Kiểm tra định kỳ website đa vùng/ngôn ngữ.","fit":"fit-later","badge":"Để sau","hwm":"Chỉ cần nếu HWM nhận thêm scope website.","step":"Chưa ưu tiên."},{"p":"P4","cat":"SEO pattern","item":"Link prospect vetter","note":"Chấm outreach target theo authority, relevance, traffic và spam risk.","ai":"Chấm outreach target theo authority, relevance, traffic và spam risk.","fit":"fit-later","badge":"Để sau","hwm":"Không phải use case retention ưu tiên.","step":"Chưa ưu tiên."},{"p":"P4","cat":"Content & Social","item":"Platform spec checker","note":"Check dimensions, duration, character limit và safe zone trước schedule.","ai":"Check dimensions, duration, character limit và safe zone trước schedule.","fit":"fit-later","badge":"Để sau","hwm":"Nếu áp dụng sang email, dùng như email/client spec checker.","step":"Dùng checklist có version và ngày cập nhật."},{"p":"P4","cat":"Content & Social","item":"Grid preview QA","note":"Render feed trước để kiểm tra thẩm mỹ tổng thể.","ai":"Render feed trước để kiểm tra thẩm mỹ tổng thể.","fit":"fit-later","badge":"Để sau","hwm":"Ngoài core Klaviyo.","step":"Chưa ưu tiên."},{"p":"P4","cat":"Content & Social","item":"First-comment scheduler","note":"Tự đặt link, CTA và hashtag block theo platform.","ai":"Tự đặt link, CTA và hashtag block theo platform.","fit":"fit-later","badge":"Để sau","hwm":"Ngoài core HWM.","step":"Chưa ưu tiên."},{"p":"P4","cat":"Content & Social","item":"Rights & usage expiry tracker","note":"Theo dõi thời hạn nhạc, stock và creator content; cảnh báo trước expiry.","ai":"Theo dõi thời hạn nhạc, stock và creator content; cảnh báo trước expiry.","fit":"fit-later","badge":"Để sau","hwm":"Có giá trị nếu HWM dùng UGC/stock trong email.","step":"Thêm rights metadata vào asset library."},{"p":"P4","cat":"Content & Social","item":"UGC harvester","note":"Quét tag/mention, gom UGC dùng được và draft lời xin quyền.","ai":"Quét tag/mention, gom UGC dùng được và draft lời xin quyền.","fit":"fit-later","badge":"Để sau","hwm":"Có thể tạo nguồn creative email nhưng cần permission và brand approval.","step":"Pilot với một client có volume UGC cao."},{"p":"P4","cat":"Content & Social","item":"Comment & DM triage","note":"Draft theo brand voice; complaint và case nhạy cảm chuyển người.","ai":"Draft theo brand voice; complaint và case nhạy cảm chuyển người.","fit":"fit-later","badge":"Để sau","hwm":"Pattern tốt cho inbox client nhưng phải có escalation rule chặt.","step":"Chỉ chạy triage/draft, chưa auto-send."},{"p":"P4","cat":"Content & Social","item":"Crisis velocity detector","note":"Phát hiện tốc độ negative mention tăng bất thường và draft holding statement.","ai":"Phát hiện tốc độ negative mention tăng bất thường và draft holding statement.","fit":"fit-later","badge":"Để sau","hwm":"Nguyên tắc alert áp dụng được cho complaint/sentiment client.","step":"Để sau client health/watchdog."},{"p":"P4","cat":"Content & Social","item":"Posting time recalibrator","note":"Cập nhật slot tối ưu hằng tháng từ data riêng từng account.","ai":"Cập nhật slot tối ưu hằng tháng từ data riêng từng account.","fit":"fit-later","badge":"Để sau","hwm":"Tương đương send-time learning trong Klaviyo; cần kiểm soát seasonality.","step":"Chạy như recommendation, không auto đổi toàn bộ."},{"p":"P4","cat":"Content & Social","item":"Ephemeral planner","note":"Lập kế hoạch riêng cho Stories và format ngắn hạn.","ai":"Lập kế hoạch riêng cho Stories và format ngắn hạn.","fit":"fit-later","badge":"Để sau","hwm":"Ngoài core HWM hiện tại.","step":"Chưa ưu tiên."}];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function initPart1(){const root=document.getElementById('part1'),body=root.querySelector('#roadmap-body-1'),buttons=[...root.querySelectorAll('.filter-btn')];let current='all';const render=()=>{body.innerHTML=rows1.map((r,i)=>({...r,i})).filter(r=>current==='all'||r.p===current).map(r=>`<tr data-priority="${esc(r.p)}"><td class="col-order"><span class="small-note">${String(r.i+1).padStart(2,'0')}</span></td><td class="col-priority"><span class="tag ${esc(r.p.toLowerCase())}">${esc(r.p)}</span></td><td class="col-category"><span class="category">${esc(r.cat)}</span></td><td class="col-item"><span class="item-title">${esc(r.item)}</span><span class="small-note">${esc(r.note)}</span></td><td class="col-ai">${esc(r.ai)}</td><td class="col-hwm"><div class="fit"><span class="fit-badge ${esc(r.fit)}">${esc(r.badge)}</span><span>${esc(r.hwm)}</span></div></td><td class="col-step">${esc(r.step)}</td></tr>`).join('')};buttons.forEach(btn=>btn.addEventListener('click',()=>{current=btn.dataset.filter;buttons.forEach(b=>b.classList.toggle('active',b===btn));render()}));render()}
+function initPart2(){const root=document.getElementById('part2'),body=root.querySelector('#roadmap-body-2'),search=root.querySelector('#search-2'),buttons=[...root.querySelectorAll('.filter-btn')];let current='all';const render=()=>{const q=search.value.trim().toLowerCase();body.innerHTML=rows2.map((r,i)=>({...r,i})).filter(r=>(current==='all'||r.p===current)&&(!q||Object.values(r).join(' ').toLowerCase().includes(q))).map(r=>`<tr data-priority="${esc(r.p)}"><td class="col-order"><span class="small-note">${String(r.i+1).padStart(2,'0')}</span></td><td><span class="tag ${esc(r.p.toLowerCase())}">${esc(r.p)}</span></td><td><span class="category">${esc(r.cat)}</span></td><td><span class="item-title">${esc(r.item)}</span><span class="small-note">${esc(r.note)}</span></td><td>${esc(r.ai)}</td><td><div class="fit"><span class="fit-badge ${esc(r.fit)}">${esc(r.badge)}</span><span>${esc(r.hwm)}</span></div></td><td>${esc(r.step)}</td></tr>`).join('')};buttons.forEach(btn=>btn.addEventListener('click',()=>{current=btn.dataset.filter;buttons.forEach(b=>b.classList.toggle('active',b===btn));render()}));search.addEventListener('input',render);render()}
+function labelTables(){document.querySelectorAll('table').forEach(table=>{const labels=[...table.querySelectorAll('thead th')].map(th=>th.textContent.trim());const apply=()=>table.querySelectorAll('tbody tr').forEach(row=>[...row.children].forEach((cell,i)=>cell.dataset.label=labels[i]||'Chi tiết'));apply();const body=table.querySelector('tbody');if(body)new MutationObserver(apply).observe(body,{childList:true})})}
+initPart1();initPart2();labelTables();
+</script></body></html>
