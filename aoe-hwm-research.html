@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Nghiên cứu AEO sống dành cho Huge Win Media: bằng chứng, nhận định, thử nghiệm và playbook cập nhật liên tục.">
+  <title>HWM × AEO — Living Research</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Archivo+Black&display=swap');
+    :root{--ink:#17211c;--muted:#55635b;--paper:#f6f4ed;--sheet:#fffdf7;--green:#0d5a40;--lime:#cbe64f;--blue:#86bce8;--orange:#f28a52;--line:#cbd1c9;--soft:#e8ebe3;--shadow:0 14px 35px rgba(23,33,28,.10)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,system-ui,sans-serif;line-height:1.65}
+    ::selection{background:var(--lime);color:var(--ink)}
+    a{color:var(--green);text-decoration-thickness:1.5px;text-underline-offset:3px}
+    a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+    .rail{position:sticky;top:0;z-index:30;background:rgba(246,244,237,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .rail-in{max-width:1280px;margin:auto;display:flex;align-items:center;gap:22px;padding:12px 28px;overflow:auto}
+    .brand{font:400 18px/1 'Archivo Black',sans-serif;white-space:nowrap;color:var(--ink);text-decoration:none}.brand b{color:var(--green)}
+    .nav{display:flex;gap:18px;white-space:nowrap;margin-left:auto}.nav a{font-size:13px;font-weight:700;color:var(--muted);text-decoration:none}.nav a:hover{color:var(--ink)}
+    main{max-width:1280px;margin:auto;padding:0 28px 80px}
+    .hero{min-height:620px;display:grid;grid-template-columns:1.35fr .65fr;gap:40px;align-items:end;padding:72px 0 54px;border-bottom:2px solid var(--ink)}
+    .hero h1{font:400 clamp(58px,9vw,132px)/.84 'Archivo Black',sans-serif;letter-spacing:-.035em;margin:0;max-width:900px}
+    .hero h1 span{display:block;color:var(--green)}
+    .lede{max-width:670px;font-size:20px;margin:32px 0 0;color:#344139}
+    .status{align-self:stretch;background:var(--green);color:white;padding:28px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow)}
+    .status p{margin:0}.status strong{font:400 32px/1.05 'Archivo Black',sans-serif;display:block;margin-bottom:16px}.status small{color:#dbe8df}.pulse{width:11px;height:11px;border-radius:50%;display:inline-block;background:var(--lime);box-shadow:0 0 0 8px rgba(203,230,79,.15);margin-right:10px}
+    .section{padding:68px 0;border-bottom:1px solid var(--line)}
+    .section-head{display:grid;grid-template-columns:320px 1fr;gap:36px;margin-bottom:38px;align-items:start}.section-head h2{font:400 clamp(34px,4.25vw,54px)/.98 'Archivo Black',sans-serif;letter-spacing:-.025em;margin:0;overflow-wrap:normal}.section-head p{max-width:700px;margin:8px 0 0;color:var(--muted);font-size:17px}
+    .signal{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+    .signal article{padding:28px 24px;min-height:220px;border-right:1px solid var(--line)}.signal article:last-child{border:0}.signal h3{margin:0 0 12px;font-size:20px}.signal p{margin:0;color:var(--muted)}
+    .num{font:400 46px/1 'Archivo Black',sans-serif;color:var(--green);display:block;margin-bottom:30px}
+    .thesis{font:500 clamp(27px,4vw,52px)/1.18 Manrope,sans-serif;letter-spacing:-.03em;max-width:1000px;margin:0}.thesis mark{background:var(--lime);padding:0 .12em;color:inherit}
+    .legend{display:flex;flex-wrap:wrap;gap:10px;margin:25px 0}.tag{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--ink);border-radius:999px;padding:5px 11px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}.tag.fact{background:var(--blue)}.tag.obs{background:var(--lime)}.tag.hyp{background:#f3c2a8}.tag.hwm{background:var(--ink);color:white}
+    .channel-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--ink);border:1px solid var(--ink)}
+    .channel{background:var(--sheet);padding:24px 18px;min-height:245px}.channel strong{font:400 34px/1 'Archivo Black',sans-serif;color:var(--green)}.channel h3{font-size:18px;margin:18px 0 8px}.channel p{font-size:14px;color:var(--muted);margin:0}.channel .mini{display:block;margin-top:16px;font-size:11px;font-weight:800;text-transform:uppercase;color:var(--green)}
+    .playbook{display:grid;grid-template-columns:.8fr 1.2fr;gap:0;border:1px solid var(--ink)}
+    .playbook aside{background:var(--ink);color:white;padding:34px}.playbook aside h3{font:400 32px/1.05 'Archivo Black',sans-serif;margin:0 0 18px}.playbook aside p{color:#c8d3cc}.playbook ol{margin:0;padding:0;list-style:none}.playbook li{display:grid;grid-template-columns:54px 1fr;gap:16px;padding:24px;border-bottom:1px solid var(--line);background:var(--sheet)}.playbook li:last-child{border:0}.step{font:400 25px/1 'Archivo Black',sans-serif;color:var(--green)}.playbook h4{margin:0 0 5px;font-size:17px}.playbook li p{margin:0;color:var(--muted);font-size:14px}
+    .experiments{width:100%;border-collapse:collapse;background:var(--sheet);font-size:14px}.experiments th{text-align:left;position:sticky;top:53px;background:var(--ink);color:white;padding:14px}.experiments td{padding:16px 14px;border-bottom:1px solid var(--line);vertical-align:top}.experiments tbody tr:hover{background:#f1f4e8}.priority{font-weight:800;color:var(--green)}
+    .callout{background:var(--lime);padding:30px;display:grid;grid-template-columns:220px 1fr;gap:24px;margin-top:30px}.callout strong{font:400 26px/1.1 'Archivo Black',sans-serif}.callout p{margin:0;max-width:800px}
+    .source-card{display:grid;grid-template-columns:300px 1fr;gap:28px;background:var(--sheet);border:1px solid var(--ink);padding:20px}.source-card img{width:100%;height:100%;min-height:210px;object-fit:cover;filter:saturate(.85)}.source-card h3{font:400 28px/1.1 'Archivo Black',sans-serif;margin:0 0 8px}.source-card p{color:var(--muted);margin:10px 0}.source-meta{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--green)}
+    details{border-top:1px solid var(--line);padding:14px 0}summary{cursor:pointer;font-weight:800}details p{max-width:850px;color:var(--muted)}
+    .search-wrap{display:flex;gap:10px;margin-bottom:22px}.search-wrap input{width:min(520px,100%);background:var(--sheet);border:1px solid var(--ink);padding:13px 16px;font:600 15px Manrope}.search-wrap button{border:1px solid var(--ink);background:var(--ink);color:white;padding:0 18px;font-weight:800;cursor:pointer}
+    .empty{display:none;padding:30px;border:1px dashed var(--line);color:var(--muted)}
+    footer{padding-top:34px;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:13px}
+    @media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto;padding-top:52px}.status{min-height:220px}.section-head{grid-template-columns:1fr}.signal{grid-template-columns:1fr}.signal article{border-right:0;border-bottom:1px solid var(--line)}.channel-grid{grid-template-columns:1fr 1fr}.playbook{grid-template-columns:1fr}.source-card{grid-template-columns:1fr}.source-card img{max-height:280px}.callout{grid-template-columns:1fr}.nav{display:none}}
+    @media(max-width:560px){main{padding:0 17px 55px}.rail-in{padding:12px 17px}.hero h1{font-size:54px}.lede{font-size:17px}.section{padding:50px 0}.channel-grid{grid-template-columns:1fr}.signal article{min-height:0}.experiments{display:block;overflow-x:auto;white-space:normal}.source-card{padding:12px}footer{flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <!--
+  THESIS: Một bàn nghiên cứu sống biến nguồn AEO thành quyết định cho HWM; từ chối kiểu dashboard đầy số giả và các bản tóm tắt rời rạc.
+  OWN-WORLD: Bàn biên tập nghiên cứu trên nền giấy sáng, mực xanh đậm, các mảng lime/blue/orange dùng để phân loại mức bằng chứng.
+  STORY: Đọc kết luận trước, hiểu kênh và cơ chế, chọn thử nghiệm, rồi kiểm tra lại nguồn.
+  FIRST VIEWPORT: Tiêu đề AEO chiếm gần toàn chiều ngang; cột trạng thái xanh đặt ở phải, dẫn xuống thesis và playbook.
+  FORM: Research field guide, lựa chọn ưu tiên; seed fallback vì concept-seed.mjs không có trong bản skill cài đặt.
+  FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+  -->
+  <header class="rail">
+    <div class="rail-in">
+      <a class="brand" href="#top">HWM <b>× AEO</b></a>
+      <nav class="nav" aria-label="Điều hướng chính">
+        <a href="#ket-luan">Kết luận</a><a href="#kenh">Kênh</a><a href="#playbook">Playbook</a><a href="#thu-nghiem">Thử nghiệm</a><a href="#nguon">Nguồn</a>
+      </nav>
+    </div>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div>
+        <h1>AEO <span>FIELD GUIDE</span></h1>
+        <p class="lede">Kho nghiên cứu sống dành cho Huge Win Media — gom bằng chứng, tách nhận định khỏi giả thuyết và biến từng nguồn thành thứ HWM có thể thử, đo và cải thiện.</p>
+      </div>
+      <aside class="status">
+        <div><strong><span class="pulse"></span>Đang cập nhật</strong><p>1 nguồn đã tổng hợp<br>5 hướng thử nghiệm ban đầu</p></div>
+        <small>Cập nhật: 13/08/2026 · 21:26 (+07)<br>Phiên bản 0.1</small>
+      </aside>
+    </section>
+
+    <section class="section" id="ket-luan">
+      <div class="section-head"><h2>Kết luận hiện tại</h2><p>Đây là kết luận tạm thời từ nguồn đầu tiên, không phải “luật AEO”. Mỗi link mới sẽ được dùng để củng cố, phản biện hoặc sửa lại phần này.</p></div>
+      <p class="thesis">AEO không phải một bài SEO mới. Nó là một <mark>hệ thống phân phối luôn bật</mark>: tạo dấu vết nhất quán trên website, nguồn bên thứ ba và cộng đồng để các answer engine có thể tìm, hiểu, so sánh và nhắc lại thương hiệu.</p>
+      <div class="legend"><span class="tag fact">Tuyên bố từ nguồn</span><span class="tag obs">Quan sát thực chiến</span><span class="tag hyp">Giả thuyết</span><span class="tag hwm">HWM đề xuất</span></div>
+      <div class="signal">
+        <article><span class="num">01</span><h3>Đo như paid social, làm như search</h3><p>Gamma cho rằng click trực tiếp không phản ánh hết ảnh hưởng của AEO. Nên kết hợp referral traffic với self-reported attribution — ví dụ “Bạn biết đến chúng tôi từ đâu?”.<a href="#s1">[1]</a></p></article>
+        <article><span class="num">02</span><h3>Mỗi engine là một cuộc chơi riêng</h3><p>Nguồn ước lượng chỉ khoảng 30–40% playbook trùng nhau giữa ChatGPT, Claude, Perplexity và Google AI; phần còn lại phải tùy engine.<a href="#s1">[1]</a></p></article>
+        <article><span class="num">03</span><h3>Đừng đồng nhất AI content với spam</h3><p>Vấn đề không nằm ở việc AI có viết hay không, mà ở độ sâu, tính hữu ích, bằng chứng và việc nội dung có thực sự giúp người đọc so sánh hay ra quyết định.<a href="#s1">[1]</a></p></article>
+      </div>
+    </section>
+
+    <section class="section" id="kenh">
+      <div class="section-head"><h2>Bản đồ kênh</h2><p>Thứ tự dưới đây phản ánh kinh nghiệm được chia sẻ trong nguồn đầu tiên, chưa phải benchmark độc lập. HWM nên coi đây là giả thuyết ưu tiên để kiểm chứng.</p></div>
+      <div class="channel-grid">
+        <article class="channel searchable"><strong>1</strong><h3>Reddit</h3><p>Được đánh giá ảnh hưởng nhất với ChatGPT. Hữu ích cho câu hỏi so sánh, ngữ cảnh cộng đồng và tín hiệu sentiment.</p><span class="mini">Mạnh nhất: ChatGPT</span></article>
+        <article class="channel searchable"><strong>2</strong><h3>Website sở hữu</h3><p>Dễ kiểm soát cách mô tả dịch vụ, use case và đối thủ; nội dung mới có thể được crawl và trích dẫn.</p><span class="mini">Mạnh: dữ liệu có thể trích dẫn</span></article>
+        <article class="channel searchable"><strong>3</strong><h3>Nguồn bên thứ ba</h3><p>Blog, PR, review và website khác tạo xác nhận độc lập. Nguồn nhận định Perplexity đặc biệt coi trọng lớp này.</p><span class="mini">Mạnh: authority ngoài thương hiệu</span></article>
+        <article class="channel searchable"><strong>4</strong><h3>YouTube</h3><p>Transcript giúp answer engine hiểu nội dung. Số view cao chưa được quan sát là điều kiện bắt buộc để được trích dẫn.</p><span class="mini">Mạnh: giải thích sâu, có transcript</span></article>
+        <article class="channel searchable"><strong>5</strong><h3>LinkedIn</h3><p>Đã có cả post và article được index, nhưng pattern còn mỏng và khó dự đoán theo chia sẻ trong nguồn.</p><span class="mini">Theo dõi: giai đoạn sớm</span></article>
+      </div>
+      <div class="callout"><strong>Điểm phải nhớ</strong><p>Reddit được mô tả là hiệu quả nhất cho ChatGPT, không phải cho mọi LLM. Với Google AI Overviews, nguồn khuyên bám nền tảng SEO; với Claude, hướng đi có thể gần một hệ sinh thái ứng dụng/MCP hơn là công cụ search.<a href="#s1">[1]</a></p></div>
+    </section>
+
+    <section class="section" id="playbook">
+      <div class="section-head"><h2>Playbook cho HWM</h2><p>Bản dịch từ insight sang hành động phù hợp với một agency retention/email marketing. Đây là đề xuất của HWM Research, chưa phải kết quả đã kiểm chứng.</p></div>
+      <div class="playbook">
+        <aside><h3>Từ “Klaviyo agency” đến các truy vấn ngách</h3><p>Đừng lao thẳng vào truy vấn rộng. Bắt đầu từ giao điểm giữa ICP, vấn đề cụ thể, ngành và bối cảnh chuyển đổi.</p></aside>
+        <ol>
+          <li><span class="step">A</span><div><h4>Lập bản đồ prompt</h4><p>Thu thập câu hỏi thật: “Klaviyo agency cho Shopify beauty”, “audit flow sau migration”, “cách tăng revenue từ repeat customers”. Nhóm theo intent: học, so sánh, thuê, xử lý sự cố.</p></div></li>
+          <li><span class="step">B</span><div><h4>Xây nguồn sự thật trên website</h4><p>Mỗi cụm prompt cần một trang trả lời sâu, có phạm vi rõ, quy trình, tiêu chí lựa chọn, giới hạn và dữ liệu/case thật khi được phép công khai.</p></div></li>
+          <li><span class="step">C</span><div><h4>Tạo xác nhận bên ngoài</h4><p>Ưu tiên nội dung có ngữ cảnh trên YouTube, podcast, bài cộng tác, directory/review và thảo luận cộng đồng — không copy cùng một bài sang mọi nơi.</p></div></li>
+          <li><span class="step">D</span><div><h4>Thiết kế nội dung để được so sánh</h4><p>Nói rõ HWM phù hợp với ai, không phù hợp với ai, khác freelancer/in-house/agency tổng quát ở đâu. Tránh tuyên bố “tốt nhất” không có bằng chứng.</p></div></li>
+          <li><span class="step">E</span><div><h4>Đo theo chu kỳ citation</h4><p>Track prompt → engine → vị trí/đề cập → URL được dẫn → sentiment → lead/self-report. Kiểm tra lại định kỳ vì citation có thể có “half-life”.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="thu-nghiem">
+      <div class="section-head"><h2>Backlog thử nghiệm</h2><p>Ưu tiên các thử nghiệm có thể tạo baseline nhanh. Chưa có con số kết quả nào được giả định.</p></div>
+      <div class="search-wrap"><input id="search" type="search" placeholder="Tìm Reddit, Klaviyo, đo lường…" aria-label="Tìm trong nghiên cứu"><button id="clear" type="button">Xóa</button></div>
+      <div style="overflow-x:auto">
+        <table class="experiments">
+          <thead><tr><th>Ưu tiên</th><th>Thử nghiệm</th><th>Cách làm</th><th>Tín hiệu cần đo</th><th>Chu kỳ đầu</th></tr></thead>
+          <tbody>
+            <tr class="searchable"><td class="priority">P0</td><td>Baseline 25 prompt thương mại</td><td>Chạy cùng bộ prompt trên ChatGPT, Google AI, Perplexity và Claude; lưu nguyên câu trả lời và citations.</td><td>Share of mention, sentiment, đối thủ, nguồn được trích</td><td>Hàng tuần</td></tr>
+            <tr class="searchable"><td class="priority">P0</td><td>Self-reported attribution</td><td>Thêm lựa chọn ChatGPT/AI assistant vào form lead và câu hỏi discovery call.</td><td>Số lead tự khai, chất lượng lead, dịch vụ quan tâm</td><td>Liên tục</td></tr>
+            <tr class="searchable"><td class="priority">P1</td><td>3 trang use case ngách</td><td>Chọn ba giao điểm ngành × vấn đề mà HWM có kinh nghiệm và bằng chứng thật.</td><td>Index/citation, impressions, assisted leads</td><td>30–45 ngày</td></tr>
+            <tr class="searchable"><td class="priority">P1</td><td>YouTube theo prompt</td><td>Tiêu đề và cấu trúc dựa trên câu hỏi thật; transcript rõ; nội dung vẫn phải hữu ích với người xem.</td><td>Citation theo video, watch quality, branded search</td><td>30–60 ngày</td></tr>
+            <tr class="searchable"><td class="priority">P2</td><td>Community listening</td><td>Theo dõi subreddit/diễn đàn nơi Shopify, ecommerce và Klaviyo problems được bàn luận; chỉ tham gia khi có giá trị thật.</td><td>Chủ đề lặp lại, sentiment, câu hỏi chưa được trả lời</td><td>Hàng tuần</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="empty" id="empty">Không tìm thấy nội dung phù hợp.</p>
+    </section>
+
+    <section class="section" id="nguon">
+      <div class="section-head"><h2>Source ledger</h2><p>Mỗi nguồn mới sẽ có một thẻ riêng. Nội dung trùng sẽ được gộp vào kết luận; nội dung mâu thuẫn sẽ được đặt cạnh nhau thay vì bị làm phẳng.</p></div>
+      <article class="source-card searchable" id="s1">
+        <img src="assets/aoe-pS7vgNxusaM.jpg" alt="Thumbnail video The Head of Growth at a $100M Company Explains AEO" width="480" height="360">
+        <div>
+          <span class="source-meta">Nguồn 01 · YouTube · 1:00:18</span>
+          <h3>The Head of Growth at a $100M Company Explains AEO</h3>
+          <p>Distribution phỏng vấn Ravish Agrawal về cách Gamma tiếp cận AEO, Reddit, attribution, khác biệt giữa các answer engine và hướng marketing cho agent.</p>
+          <p><b>Giá trị:</b> kinh nghiệm vận hành từ một đội growth đang đầu tư thật vào AEO. <b>Giới hạn:</b> nhiều con số và pattern là chia sẻ/quan sát của khách mời, chưa được kiểm chứng độc lập trong phiên bản này.</p>
+          <a href="https://youtu.be/pS7vgNxusaM" target="_blank" rel="noopener">Mở nguồn gốc ↗</a>
+        </div>
+      </article>
+      <div style="margin-top:28px">
+        <details open><summary>Những claim đáng theo dõi từ nguồn 01</summary><p>Gamma cho biết referral traffic từ ChatGPT từng tăng 8× nhưng vẫn chiếm dưới 1%; AEO là một trong các kênh tăng nhanh nhất của họ; hơn 90% phần AEO consumer được quy cho ChatGPT; và nội dung Reddit mới có thể mất 30–45 ngày để xuất hiện dưới dạng citation. Đây đều là tuyên bố từ người được phỏng vấn, không phải số liệu HWM đã xác minh.<a href="#s1">[1]</a></p></details>
+        <details><summary>Giả thuyết chưa nên coi là fact</summary><p>Citation có “half-life”; memory của LLM tạo first-mover advantage; Claude sẽ giống app store còn ChatGPT giống Google Search; Instagram và LinkedIn sẽ ảnh hưởng search mạnh hơn trong 6–12 tháng. Các ý này hữu ích để thiết kế thử nghiệm nhưng cần thêm nguồn đối chiếu.<a href="#s1">[1]</a></p></details>
+        <details><summary>Điểm đạo đức và rủi ro</summary><p>Không biến AEO thành spam, nội dung giả danh người dùng hoặc thao túng sentiment. Cách tiếp cận bền hơn cho HWM là tạo nội dung có bằng chứng, tham gia cộng đồng đúng ngữ cảnh và công khai giới hạn của từng claim.</p></details>
+      </div>
+    </section>
+
+    <footer><span>HWM × AEO Living Research · Version 0.1</span><span>Nguồn: <a href="https://youtu.be/pS7vgNxusaM" target="_blank" rel="noopener">[1] Distribution — YouTube</a></span></footer>
+  </main>
+  <script>
+    const input=document.getElementById('search'), clear=document.getElementById('clear'), empty=document.getElementById('empty');
+    function run(){const q=input.value.trim().toLocaleLowerCase('vi');let shown=0;document.querySelectorAll('.searchable').forEach(el=>{const ok=!q||el.textContent.toLocaleLowerCase('vi').includes(q);el.hidden=!ok;if(ok)shown++});empty.style.display=shown?'none':'block'}
+    input.addEventListener('input',run);clear.addEventListener('click',()=>{input.value='';run();input.focus()});
+  </script>
+</body>
+</html>
