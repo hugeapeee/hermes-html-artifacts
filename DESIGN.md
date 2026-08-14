@@ -62,10 +62,10 @@ A clipping desk for content operators. It inherits the AEO library's editorial g
 
 ## Components and behavior
 
-- One canonical hero/status block with live item and source counts.
+- One canonical hero/status block with live item and source counts, plus mobile-safe quick actions to the implementation library and source ledger.
 - Six-step content operating loop: mine, verify, transform, package, publish, learn.
-- Searchable implementation library filtered by priority, category and evidence class.
-- Source ledger with `?source=sN` dedicated views, original links, limitations and mapped tactics.
+- Searchable implementation library filtered by priority, category and evidence class; mobile defaults to compact rows with an explicit description toggle.
+- Source ledger with `?source=sN` dedicated views, original links, retrieval dates, evidence locators, limitations and navigable mapped tactics. All source states declare the main artifact as canonical.
 - Experiment table scrolls inside its own wrapper on mobile; the document itself must not overflow.
 
 ## Content rules
