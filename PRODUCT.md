@@ -12,15 +12,15 @@ Static, self-contained HTML/CSS/JavaScript published on GitHub Pages in `hugeape
 
 ## Users
 
-Hiếu and the Huge Win Media leadership/team use this living research page to understand AEO and turn source material into decisions, experiments, and operating playbooks for HWM.
+Hiếu and the Huge Win Media leadership/team use living research pages to turn source material into decisions, experiments, and operating playbooks for HWM.
 
 ## Product Purpose
 
-Maintain one canonical, continuously updated AEO research page. Each source Hiếu sends is extracted, synthesized into the existing knowledge base, attributed to its original source, and translated into implications and actions relevant to HWM.
+Maintain canonical, continuously updated research libraries for specific HWM topics. Each library keeps one stable URL; every new source triggers a full synthesis and re-index rather than an appended standalone summary.
 
 ## Positioning
 
-This is not a pile of summaries. It separates source claims from HWM synthesis, tracks confidence and open questions, resolves overlaps or contradictions across sources, and grows an actionable AEO playbook over time.
+These are not piles of summaries. Each library separates source claims from HWM synthesis, tracks confidence and open questions, resolves overlaps or contradictions, and grows an actionable topic playbook over time.
 
 ## Operating Context
 
@@ -29,7 +29,7 @@ Hiếu sends arbitrary links in Telegram, including YouTube videos, articles, po
 ## Capabilities and Constraints
 
 - Vietnamese research and operating guidance; source titles and technical terms may remain in English.
-- Canonical term: AEO (Answer Engine Optimization).
+- Topic terminology stays specific to each library, including AEO, LinkedIn Content, Klaviyo and retention marketing.
 - Every external claim must remain attributable to a source.
 - Distinguish reported facts, practitioner observations, hypotheses, and HWM recommendations.
 - Preserve one stable URL while the page expands.
@@ -41,8 +41,9 @@ Clear, direct, practical HWM voice. Prioritize decisions, checklists, experiment
 
 ## Evidence on Hand
 
-- Initial YouTube source: “The Head of Growth at a $100M Company Explains AEO” by Distribution, featuring Gamma’s growth perspective.
-- Additional evidence will be supplied incrementally by Hiếu.
+- AEO library: Gamma growth interview plus incremental AEO sources.
+- LinkedIn Content library: founder-content systems, native visual formats, UGC/demo production and meme/humor sources.
+- Additional evidence will be supplied incrementally by Hiếu for either library.
 
 ## Product Principles
 

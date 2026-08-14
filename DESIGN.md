@@ -45,3 +45,32 @@ A living research field guide: editorial clarity without looking like a generic 
 - Every new source updates the synthesis and experiment backlog; it is not merely appended.
 - No invented HWM results or decorative metrics.
 - Keep established AEO/SEO terminology in English when that is clearer in practice (for example: prompt map, baseline, citation, attribution, agentic workflow, deep link). Do not force literal Vietnamese translations.
+
+---
+
+# HWM × LinkedIn Content — Surface System
+
+## Direction
+
+A clipping desk for content operators. It inherits the AEO library's editorial grids, evidence labels, deep source views and mobile behavior, then shifts the identity to LinkedIn navy/blue with sticky-note yellow for transformation rules.
+
+## Typography and color
+
+- Display: Be Vietnam Pro 700–900; body/UI: Manrope.
+- `#f3f1e9` paper, `#fffef9` sheet, `#11182b` ink, `#0a66c2` LinkedIn blue.
+- `#f6d44b` marks transformation rules, `#b9e8d2` observed media, `#dcebfb` source claims, and `#ef6d5f` hypotheses/commercial claims.
+
+## Components and behavior
+
+- One canonical hero/status block with live item and source counts.
+- Six-step content operating loop: mine, verify, transform, package, publish, learn.
+- Searchable implementation library filtered by priority, category and evidence class.
+- Source ledger with `?source=sN` dedicated views, original links, limitations and mapped tactics.
+- Experiment table scrolls inside its own wrapper on mobile; the document itself must not overflow.
+
+## Content rules
+
+- Viral Reddit/X posts are signals, never drafts to copy.
+- YouTube curation must preserve the primary source and add HWM analysis or a decision rule.
+- Platform-transfer claims stay labeled until HWM runs a LinkedIn-specific test.
+- Never present impressions, views or self-reported outcomes as pipeline evidence without the missing denominators and measurement context.
