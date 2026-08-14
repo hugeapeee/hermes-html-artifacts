@@ -40,13 +40,14 @@
     .playbook{display:grid;grid-template-columns:.8fr 1.2fr;gap:0;border:1px solid var(--ink)}
     .playbook aside{background:var(--ink);color:white;padding:34px}.playbook aside h3{font:400 32px/1.05 'Archivo Black',sans-serif;margin:0 0 18px}.playbook aside p{color:#c8d3cc}.playbook ol{margin:0;padding:0;list-style:none}.playbook li{display:grid;grid-template-columns:54px 1fr;gap:16px;padding:24px;border-bottom:1px solid var(--line);background:var(--sheet)}.playbook li:last-child{border:0}.step{font:400 25px/1 'Archivo Black',sans-serif;color:var(--green)}.playbook h4{margin:0 0 5px;font-size:17px}.playbook li p{margin:0;color:var(--muted);font-size:14px}
     .experiments{width:100%;border-collapse:collapse;background:var(--sheet);font-size:14px}.experiments th{text-align:left;position:sticky;top:53px;background:var(--ink);color:white;padding:14px}.experiments td{padding:16px 14px;border-bottom:1px solid var(--line);vertical-align:top}.experiments tbody tr:hover{background:#f1f4e8}.priority{font-weight:800;color:var(--green)}
+    .audit-summary{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--ink);margin-bottom:26px}.audit-summary div{padding:20px;border-right:1px solid var(--line)}.audit-summary div:last-child{border:0}.audit-summary strong{font:400 34px/1 'Archivo Black',sans-serif;display:block}.audit-summary span{font-size:12px;font-weight:800;text-transform:uppercase}.audit-table{width:100%;border-collapse:collapse;background:var(--sheet);font-size:13px}.audit-table th{position:sticky;top:53px;text-align:left;background:var(--ink);color:white;padding:13px}.audit-table td{padding:15px 13px;border-bottom:1px solid var(--line);vertical-align:top}.audit-table td:first-child{font:400 19px/1 'Archivo Black',sans-serif;color:var(--green)}.verdict{display:inline-flex;border-radius:999px;padding:4px 8px;font-size:10px;font-weight:800;text-transform:uppercase;white-space:nowrap}.verdict.ok{background:var(--lime)}.verdict.partial{background:#f3c2a8}.verdict.wrong{background:#f0a3a3}.source-card.text-only{grid-template-columns:1fr}
     .callout{background:var(--lime);padding:30px;display:grid;grid-template-columns:220px 1fr;gap:24px;margin-top:30px}.callout strong{font:400 26px/1.1 'Archivo Black',sans-serif}.callout p{margin:0;max-width:800px}
     .source-card{display:grid;grid-template-columns:300px 1fr;gap:28px;background:var(--sheet);border:1px solid var(--ink);padding:20px}.source-card img{width:100%;height:100%;min-height:210px;object-fit:cover;filter:saturate(.85)}.source-card h3{font:400 28px/1.1 'Archivo Black',sans-serif;margin:0 0 8px}.source-card p{color:var(--muted);margin:10px 0}.source-meta{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--green)}
     details{border-top:1px solid var(--line);padding:14px 0}summary{cursor:pointer;font-weight:800}details p{max-width:850px;color:var(--muted)}
     .search-wrap{display:flex;gap:10px;margin-bottom:22px}.search-wrap input{width:min(520px,100%);background:var(--sheet);border:1px solid var(--ink);padding:13px 16px;font:600 15px Manrope}.search-wrap button{border:1px solid var(--ink);background:var(--ink);color:white;padding:0 18px;font-weight:800;cursor:pointer}
     .empty{display:none;padding:30px;border:1px dashed var(--line);color:var(--muted)}
     footer{padding-top:34px;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:13px}
-    @media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto;padding-top:52px}.status{min-height:220px}.section-head{grid-template-columns:1fr}.signal{grid-template-columns:1fr}.signal article{border-right:0;border-bottom:1px solid var(--line)}.tip-group{grid-template-columns:1fr}.tip-group-head{padding:28px 0 16px}.tip-list{border-left:0;border-top:1px solid var(--line)}.channel-grid{grid-template-columns:1fr 1fr}.playbook{grid-template-columns:1fr}.source-card{grid-template-columns:1fr}.source-card img{max-height:280px}.callout{grid-template-columns:1fr}.nav{display:none}}
+    @media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto;padding-top:52px}.status{min-height:220px}.section-head{grid-template-columns:1fr}.signal{grid-template-columns:1fr}.signal article{border-right:0;border-bottom:1px solid var(--line)}.tip-group{grid-template-columns:1fr}.tip-group-head{padding:28px 0 16px}.tip-list{border-left:0;border-top:1px solid var(--line)}.channel-grid{grid-template-columns:1fr 1fr}.playbook{grid-template-columns:1fr}.source-card{grid-template-columns:1fr}.source-card img{max-height:280px}.callout{grid-template-columns:1fr}.audit-summary{grid-template-columns:1fr}.audit-summary div{border-right:0;border-bottom:1px solid var(--line)}.nav{display:none}}
     @media(max-width:560px){main{padding:0 17px 55px}.rail-in{padding:12px 17px}.hero h1{font-size:54px}.lede{font-size:17px}.section{padding:50px 0}.channel-grid{grid-template-columns:1fr}.signal article{min-height:0}.tip{grid-template-columns:38px 1fr;gap:12px;padding:20px 16px}.tip .evidence{grid-column:2;justify-self:start}.experiments{display:block;overflow-x:auto;white-space:normal}.source-card{padding:12px}footer{flex-direction:column}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   </style>
@@ -64,7 +65,7 @@
     <div class="rail-in">
       <a class="brand" href="#top">HWM <b>× AEO</b></a>
       <nav class="nav" aria-label="Điều hướng chính">
-        <a href="#ket-luan">Kết luận</a><a href="#cach-ho-lam">Cách họ làm</a><a href="#kenh">Kênh</a><a href="#playbook">Áp dụng HWM</a><a href="#nguon">Nguồn</a>
+        <a href="#ket-luan">Kết luận</a><a href="#cach-ho-lam">Cách họ làm</a><a href="#cross-check">Cross-check</a><a href="#kenh">Kênh</a><a href="#playbook">Áp dụng HWM</a><a href="#nguon">Nguồn</a>
       </nav>
     </div>
   </header>
@@ -75,8 +76,8 @@
         <p class="lede">Kho nghiên cứu sống dành cho Huge Win Media — gom bằng chứng, tách nhận định khỏi giả thuyết và biến từng nguồn thành thứ HWM có thể thử, đo và cải thiện.</p>
       </div>
       <aside class="status">
-        <div><strong><span class="pulse"></span>Đang cập nhật</strong><p>1 nguồn đã tổng hợp<br>32 tip AEO đã phân loại</p></div>
-        <small>Cập nhật: 14/08/2026 · 08:06 (+07)<br>Phiên bản 0.4</small>
+        <div><strong><span class="pulse"></span>Đang cập nhật</strong><p>2 nguồn đã tổng hợp<br>32 tip AEO · 23 claim đã kiểm</p></div>
+        <small>Cập nhật: 14/08/2026 · 08:38 (+07)<br>Phiên bản 0.5</small>
       </aside>
     </section>
 
@@ -175,6 +176,46 @@
       </div>
     </section>
 
+    <section class="section" id="cross-check">
+      <div class="section-head"><h2>Cross-check bản tổng hợp 23 ý</h2><p>Đối chiếu từng câu trong post của Ira Bodnar với phát biểu gốc trong video. Post rất hữu ích để scan nhanh, nhưng nhiều câu đã biến quan sát hoặc giả thuyết thành quy luật chắc chắn.<a href="#s1">[1]</a><a href="#s2">[2]</a></p></div>
+      <div class="audit-summary" aria-label="Tổng hợp kết quả cross-check">
+        <div><strong>3</strong><span>Bám khá sát nguồn</span></div>
+        <div><strong>14</strong><span>Đúng lõi, nhưng phóng đại</span></div>
+        <div><strong>6</strong><span>Sai hoặc gán nhầm</span></div>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="audit-table">
+          <thead><tr><th>#</th><th>Claim trong post</th><th>Kết luận</th><th>Đối chiếu với video gốc</th></tr></thead>
+          <tbody>
+            <tr class="searchable"><td>1</td><td>Viết content cho Claude là vô ích; Gamma làm app Claude.</td><td><span class="verdict partial">Phóng đại</span></td><td>Ravish nói Claude cite ít hơn và hướng phù hợp là MCP/ecosystem. Gamma có connector và thấy usage; “vô ích” là lời tuyệt đối hóa.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>2</td><td>Gamma nhét ưu đãi “10% extra” vào file agent đọc để hack signup.</td><td><span class="verdict wrong">Gán nhầm</span></td><td>Ravish nói <b>một vài người bạn làm growth</b> đang thử cách này và nói rõ Gamma chưa làm nhiều ở mảng đó. Không phải tactic Gamma đã triển khai.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>3</td><td>ChatGPT trả lời 60% từ live web, 40% từ memory.</td><td><span class="verdict partial">Chưa xác minh</span></td><td>Con số được Ravish nhắc lại từ “một nghiên cứu nào đó”, không nêu tên và không phải dữ liệu Gamma đo. Nên giữ như claim gián tiếp, không phải fact nền tảng.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>4</td><td>LLM không bao giờ cite lời khen, chỉ cite so sánh.</td><td><span class="verdict partial">Phóng đại</span></td><td>Ravish chỉ nói comparison là pattern gần nhất ông nhìn thấy và thừa nhận chưa có công thức. “Không bao giờ” không có trong nguồn.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>5</td><td>ChatGPT gửi nhiều khách hơn analytics thể hiện 8×.</td><td><span class="verdict wrong">Ghép sai số</span></td><td>8× là <b>tốc độ tăng referral traffic</b> trong một giai đoạn, không phải mức analytics đếm thiếu. Self-report cao hơn click-through là quan sát riêng, không có hệ số 8×.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>6</td><td>ChatGPT Search chạy trên Bing.</td><td><span class="verdict partial">Claim nguồn</span></td><td>Ravish nói ChatGPT lấy phần lớn query từ Bing, nhưng không đưa bằng chứng và đây là cơ chế có thể thay đổi. Nên ghi “theo Ravish”, không đóng thành sự thật phổ quát.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>7</td><td>Chỉ ChatGPT đọc Reddit; Claude và Gemini hoàn toàn bỏ qua.</td><td><span class="verdict partial">Quá tuyệt đối</span></td><td>Ông nói “Reddit only works for ChatGPT” theo playbook/quan sát của mình. “Các engine khác hoàn toàn không đọc” là diễn giải mạnh hơn nguồn. Mốc 30–45 ngày cho ChatGPT được nêu trong video.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>8</td><td>Memory khiến brand thắng mọi câu trả lời lặp lại.</td><td><span class="verdict partial">Giả thuyết</span></td><td>Gamma thấy tín hiệu hứa hẹn và Ravish tin memory tạo first-mover advantage, nhưng ông gọi hệ thống là black box. “Thắng mọi repeat answer” chưa được chứng minh.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>9</td><td>Video 18K và 400K view đều được cite; dùng prompt làm title.</td><td><span class="verdict ok">Khá sát</span></td><td>Đúng với quan sát và cách Gamma làm. Chỉ cần tránh nâng thành “view hoàn toàn không quan trọng”; nguồn nói họ <b>chưa thấy pattern</b> theo view.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>10</td><td>Subreddit nhỏ không bao giờ tạo citation.</td><td><span class="verdict wrong">Sai</span></td><td>Gamma bỏ qua cộng đồng nhỏ vì không đủ tác động ở quy mô của họ. Ravish thừa nhận startup vẫn có thể dùng và AEO vẫn có thể nhặt nội dung từ subreddit nhỏ, nhất là query ngách.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>11</td><td>Substack ít được cite vì gated; Medium và Quora vẫn được index.</td><td><span class="verdict ok">Khá sát</span></td><td>Phản ánh đúng phát biểu. Nuance: Ravish thấy Quora được cite nhưng chưa thấy nó “influence” rõ như Reddit.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>12</td><td>Website của Gamma là nguồn được cite nhiều thứ hai.</td><td><span class="verdict partial">Gần đúng</span></td><td>Ravish xếp owned website thứ hai trong ranking, nhưng nói vị trí 2–3 thường đổi với third-party websites. Đây là ranking quan sát, không phải bảng số liệu citation chính thức.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>13</td><td>Một comment Reddit tiêu cực mắc trong ChatGPT nhiều tháng; sentiment xấu được cite ngang tốt.</td><td><span class="verdict wrong">Gán nhầm</span></td><td>Đây là anecdote và theory của người dẫn về một công ty khác. Ravish nói ông chưa đào sâu và không xác nhận cơ chế đó. Không phải learning của Gamma.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>14</td><td>Citation chết sau khoảng ba tháng; Gamma chiếm lại hàng quý.</td><td><span class="verdict wrong">Biến giả định thành fact</span></td><td>Gamma có theo dõi citation bằng spreadsheet. Nhưng “ba tháng” chỉ là ví dụ giả định khi Ravish suy nghĩ về half-life; ông nói rõ chưa biết tuổi thọ thật.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>15</td><td>B2B: Claude và Copilot thắng ChatGPT.</td><td><span class="verdict partial">Heuristic</span></td><td>Với enterprise, Ravish <b>đoán</b> có thể xếp Claude đầu và Copilot thứ hai. Ông cũng nói chưa biết cách khiến Claude recommend tool. “Beat ChatGPT” nghe chắc chắn hơn nguồn.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>16</td><td>Topic rộng mất 45 ngày; topic ngách chỉ mất một ngày.</td><td><span class="verdict wrong">Trộn ba quan sát</span></td><td>30–45 ngày là Reddit → ChatGPT; next-day là phrase cụ thể → Perplexity; Google AI nhặt trong một ngày là anecdote của người dẫn. Không phải một quy luật broad-vs-niche thống nhất.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>17</td><td>Chưa ai từng thấy X được LLM cite.</td><td><span class="verdict partial">Quá rộng</span></td><td>Ravish và người dẫn nói <b>họ</b> chưa thấy X được index/cite và sẽ kiểm tra thêm. Không đủ cơ sở để nói “nobody has ever seen”.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>18</td><td>LinkedIn citation hỗn loạn; post 500K like và no-name được cite ngang nhau.</td><td><span class="verdict partial">Đúng lõi</span></td><td>Ravish chưa thấy engagement hoặc influencer status là pattern và đánh giá LinkedIn còn sớm. “Cùng tỷ lệ” không được đo trong nguồn.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>19</td><td>Instagram là kênh tiếp theo; IG và LinkedIn tác động LLM trong 6–12 tháng.</td><td><span class="verdict ok">Đúng là bet</span></td><td>Phản ánh đúng thesis của Ravish. Đây là dự đoán dựa trên UGC và reputation signals, không phải kết quả Gamma đã kiểm chứng.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>20</td><td>AI Mode đang làm CTR sụp đổ cho mọi người.</td><td><span class="verdict partial">Phóng đại phạm vi</span></td><td>Ravish nói các growth peer ông trao đổi đều thấy CTR giảm. Không có benchmark hay số liệu để mở rộng thành “everyone”.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>21</td><td>Fake Gamma đang đánh cắp signup.</td><td><span class="verdict partial">Đúng hiện tượng</span></td><td>Gamma thấy copycat clone landing page, dùng tên tương tự và mua ads; người dùng có thể nhầm. “Stealing signups” là diễn giải hợp lý nhưng nguồn không định lượng signup bị mất.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>22</td><td>Bet tiếp theo: làm sản phẩm để agent tự signup; Claude Code tự cài năm tool.</td><td><span class="verdict partial">Đúng là bet</span></td><td>Ravish bullish về agent-first product và kể Claude Code dùng khoảng năm tool ông không cần biết. Ông nói Gamma chưa làm nhiều và chưa có mental model rõ; đây không phải tactic đã chứng minh.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+            <tr class="searchable"><td>23</td><td>ChatGPT không biết Forbes là Forbes; blog vô danh được cite ngang nhau.</td><td><span class="verdict partial">Phóng đại</span></td><td>Ravish gọi website AEO hiện tại là “level playing field”, nhưng vẫn thừa nhận Forbes có authority. “Không biết Forbes là Forbes” là câu giật mạnh hơn nguồn; cửa sổ có thể đóng là thesis, không phải timeline chắc chắn.<a href="#s1">[1]</a><a href="#s2">[2]</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout"><strong>Kết luận về post</strong><p>Dùng tốt như checklist để phát hiện chủ đề, nhưng không nên dùng nguyên văn làm playbook. Giá trị lớn nhất nằm ở các pattern: prompt-led content, comparison, self-report attribution, engine-specific tactics và always-on tracking. Các câu có số liệu hoặc chữ tuyệt đối như “never”, “only”, “8×”, “three months” cần quay lại nguồn gốc trước khi hành động.</p></div>
+    </section>
+
     <section class="section" id="kenh">
       <div class="section-head"><h2>Bản đồ kênh</h2><p>Thứ tự dưới đây phản ánh kinh nghiệm được chia sẻ trong nguồn đầu tiên, chưa phải benchmark độc lập. HWM nên coi đây là giả thuyết ưu tiên để kiểm chứng.</p></div>
       <div class="channel-grid">
@@ -203,7 +244,7 @@
 
     <section class="section" id="thu-nghiem">
       <div class="section-head"><h2>Backlog thử nghiệm HWM</h2><p>Danh sách thử sau, không phải trọng tâm của phiên bản này. Ưu tiên baseline nhanh; chưa có con số kết quả nào được giả định.</p></div>
-      <div class="search-wrap"><input id="search" type="search" placeholder="Lọc tip, kênh, thử nghiệm và nguồn…" aria-label="Lọc tip, kênh, thử nghiệm và nguồn"><button id="clear" type="button">Xóa</button></div>
+      <div class="search-wrap"><input id="search" type="search" placeholder="Lọc tip, claim, kênh, thử nghiệm và nguồn…" aria-label="Lọc tip, claim, kênh, thử nghiệm và nguồn"><button id="clear" type="button">Xóa</button></div>
       <div style="overflow-x:auto">
         <table class="experiments">
           <thead><tr><th>Ưu tiên</th><th>Thử nghiệm</th><th>Cách làm</th><th>Tín hiệu cần đo</th><th>Chu kỳ đầu</th></tr></thead>
@@ -231,6 +272,15 @@
           <a href="https://youtu.be/pS7vgNxusaM" target="_blank" rel="noopener">Mở nguồn gốc ↗</a>
         </div>
       </article>
+      <article class="source-card text-only searchable" id="s2" style="margin-top:20px">
+        <div>
+          <span class="source-meta">Nguồn 02 · X/Twitter · 23 ý tổng hợp</span>
+          <h3>Watched 1 hour of Gamma's insane $100M growth hacks so you don't have to</h3>
+          <p>Ira Bodnar tóm tắt video thành 23 câu ngắn. Post rất hữu ích để phát hiện nhanh chủ đề, nhưng chủ đích viết cô đọng và gây chú ý đã làm một số observation, anecdote và hypothesis nghe giống fact hoặc tactic Gamma đã chứng minh.</p>
+          <p><b>Giá trị:</b> checklist tốt để cross-check và mở rộng taxonomy. <b>Giới hạn:</b> là nguồn thứ cấp; 14/23 câu đúng lõi nhưng nói mạnh hơn video, 6/23 câu sai ngữ cảnh hoặc gán nhầm.</p>
+          <a href="https://x.com/irabukht/status/2087735054898233670" target="_blank" rel="noopener">Mở post gốc ↗</a>
+        </div>
+      </article>
       <div style="margin-top:28px">
         <details open><summary>Những claim đáng theo dõi từ nguồn 01</summary><p>Gamma cho biết referral traffic từ ChatGPT từng tăng 8× nhưng vẫn chiếm dưới 1%; AEO là một trong các kênh tăng nhanh nhất của họ; hơn 90% phần AEO consumer được quy cho ChatGPT; và nội dung Reddit mới có thể mất 30–45 ngày để xuất hiện dưới dạng citation. Đây đều là tuyên bố từ người được phỏng vấn, không phải số liệu HWM đã xác minh.<a href="#s1">[1]</a></p></details>
         <details><summary>Giả thuyết chưa nên coi là fact</summary><p>Citation có “half-life”; memory của LLM tạo first-mover advantage; Claude sẽ giống app store còn ChatGPT giống Google Search; Instagram và LinkedIn sẽ ảnh hưởng search mạnh hơn trong 6–12 tháng. Các ý này hữu ích để thiết kế thử nghiệm nhưng cần thêm nguồn đối chiếu.<a href="#s1">[1]</a></p></details>
@@ -238,7 +288,7 @@
       </div>
     </section>
 
-    <footer><span>HWM × AEO Living Research · Version 0.4</span><span>Nguồn: <a href="https://youtu.be/pS7vgNxusaM" target="_blank" rel="noopener">[1] Distribution — YouTube</a></span></footer>
+    <footer><span>HWM × AEO Living Research · Version 0.5</span><span>Nguồn: <a href="https://youtu.be/pS7vgNxusaM" target="_blank" rel="noopener">[1] YouTube</a> · <a href="https://x.com/irabukht/status/2087735054898233670" target="_blank" rel="noopener">[2] X thread</a></span></footer>
   </main>
   <script>
     const input=document.getElementById('search'), clear=document.getElementById('clear'), empty=document.getElementById('empty');
