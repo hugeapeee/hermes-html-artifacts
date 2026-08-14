@@ -8,7 +8,7 @@ A living research field guide: editorial clarity without looking like a generic 
 
 - Display: Be Vietnam Pro 900 for decisive section markers and research headings. It must render the full Vietnamese character set without per-glyph fallback.
 - Body/UI: Manrope for long-form Vietnamese readability.
-- Large statements use tight but controlled tracking; body text stays regular and spacious.
+- Large statements use tight but controlled tracking; body text stays regular and spacious. Section thesis copy is subordinate to the section heading: 25–38 px at 1.28 line height, not display-heading scale.
 
 ## Color roles
 
