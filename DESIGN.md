@@ -6,7 +6,7 @@ A living research field guide: editorial clarity without looking like a generic 
 
 ## Typography
 
-- Display: Archivo Black for decisive section markers and research headings.
+- Display: Be Vietnam Pro 900 for decisive section markers and research headings. It must render the full Vietnamese character set without per-glyph fallback.
 - Body/UI: Manrope for long-form Vietnamese readability.
 - Large statements use tight but controlled tracking; body text stays regular and spacious.
 
@@ -44,3 +44,4 @@ A living research field guide: editorial clarity without looking like a generic 
 - Separate source reporting, observations, hypotheses, and HWM recommendations.
 - Every new source updates the synthesis and experiment backlog; it is not merely appended.
 - No invented HWM results or decorative metrics.
+- Keep established AEO/SEO terminology in English when that is clearer in practice (for example: prompt map, baseline, citation, attribution, agentic workflow, deep link). Do not force literal Vietnamese translations.
