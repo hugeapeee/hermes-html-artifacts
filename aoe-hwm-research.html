@@ -29,6 +29,9 @@
     .section-head{display:grid;grid-template-columns:320px 1fr;gap:36px;margin-bottom:38px;align-items:start}.section-head h2{font:400 clamp(34px,4.25vw,54px)/.98 'Archivo Black',sans-serif;letter-spacing:-.025em;margin:0;overflow-wrap:normal}.section-head p{max-width:700px;margin:8px 0 0;color:var(--muted);font-size:17px}
     .signal{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
     .signal article{padding:28px 24px;min-height:220px;border-right:1px solid var(--line)}.signal article:last-child{border:0}.signal h3{margin:0 0 12px;font-size:20px}.signal p{margin:0;color:var(--muted)}
+    .tip-index{display:flex;flex-wrap:wrap;gap:8px;margin:-8px 0 34px}.tip-index a{border:1px solid var(--ink);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:800;text-decoration:none;color:var(--ink);background:var(--sheet)}.tip-index a:hover{background:var(--lime)}
+    .tip-catalog{border-top:2px solid var(--ink)}.tip-group{display:grid;grid-template-columns:250px 1fr;border-bottom:1px solid var(--ink)}.tip-group-head{padding:28px 24px 28px 0}.tip-group-head h3{font:400 24px/1.08 'Archivo Black',sans-serif;margin:0 0 10px}.tip-group-head p{font-size:13px;color:var(--muted);margin:0}.tip-list{border-left:1px solid var(--line)}
+    .tip{display:grid;grid-template-columns:54px 1fr 128px;gap:18px;padding:23px 24px;border-bottom:1px solid var(--line);background:var(--sheet)}.tip:last-child{border-bottom:0}.tip-no{font:400 22px/1 'Archivo Black',sans-serif;color:var(--green)}.tip h4{margin:0 0 6px;font-size:17px;line-height:1.35}.tip p{margin:0;color:var(--muted);font-size:14px;max-width:76ch}.evidence{align-self:start;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;border-radius:999px;padding:5px 8px;text-align:center;background:var(--soft)}.evidence.did{background:var(--blue)}.evidence.obs{background:var(--lime)}.evidence.hyp{background:#f3c2a8}.section-priority{display:inline-block;margin-top:12px;font-size:12px;font-weight:800;color:var(--green)}
     .num{font:400 46px/1 'Archivo Black',sans-serif;color:var(--green);display:block;margin-bottom:30px}
     .thesis{font:500 clamp(27px,4vw,52px)/1.18 Manrope,sans-serif;letter-spacing:-.03em;max-width:1000px;margin:0}.thesis mark{background:var(--lime);padding:0 .12em;color:inherit}
     .legend{display:flex;flex-wrap:wrap;gap:10px;margin:25px 0}.tag{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--ink);border-radius:999px;padding:5px 11px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}.tag.fact{background:var(--blue)}.tag.obs{background:var(--lime)}.tag.hyp{background:#f3c2a8}.tag.hwm{background:var(--ink);color:white}
@@ -43,8 +46,8 @@
     .search-wrap{display:flex;gap:10px;margin-bottom:22px}.search-wrap input{width:min(520px,100%);background:var(--sheet);border:1px solid var(--ink);padding:13px 16px;font:600 15px Manrope}.search-wrap button{border:1px solid var(--ink);background:var(--ink);color:white;padding:0 18px;font-weight:800;cursor:pointer}
     .empty{display:none;padding:30px;border:1px dashed var(--line);color:var(--muted)}
     footer{padding-top:34px;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:13px}
-    @media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto;padding-top:52px}.status{min-height:220px}.section-head{grid-template-columns:1fr}.signal{grid-template-columns:1fr}.signal article{border-right:0;border-bottom:1px solid var(--line)}.channel-grid{grid-template-columns:1fr 1fr}.playbook{grid-template-columns:1fr}.source-card{grid-template-columns:1fr}.source-card img{max-height:280px}.callout{grid-template-columns:1fr}.nav{display:none}}
-    @media(max-width:560px){main{padding:0 17px 55px}.rail-in{padding:12px 17px}.hero h1{font-size:54px}.lede{font-size:17px}.section{padding:50px 0}.channel-grid{grid-template-columns:1fr}.signal article{min-height:0}.experiments{display:block;overflow-x:auto;white-space:normal}.source-card{padding:12px}footer{flex-direction:column}}
+    @media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto;padding-top:52px}.status{min-height:220px}.section-head{grid-template-columns:1fr}.signal{grid-template-columns:1fr}.signal article{border-right:0;border-bottom:1px solid var(--line)}.tip-group{grid-template-columns:1fr}.tip-group-head{padding:28px 0 16px}.tip-list{border-left:0;border-top:1px solid var(--line)}.channel-grid{grid-template-columns:1fr 1fr}.playbook{grid-template-columns:1fr}.source-card{grid-template-columns:1fr}.source-card img{max-height:280px}.callout{grid-template-columns:1fr}.nav{display:none}}
+    @media(max-width:560px){main{padding:0 17px 55px}.rail-in{padding:12px 17px}.hero h1{font-size:54px}.lede{font-size:17px}.section{padding:50px 0}.channel-grid{grid-template-columns:1fr}.signal article{min-height:0}.tip{grid-template-columns:38px 1fr;gap:12px;padding:20px 16px}.tip .evidence{grid-column:2;justify-self:start}.experiments{display:block;overflow-x:auto;white-space:normal}.source-card{padding:12px}footer{flex-direction:column}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   </style>
 </head>
@@ -61,7 +64,7 @@
     <div class="rail-in">
       <a class="brand" href="#top">HWM <b>× AEO</b></a>
       <nav class="nav" aria-label="Điều hướng chính">
-        <a href="#ket-luan">Kết luận</a><a href="#kenh">Kênh</a><a href="#playbook">Playbook</a><a href="#thu-nghiem">Thử nghiệm</a><a href="#nguon">Nguồn</a>
+        <a href="#ket-luan">Kết luận</a><a href="#cach-ho-lam">Cách họ làm</a><a href="#kenh">Kênh</a><a href="#playbook">Áp dụng HWM</a><a href="#nguon">Nguồn</a>
       </nav>
     </div>
   </header>
@@ -72,8 +75,8 @@
         <p class="lede">Kho nghiên cứu sống dành cho Huge Win Media — gom bằng chứng, tách nhận định khỏi giả thuyết và biến từng nguồn thành thứ HWM có thể thử, đo và cải thiện.</p>
       </div>
       <aside class="status">
-        <div><strong><span class="pulse"></span>Đang cập nhật</strong><p>1 nguồn đã tổng hợp<br>5 hướng thử nghiệm ban đầu</p></div>
-        <small>Cập nhật: 13/08/2026 · 21:33 (+07)<br>Phiên bản 0.2</small>
+        <div><strong><span class="pulse"></span>Đang cập nhật</strong><p>1 nguồn đã tổng hợp<br>29 tip AEO đã phân loại</p></div>
+        <small>Cập nhật: 14/08/2026 · 07:56 (+07)<br>Phiên bản 0.3</small>
       </aside>
     </section>
 
@@ -85,6 +88,87 @@
         <article><span class="num">01</span><span class="tag fact">Tuyên bố từ nguồn</span><h3>Đo như paid social, làm như search</h3><p>Gamma cho rằng click trực tiếp không phản ánh hết ảnh hưởng của AEO. Nên kết hợp referral traffic với self-reported attribution — ví dụ “Bạn biết đến chúng tôi từ đâu?”.<a href="#s1">[1]</a></p></article>
         <article><span class="num">02</span><span class="tag obs">Quan sát thực chiến</span><h3>Mỗi engine là một cuộc chơi riêng</h3><p>Nguồn ước lượng chỉ khoảng 30–40% playbook trùng nhau giữa ChatGPT, Claude, Perplexity và Google AI; phần còn lại phải tùy engine.<a href="#s1">[1]</a></p></article>
         <article><span class="num">03</span><span class="tag fact">Tuyên bố từ nguồn</span><h3>Đừng đồng nhất AI content với spam</h3><p>Vấn đề không nằm ở việc AI có viết hay không, mà ở độ sâu, tính hữu ích, bằng chứng và việc nội dung có thực sự giúp người đọc so sánh hay ra quyết định.<a href="#s1">[1]</a></p></article>
+      </div>
+    </section>
+
+    <section class="section" id="cach-ho-lam">
+      <div class="section-head"><h2>Gamma làm AEO như thế nào</h2><div><p>29 tip được rút trực tiếp từ cuộc phỏng vấn với Ravish Agrawal. Phần này ưu tiên mô tả cách họ thực sự làm, điều họ quan sát được và chỗ nào mới chỉ là giả thuyết — chưa chuyển vội sang bài toán của HWM.</p><span class="section-priority">PHẦN TRỌNG TÂM · ĐỌC TỪ TRÊN XUỐNG HOẶC NHẢY THEO NHÓM</span></div></div>
+      <div class="tip-index" aria-label="Nhảy đến nhóm tip">
+        <a href="#tip-he-thong">Hệ thống vận hành</a><a href="#tip-nghien-cuu">Nghiên cứu đầu vào</a><a href="#tip-content">Website & content</a><a href="#tip-reddit">Reddit</a><a href="#tip-engine">Theo từng engine</a><a href="#tip-do-luong">Đo lường</a><a href="#tip-rui-ro">Rủi ro & khoảng trống</a>
+      </div>
+      <div class="legend"><span class="tag fact">Gamma đã làm</span><span class="tag obs">Quan sát của nguồn</span><span class="tag hyp">Giả thuyết / chưa chắc</span></div>
+
+      <div class="tip-catalog">
+        <section class="tip-group" id="tip-he-thong">
+          <div class="tip-group-head"><h3>01 — Hệ thống vận hành</h3><p>Cách Gamma chọn kênh, phân bổ mục tiêu và duy trì AEO.</p></div>
+          <div class="tip-list">
+            <article class="tip searchable"><span class="tip-no">01</span><div><h4>Tìm “alpha” trước khi kênh thành kiến thức phổ thông</h4><p>Ravish chủ động tìm những kênh thị trường chưa hiểu hết, thử sớm rồi mới xác định phương pháp có hợp Gamma hay không. AEO và Reddit là hai ví dụ họ vào sớm; ChatGPT Ads là thử nghiệm mới hơn.<a href="#s1">[1]</a></p></div><span class="evidence did">Gamma đã làm</span></article>
+            <article class="tip searchable"><span class="tip-no">02</span><div><h4>Không dùng một playbook cho mọi answer engine</h4><p>Họ ước lượng chỉ 30–40% cách làm có thể dùng chung; khoảng 60% phải thay đổi theo ChatGPT, Google AI, Perplexity hoặc Claude. Vì vậy “AEO chung chung” dễ che mất phần việc quan trọng nhất.<a href="#s1">[1]</a></p></div><span class="evidence obs">Quan sát</span></article>
+            <article class="tip searchable"><span class="tip-no">03</span><div><h4>Tách initiative AEO khỏi mục tiêu tăng trưởng của từng nền tảng</h4><p>Một số nội dung trên YouTube hoặc LinkedIn được Gamma đầu tư chủ yếu để xây dấu vết cho answer engine, dù bản thân kênh đó không mang nhiều traffic trực tiếp.<a href="#s1">[1]</a></p></div><span class="evidence did">Gamma đã làm</span></article>
+            <article class="tip searchable"><span class="tip-no">04</span><div><h4>Dùng tỷ lệ 80/20: crawler-first nhưng người thật vẫn đọc được</h4><p>Với initiative AEO, họ có thể dành khoảng 80% quyết định cho agent/crawler và 20% cho trải nghiệm con người. Nội dung không cần clickbait, nhưng người vô tình xem vẫn phải hiểu và thấy hữu ích.<a href="#s1">[1]</a></p></div><span class="evidence did">Gamma đã làm</span></article>
+            <article class="tip searchable"><span class="tip-no">05</span><div><h4>Coi AEO là một engine “always-on”</h4><p>Không có bài đăng một lần rồi xong. Họ tiếp tục tạo, theo dõi và làm mới dấu vết vì citation có thể biến mất, prompt thay đổi và nền tảng đổi cách crawl theo chu kỳ rất ngắn.<a href="#s1">[1]</a></p></div><span class="evidence obs">Quan sát</span></article>
+          </div>
+        </section>
+
+        <section class="tip-group" id="tip-nghien-cuu">
+          <div class="tip-group-head"><h3>02 — Nghiên cứu đầu vào</h3><p>Gamma phát hiện cơ hội và chọn truy vấn để đánh.</p></div>
+          <div class="tip-list">
+            <article class="tip searchable"><span class="tip-no">06</span><div><h4>Bắt đầu từ tín hiệu nhỏ trong analytics</h4><p>Họ chú ý AEO khi referral traffic từ ChatGPT tăng 8×, dù vẫn dưới 1% tổng traffic. Tín hiệu nhỏ nhưng tốc độ tăng khác thường đủ để mở một hướng điều tra mới.<a href="#s1">[1]</a></p></div><span class="evidence did">Gamma đã làm</span></article>
+            <article class="tip searchable"><span class="tip-no">07</span><div><h4>Lấy prompt thật làm tiêu đề và cấu trúc nội dung</h4><p>Với YouTube, Gamma ưu tiên câu chữ người dùng thực sự hỏi trong prompt hoặc search phrase thay vì tiêu đề clickbait. Mục tiêu là để transcript và heading khớp đúng cách answer engine diễn giải câu hỏi.<a href="#s1">[1]</a></p></div><span class="evidence did">Gamma đã làm</span></article>
+            <article class="tip searchable"><span class="tip-no">08</span><div><h4>Đi từ truy vấn ngách lên truy vấn rộng</h4><p>Thay vì lao vào “best CRM”, họ đề xuất bắt đầu ở “best CRM for SMB”, “for fintech”, “for health tech”, thậm chí ngách sâu hơn. Khi bối cảnh hẹp, cạnh tranh thấp hơn và cơ hội tạo relevance/topical authority rõ hơn.<a href="#s1">[1]</a></p></div><span class="evidence obs">Quan sát</span></article>
+            <article class="tip searchable"><span class="tip-no">09</span><div><h4>Chọn cộng đồng theo hai bản đồ: ICP và problem universe</h4><p>Một nhánh hỏi khách hàng mục tiêu đang ở đâu; nhánh còn lại hỏi vấn đề/sản phẩm liên quan đang được bàn ở đâu. Với Gamma, đó có thể là cộng đồng SaaS/founder hoặc các cộng đồng PowerPoint, Canva và presentation.<a href="#s1">[1]</a></p></div><span class="evidence did">Gamma đã làm</span></article>
+          </div>
+        </section>
+
+        <section class="tip-group" id="tip-content">
+          <div class="tip-group-head"><h3>03 — Website & content</h3><p>Cách họ tạo nội dung có thể được crawl, so sánh và trích dẫn.</p></div>
+          <div class="tip-list">
+            <article class="tip searchable"><span class="tip-no">10</span><div><h4>Dùng website sở hữu làm nguồn sự thật dễ kiểm soát</h4><p>Website cho phép Gamma chủ động mô tả sản phẩm, use case và mối quan hệ với đối thủ. Theo quan sát của họ, nội dung mới trên site có thể được crawl nhanh và được trích dẫn tương đối tốt.<a href="#s1">[1]</a></p></div><span class="evidence obs">Quan sát</span></article>
+            <article class="tip searchable"><span class="tip-no">11</span><div><h4>Viết nội dung sâu, không nhồi vài keyword</h4><p>Họ phản đối cách tạo hàng loạt bài mỏng chỉ lặp từ khóa. Nội dung nên giải thích sâu lý do, tiêu chí, điểm khác nhau và thông tin giúp người đọc ra quyết định; AI có thể hỗ trợ viết nếu đầu vào và nghiên cứu đủ tốt.<a href="#s1">[1]</a></p></div><span class="evidence fact">Tuyên bố nguồn</span></article>
+            <article class="tip searchable"><span class="tip-no">12</span><div><h4>Đặt sản phẩm trong bối cảnh so sánh</h4><p>Pattern rõ nhất Ravish nhìn thấy không phải view hay upvote, mà là thương hiệu được người khác nhắc đến cạnh một lựa chọn khác. Nội dung chỉ nói riêng về mình thường yếu hơn nội dung giúp engine hiểu “khác gì, phù hợp lúc nào”.<a href="#s1">[1]</a></p></div><span class="evidence obs">Quan sát</span></article>
+            <article class="tip searchable"><span class="tip-no">13</span><div><h4>Xây lớp xác nhận từ website bên thứ ba</h4><p>Blog, PR và review ngoài domain là cụm quan trọng thứ hai hoặc thứ ba trong playbook của họ. Thứ tự có thể đổi với website sở hữu, nhưng lớp xác nhận độc lập luôn được xem là nền tảng.<a href="#s1">[1]</a></p></div><span class="evidence obs">Quan sát</span></article>
+            <article class="tip searchable"><span class="tip-no">14</span><div><h4>Đừng lấy domain authority cũ làm giả định duy nhất</h4><p>Ravish chưa thấy answer engine luôn ưu tiên website lâu đời. Ở giai đoạn hiện tại, site nhỏ nhưng có nội dung AI-first, rõ và sát truy vấn vẫn có cơ hội; đây là quan sát thực chiến, chưa phải quy luật đã kiểm chứng.<a href="#s1">[1]</a></p></div><span class="evidence obs">Quan sát</span></article>
+          </div>
+        </section>
+
+        <section class="tip-group" id="tip-reddit">
+          <div class="tip-group-head"><h3>04 — Reddit</h3><p>Phần tactical chi tiết nhất trong cuộc phỏng vấn.</p></div>
+          <div class="tip-list">
+            <article class="tip searchable"><span class="tip-no">15</span><div><h4>Dùng subreddit riêng để trả lời câu hỏi sản phẩm</h4><p>Cộng đồng riêng của Gamma chứa câu hỏi thực như cách export presentation sang PowerPoint, PDF hoặc ảnh. Những thread hỗ trợ cụ thể này đã được họ thấy xuất hiện trong citation.<a href="#s1">[1]</a></p></div><span class="evidence did">Gamma đã làm</span></article>
+            <article class="tip searchable"><span class="tip-no">16</span><div><h4>Giai đoạn đầu: ưu tiên cộng đồng có sẵn; dài hạn: xây cộng đồng riêng</h4><p>Subreddit mới của thương hiệu thường được nhặt chậm hơn. Với đội mới bắt đầu, họ khuyên hiện diện ở cộng đồng đã có người dùng trước; subreddit riêng là tài sản dài hạn cần xây dần.<a href="#s1">[1]</a></p></div><span class="evidence obs">Quan sát</span></article>
+            <article class="tip searchable"><span class="tip-no">17</span><div><h4>Tham gia bằng “integration wedge”, không quảng cáo thẳng</h4><p>Gamma có thể nói chuyện trong cộng đồng PowerPoint vì người dùng tạo deck bằng Gamma rồi export sang PowerPoint. Họ bước vào cuộc trò chuyện qua luồng công việc thật và tính tương thích mở, không bằng câu “Gamma rất tuyệt”.<a href="#s1">[1]</a></p></div><span class="evidence did">Gamma đã làm</span></article>
+            <article class="tip searchable"><span class="tip-no">18</span><div><h4>Viết câu hỏi so sánh cụ thể, không tự xưng “tốt nhất”</h4><p>Frame hữu ích là “Gamma khác PowerPoint/Google Slides ở đâu?” thay vì chỉ khen Gamma. Họ còn chủ động chọn đối thủ muốn đứng cạnh để định vị điểm mạnh như MCP, Zapier, import/export và hệ sinh thái mở.<a href="#s1">[1]</a></p></div><span class="evidence did">Gamma đã làm</span></article>
+            <article class="tip searchable"><span class="tip-no">19</span><div><h4>Đừng kỳ vọng spam comment sẽ tăng citation</h4><p>Ravish chưa thấy comment làm thương hiệu được trích dẫn nhiều hơn. Ông xem comment chủ yếu là tín hiệu sentiment; cố phủ comment để leo citation không phải chiến thuật họ tin là hiệu quả.<a href="#s1">[1]</a></p></div><span class="evidence obs">Quan sát</span></article>
+            <article class="tip searchable"><span class="tip-no">20</span><div><h4>Chờ đúng chu kỳ: ChatGPT có thể mất 30–45 ngày</h4><p>Theo dữ liệu họ quan sát, nội dung Reddit mới thường cần khoảng 30–45 ngày để trở thành citation trong ChatGPT. Perplexity có thể nhặt nhanh hơn nhiều với truy vấn rất sát, đôi khi từ ngày hôm sau.<a href="#s1">[1]</a></p></div><span class="evidence obs">Quan sát</span></article>
+            <article class="tip searchable"><span class="tip-no">21</span><div><h4>Quy mô subreddit là bộ lọc theo quy mô doanh nghiệp, không phải luật crawl</h4><p>Gamma thường bỏ qua cộng đồng chỉ có vài nghìn hoặc vài chục nghìn thành viên vì không đủ tác động ở quy mô của họ. Nhưng Ravish thừa nhận startup có thể khai thác cộng đồng nhỏ, nhất là khi truy vấn đủ ngách.<a href="#s1">[1]</a></p></div><span class="evidence obs">Quan sát</span></article>
+          </div>
+        </section>
+
+        <section class="tip-group" id="tip-engine">
+          <div class="tip-group-head"><h3>05 — Theo từng engine</h3><p>Ưu tiên và cơ chế khác nhau theo nơi người dùng hỏi.</p></div>
+          <div class="tip-list">
+            <article class="tip searchable"><span class="tip-no">22</span><div><h4>ChatGPT: ưu tiên Reddit, website và nội dung so sánh</h4><p>Với consumer/prosumer của Gamma, hơn 90% phần AEO được họ quy cho ChatGPT. Reddit là kênh có ảnh hưởng rõ nhất ở đây; website sở hữu và third-party tiếp tục hỗ trợ retrieval/citation.<a href="#s1">[1]</a></p></div><span class="evidence obs">Quan sát</span></article>
+            <article class="tip searchable"><span class="tip-no">23</span><div><h4>Google AI Overviews: giữ nền tảng SEO</h4><p>Đây là nơi câu “SEO tốt là AEO tốt” hợp lý nhất theo Ravish. Muốn hiện diện trong Google AI, họ vẫn xem SEO, relevance và phân phối từ Google là lớp bắt buộc chứ không tách thành game hoàn toàn mới.<a href="#s1">[1]</a></p></div><span class="evidence obs">Quan sát</span></article>
+            <article class="tip searchable"><span class="tip-no">24</span><div><h4>Perplexity: tăng trọng số cho nguồn bên thứ ba và độ mới</h4><p>Họ thấy Perplexity coi trọng website khác nói về thương hiệu và có thể nhặt nội dung rất nhanh khi truy vấn đủ cụ thể. Vì thế third-party coverage và câu chữ sát phrase đáng ưu tiên hơn Reddit-first đơn thuần.<a href="#s1">[1]</a></p></div><span class="evidence obs">Quan sát</span></article>
+            <article class="tip searchable"><span class="tip-no">25</span><div><h4>Claude: xây khả năng dùng sản phẩm qua MCP</h4><p>Gamma đã ra MCP connector và thấy usage tăng khi người dùng có thể yêu cầu Claude tạo presentation bằng Gamma ngay trong workflow. Ravish xem Claude gần “app store” hơn search engine: integration giúp retention/usage trước khi giúp discovery.<a href="#s1">[1]</a></p></div><span class="evidence did">Gamma đã làm</span></article>
+            <article class="tip searchable"><span class="tip-no">26</span><div><h4>YouTube/LinkedIn: đừng lấy engagement làm công thức</h4><p>Gamma được trích dẫn từ video 400K view lẫn 18K view; LinkedIn post/article ít engagement vẫn có thể được index. Họ chưa tìm thấy ngưỡng view, like hoặc comment đáng tin cậy, nên ưu tiên nội dung và ngữ cảnh hơn vanity metrics.<a href="#s1">[1]</a></p></div><span class="evidence obs">Quan sát</span></article>
+          </div>
+        </section>
+
+        <section class="tip-group" id="tip-do-luong">
+          <div class="tip-group-head"><h3>06 — Đo lường & nhịp kiểm tra</h3><p>Cách họ nhìn traffic, attribution và tuổi thọ citation.</p></div>
+          <div class="tip-list">
+            <article class="tip searchable"><span class="tip-no">27</span><div><h4>Đo AEO như paid social, không chỉ như SEO</h4><p>Gamma đưa ChatGPT thành lựa chọn rõ trong câu hỏi “How did you hear about us?”. Referral click có lúc giảm nhưng self-reported discovery tiếp tục tăng, cho thấy ảnh hưởng kiểu view-through mà last-click không phản ánh hết.<a href="#s1">[1]</a></p></div><span class="evidence did">Gamma đã làm</span></article>
+            <article class="tip searchable"><span class="tip-no">28</span><div><h4>Ghi citation thủ công để tìm “half-life”</h4><p>Họ lưu trong spreadsheet: prompt nào trích nguồn nào, citation share thay đổi ra sao và khi nào thương hiệu biến mất. Chưa có công thức, nhưng giả thuyết vận hành là phải kiểm tra lại theo chu kỳ, có thể khoảng ba tháng.<a href="#s1">[1]</a></p></div><span class="evidence did">Gamma đã làm</span></article>
+          </div>
+        </section>
+
+        <section class="tip-group" id="tip-rui-ro">
+          <div class="tip-group-head"><h3>07 — Rủi ro & khoảng trống</h3><p>Những chỗ nguồn thừa nhận chưa có công thức chắc chắn.</p></div>
+          <div class="tip-list">
+            <article class="tip searchable"><span class="tip-no">29</span><div><h4>Không biến quan sát thành luật: thuật toán vẫn là hộp đen</h4><p>Họ chưa biết chính xác vì sao một Reddit post thắng citation, tuổi thọ citation là bao lâu, LinkedIn ưu tiên tín hiệu nào hay memory tác động đến discovery đến mức nào. Các ý về first-mover advantage, Instagram/LinkedIn và Claude “app store” nên được giữ ở mức giả thuyết để tiếp tục kiểm chứng.<a href="#s1">[1]</a></p></div><span class="evidence hyp">Giả thuyết</span></article>
+          </div>
+        </section>
       </div>
     </section>
 
@@ -101,7 +185,7 @@
     </section>
 
     <section class="section" id="playbook">
-      <div class="section-head"><h2>Playbook cho HWM</h2><p>Bản dịch từ insight sang hành động phù hợp với một agency retention/email marketing. Đây là đề xuất của HWM Research, chưa phải kết quả đã kiểm chứng.</p></div>
+      <div class="section-head"><h2>Áp dụng cho HWM <span class="section-priority">ƯU TIÊN THẤP HƠN</span></h2><p>Phần chuyển từ insight sang hành động cho một agency retention/email marketing. Đây là đề xuất của HWM Research, chưa phải kết quả đã kiểm chứng; đọc sau phần “Gamma làm AEO như thế nào”.</p></div>
       <div class="playbook">
         <aside><h3>Từ “Klaviyo agency” đến các truy vấn ngách</h3><p>Đừng lao thẳng vào truy vấn rộng. Bắt đầu từ giao điểm giữa ICP, vấn đề cụ thể, ngành và bối cảnh chuyển đổi.</p></aside>
         <ol>
@@ -115,8 +199,8 @@
     </section>
 
     <section class="section" id="thu-nghiem">
-      <div class="section-head"><h2>Backlog thử nghiệm</h2><p>Ưu tiên các thử nghiệm có thể tạo baseline nhanh. Chưa có con số kết quả nào được giả định.</p></div>
-      <div class="search-wrap"><input id="search" type="search" placeholder="Lọc kênh, thử nghiệm và nguồn…" aria-label="Lọc kênh, thử nghiệm và nguồn"><button id="clear" type="button">Xóa</button></div>
+      <div class="section-head"><h2>Backlog thử nghiệm HWM</h2><p>Danh sách thử sau, không phải trọng tâm của phiên bản này. Ưu tiên baseline nhanh; chưa có con số kết quả nào được giả định.</p></div>
+      <div class="search-wrap"><input id="search" type="search" placeholder="Lọc tip, kênh, thử nghiệm và nguồn…" aria-label="Lọc tip, kênh, thử nghiệm và nguồn"><button id="clear" type="button">Xóa</button></div>
       <div style="overflow-x:auto">
         <table class="experiments">
           <thead><tr><th>Ưu tiên</th><th>Thử nghiệm</th><th>Cách làm</th><th>Tín hiệu cần đo</th><th>Chu kỳ đầu</th></tr></thead>
@@ -151,7 +235,7 @@
       </div>
     </section>
 
-    <footer><span>HWM × AEO Living Research · Version 0.2</span><span>Nguồn: <a href="https://youtu.be/pS7vgNxusaM" target="_blank" rel="noopener">[1] Distribution — YouTube</a></span></footer>
+    <footer><span>HWM × AEO Living Research · Version 0.3</span><span>Nguồn: <a href="https://youtu.be/pS7vgNxusaM" target="_blank" rel="noopener">[1] Distribution — YouTube</a></span></footer>
   </main>
   <script>
     const input=document.getElementById('search'), clear=document.getElementById('clear'), empty=document.getElementById('empty');
