@@ -29,8 +29,8 @@
     .status p{margin:0}.status strong{font:900 32px/1.05 'Be Vietnam Pro',sans-serif;display:block;margin-bottom:16px}.status small{color:#dbe8df}.pulse{width:11px;height:11px;border-radius:50%;display:inline-block;background:var(--lime);box-shadow:0 0 0 8px rgba(203,230,79,.15);margin-right:10px}
     .section{padding:68px 0;border-bottom:1px solid var(--line)}
     .section-head{display:grid;grid-template-columns:320px 1fr;gap:36px;margin-bottom:38px;align-items:start}.section-head h2{font:900 clamp(34px,4.25vw,54px)/.98 'Be Vietnam Pro',sans-serif;letter-spacing:-.025em;margin:0;overflow-wrap:normal}.section-head p{max-width:700px;margin:8px 0 0;color:var(--muted);font-size:17px}
-    .signal{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
-    .signal article{padding:28px 24px;min-height:220px;border-right:1px solid var(--line)}.signal article:last-child{border:0}.signal h3{margin:0 0 12px;font-size:20px}.signal p{margin:0;color:var(--muted)}
+    .signal{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+    .signal article{padding:28px 24px;min-height:220px;border-right:1px solid var(--line)}.signal article:nth-child(even){border-right:0}.signal article:nth-child(-n+2){border-bottom:1px solid var(--line)}.signal h3{margin:0 0 12px;font-size:20px}.signal p{margin:0;color:var(--muted)}
     .tip-index{display:flex;flex-wrap:wrap;gap:8px;margin:-8px 0 34px}.tip-index a{border:1px solid var(--ink);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:800;text-decoration:none;color:var(--ink);background:var(--sheet)}.tip-index a:hover{background:var(--lime)}
     .tip-catalog{border-top:2px solid var(--ink)}.tip-group{display:grid;grid-template-columns:250px 1fr;border-bottom:1px solid var(--ink)}.tip-group-head{padding:28px 24px 28px 0}.tip-group-head h3{font:900 24px/1.08 'Be Vietnam Pro',sans-serif;margin:0 0 10px}.tip-group-head p{font-size:13px;color:var(--muted);margin:0}.tip-list{border-left:1px solid var(--line)}
     .tip{display:grid;grid-template-columns:54px 1fr 128px;gap:18px;padding:23px 24px;border-bottom:1px solid var(--line);background:var(--sheet)}.tip:last-child{border-bottom:0}.tip-no{font:900 22px/1 'Be Vietnam Pro',sans-serif;color:var(--green)}.tip h4{margin:0 0 6px;font-size:17px;line-height:1.35}.tip p{margin:0;color:var(--muted);font-size:14px;max-width:76ch}.evidence{align-self:start;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;border-radius:999px;padding:5px 8px;text-align:center;background:var(--soft)}.evidence.did{background:var(--blue)}.evidence.obs{background:var(--lime)}.evidence.hyp{background:#f3c2a8}.section-priority{display:inline-block;margin-top:12px;font-size:12px;font-weight:800;color:var(--green)}
@@ -71,7 +71,7 @@
     <div class="rail-in">
       <a class="brand" href="#top">HWM <b>× AEO</b></a>
       <nav class="nav" aria-label="Điều hướng chính">
-        <a href="#library">Thư viện</a><a href="#source-library">Theo nguồn</a><a href="#cach-ho-lam">Gamma</a><a href="#agent-web">Agent web</a><a href="#ian-discovery">Discovery</a><a href="#topical-authority">Topic depth</a><a href="#playbook">HWM</a>
+        <a href="#library">Thư viện</a><a href="#source-library">Theo nguồn</a><a href="#cach-ho-lam">Gamma</a><a href="#agent-web">Agent web</a><a href="#ian-discovery">Discovery</a><a href="#topical-authority">Topic depth</a><a href="#social-search">Social × Search</a><a href="#playbook">HWM</a>
       </nav>
     </div>
   </header>
@@ -82,8 +82,8 @@
         <p class="lede">Kho nghiên cứu sống dành cho Huge Win Media — gom bằng chứng, tách nhận định khỏi giả thuyết và biến từng nguồn thành thứ HWM có thể thử, đo và cải thiện.</p>
       </div>
       <aside class="status">
-        <div><strong><span class="pulse"></span>Thư viện sống</strong><p>68 mục triển khai<br>14 nguồn có deep link riêng</p></div>
-        <small>Cập nhật: 15/08/2026 · 14:24 (+07)<br>Phiên bản 0.10.0</small>
+        <div><strong><span class="pulse"></span>Thư viện sống</strong><p>74 mục triển khai<br>18 nguồn có deep link riêng</p></div>
+        <small>Cập nhật: 19/08/2026 · Phiên bản 0.11.0</small>
       </aside>
     </section>
 
@@ -95,12 +95,13 @@
 
     <section class="section" id="ket-luan">
       <div class="section-head"><h2>Kết luận hiện tại</h2><p>Tổng hợp từ nguồn vận hành, thử nghiệm thăm dò, các workflow thực hành và claim sản phẩm. Đây chưa phải “luật AEO”; mức bằng chứng được giữ riêng ở từng mục.</p></div>
-      <p class="thesis">AEO đang chuyển từ vài bài content rời rạc thành <mark>một topic system có hai đường đọc</mark>: người dùng nhận giao diện và nội dung có chiều sâu; agent được chỉ rõ Markdown, <code>llms.txt</code> hoặc endpoint phù hợp. Cả hai cùng dẫn về money page, bằng chứng và một hệ thống đo luôn bật.</p>
+      <p class="thesis">AEO đang chuyển từ vài bài content rời rạc thành <mark>một topic system đa kênh, có thể đo được</mark>: website tạo chiều sâu và money page; agent được chỉ rõ representation phù hợp; social/video mở thêm bề mặt discovery trên Google. Mỗi lớp cần dẫn về bằng chứng, search intent và một hệ thống đo luôn bật.</p>
       <div class="legend"><span class="tag fact">Tuyên bố từ nguồn</span><span class="tag obs">Quan sát thực chiến</span><span class="tag hyp">Giả thuyết</span><span class="tag hwm">HWM đề xuất</span></div>
       <div class="signal">
         <article><span class="num">01</span><span class="tag fact">Tuyên bố từ nguồn</span><h3>Đo như paid social, làm như search</h3><p>Gamma cho rằng click trực tiếp không phản ánh hết ảnh hưởng của AEO. Nên kết hợp referral traffic với self-reported attribution — ví dụ “Bạn biết đến chúng tôi từ đâu?”.<a href="#s1">[1]</a></p></article>
         <article><span class="num">02</span><span class="tag obs">Quan sát thực chiến</span><h3>Mỗi engine là một cuộc chơi riêng</h3><p>Nguồn ước lượng chỉ khoảng 30–40% playbook trùng nhau giữa ChatGPT, Claude, Perplexity và Google AI; phần còn lại phải tùy engine.<a href="#s1">[1]</a></p></article>
         <article><span class="num">03</span><span class="tag hyp">Proposal + chuẩn web</span><h3>Discovery metadata cần được đo bằng server logs</h3><p><code>rel="alternate"</code>, <code>rel="describedby"</code> và HTTP Link có semantics hợp lệ; <code>llms.txt</code> v2 ghép chúng thành một discovery proposal. Chưa nguồn nào chứng minh agent sẽ tự động fetch, index hay cite, nên phải kiểm tra traffic thật.<a href="#s11">[11]</a><a href="#s13">[13]</a><a href="#s14">[14]</a></p></article>
+        <article><span class="num">04</span><span class="tag fact">Google chính thức</span><h3>Social content đã có lớp đo search riêng</h3><p>Search Console platform properties cho Instagram, TikTok, X và YouTube hiển thị query, post, click và impression từ Google Search; guide mới còn gợi ý dùng dữ liệu đó để chọn topic, so sánh format và theo dõi thay đổi title/caption.<a href="#s17">[17]</a><a href="#s18">[18]</a></p></article>
       </div>
     </section>
 
@@ -117,7 +118,7 @@
         <select id="library-priority" aria-label="Lọc theo mức ưu tiên"><option value="all">Tất cả priority</option><option value="P0">P0 · Nền tảng</option><option value="P1">P1 · Triển khai</option><option value="P2">P2 · Mở rộng</option><option value="P3">P3 · Kiểm chứng</option></select>
         <select id="library-category" aria-label="Lọc theo category"><option value="all">Tất cả category</option></select>
       </div>
-      <div class="library-meta"><strong id="library-count">68 mục</strong><span>Sắp theo priority → category → thứ tự nguồn</span></div>
+      <div class="library-meta"><strong id="library-count">74 mục</strong><span>Sắp theo priority → category → thứ tự nguồn</span></div>
       <div class="library-list" id="library-list"></div>
       <p class="library-empty" id="library-empty">Không có mục nào khớp bộ lọc.</p>
     </section>
@@ -327,6 +328,18 @@
       <div class="evidence-strip"><b>Giới hạn phải giữ</b><p>Đây là observational study do tác giả tự công bố, không phải controlled experiment hay replication độc lập. “46.7k AI Citations” nằm trong tiêu đề thương mại của bài; ảnh bìa hiển thị 46.7K <i>Total impressions</i> trong mục Generative AI features, nên thư viện không đồng nhất hai metric này. Kết luận nên dùng để thiết kế test, không dùng để tuyên bố backlinks vô ích hoặc topic depth gây ra ranking.<a href="#s10">[10]</a></p></div>
     </section>
 
+    <section class="section" id="social-search">
+      <div class="section-head"><h2>Khi social content trở thành search asset</h2><p>Google đã đưa platform properties vào Search Console cho Instagram, TikTok, X và YouTube. Đây là thay đổi về <b>khả năng quan sát và đo lường</b>: creator có thể thấy query, post, click và impression từ Google. Nó chưa chứng minh mọi social post sẽ rank lâu hoặc AEO và social đã “hợp nhất” về cơ chế.<a href="#s15">[15]</a><a href="#s16">[16]</a><a href="#s17">[17]</a><a href="#s18">[18]</a></p></div>
+      <div class="finding-grid">
+        <article class="finding social-search-finding searchable" data-priority="P0" data-category="measurement" data-sources="s17" data-origin="Google Search Console"><span class="eyebrow">GOOGLE CHÍNH THỨC · ĐO LƯỜNG</span><b>01 — Tạo property riêng cho bốn social/video platform</b><p>Search Console cho phép kết nối Instagram, TikTok, X và YouTube rồi xem total clicks, impressions, post và query tạo traffic từ Google Search. Insights report tóm tắt traffic trend, top-performing post và cách người dùng tìm thấy account.<a href="#s17">[17]</a></p><p><b>Evidence locator:</b> Google, 07/07/2026 — “track which search terms lead people to your Instagram, TikTok, X, and YouTube content” và Performance report cho “posts and queries”.</p></article>
+        <article class="finding social-search-finding searchable" data-priority="P1" data-category="social" data-sources="s16,s18" data-origin="Google guide + Neil Patel"><span class="eyebrow">WORKFLOW · QUERY → CONTENT</span><b>02 — Dùng query group làm input cho social content</b><p>Google hướng dẫn đọc nhóm query top, tăng và giảm để hiểu chủ đề khán giả quan tâm, rồi dùng chúng làm input cho video topic, caption hoặc hashtag. Neil Patel đi xa hơn thành rule “mỗi content trả lời một câu hỏi”; đây là workflow đề xuất hợp lý, không phải điều kiện ranking do Google công bố.<a href="#s16">[16]</a><a href="#s18">[18]</a></p><p><b>Evidence locator:</b> Google guide, mục “Understand your Search audience”; Neil Patel — “answer one question in every piece of content you create”.</p></article>
+        <article class="finding social-search-finding searchable" data-priority="P2" data-category="social" data-sources="s16,s18" data-origin="Google guide + Neil Patel"><span class="eyebrow">CONTENT LIFECYCLE · CẦN THEO DÕI</span><b>03 — Social post có thể có vòng đời search dài hơn vòng đời feed</b><p>Google nêu use case nhận diện video cũ đang lấy lại search traction để pin hoặc mở rộng thành phần hai. Điều đó xác nhận content cũ có thể phục hồi qua Search; không xác nhận mọi post sẽ tiếp tục mang traffic hàng tháng như một kết quả mặc định.<a href="#s16">[16]</a><a href="#s18">[18]</a></p><p><b>Evidence locator:</b> Google guide, mục “Optimize existing content”; Neil Patel mô tả social feed peak trong một–hai ngày và post ranking có thể tiếp tục hoạt động lâu hơn.</p></article>
+        <article class="finding social-search-finding searchable" data-priority="P1" data-category="measurement" data-sources="s18" data-origin="Google Search Console guide"><span class="eyebrow">MEASUREMENT LOOP · KHÔNG SUY DIỄN NHÂN QUẢ</span><b>04 — So sánh platform, format và thay đổi title/caption</b><p>Guide đề xuất export nhiều property để so sánh YouTube, Instagram, X và TikTok; dùng filter để đối chiếu short-form với long-form; dùng annotation khi sửa title hoặc caption. Dữ liệu này giúp tạo learning loop, nhưng before/after không tự động chứng minh thay đổi copy là nguyên nhân.<a href="#s18">[18]</a></p><p><b>Evidence locator:</b> các mục “Analyze across platforms”, “Optimize existing content” và “Compare formats”.</p></article>
+        <article class="finding social-search-finding searchable" data-priority="P3" data-category="governance" data-sources="s15,s16,s17,s18" data-origin="Cross-check HWM Research"><span class="eyebrow">CROSS-CHECK · GIỮ ĐÚNG MỨC BẰNG CHỨNG</span><b>05 — “AEO + Social converged” là thesis, chưa phải outcome</b><p>Rob Hoffman gọi đây là cơ hội tăng trưởng hiếm có; Neil Patel mô tả social post thành measurable search asset. Hai ý nắm đúng thay đổi về measurement, nhưng nguồn chính thức không hứa ranking, citation, conversion hay lợi thế “once-in-a-lifetime”. Platform properties hiện cũng không gồm LinkedIn.<a href="#s15">[15]</a><a href="#s16">[16]</a><a href="#s17">[17]</a><a href="#s18">[18]</a></p><p><b>Evidence locator:</b> Rob — “AEO and Social has converged”; Google chỉ xác nhận property, report và workflow phân tích cho bốn platform được hỗ trợ.</p></article>
+      </div>
+      <div class="evidence-strip"><b>Delta so với topic depth</b><p>Topic depth vẫn là lõi của owned content: pillar, supporting pages, money page và internal links.<a href="#s10">[10]</a> Platform properties bổ sung một vòng ngoài có thể đo: <b>search query → social/video content → Search performance → topic/caption/format iteration</b>. HWM nên nối hai vòng bằng cùng intent map, không biến mọi social post thành một bản copy của blog.</p></div>
+    </section>
+
     <section class="section" id="kenh">
       <div class="section-head"><h2>Bản đồ kênh</h2><p>Thứ tự dưới đây phản ánh kinh nghiệm được chia sẻ trong nguồn đầu tiên, chưa phải benchmark độc lập. HWM nên coi đây là giả thuyết ưu tiên để kiểm chứng.</p></div>
       <div class="channel-grid">
@@ -350,6 +363,7 @@
           <li><span class="step">D</span><div><h4>Thiết kế nội dung để được so sánh</h4><p>Nói rõ HWM phù hợp với ai, không phù hợp với ai, khác freelancer/in-house/agency tổng quát ở đâu. Tránh tuyên bố “tốt nhất” không có bằng chứng.</p></div></li>
           <li><span class="step">E</span><div><h4>Đo theo chu kỳ citation</h4><p>Track prompt → engine → vị trí/đề cập → URL được dẫn → sentiment → lead/self-report. Kiểm tra lại định kỳ vì citation có thể có “half-life”.</p></div></li>
           <li><span class="step">F</span><div><h4>Mở một đường đọc rõ cho agent</h4><p>Thử bản Markdown của từng page, <code>rel="alternate"</code>, scoped <code>llms.txt</code> và <code>rel="describedby"</code>. Theo dõi server logs để biết agent có thật sự fetch hay chỉ là markup nằm yên.</p></div></li>
+          <li><span class="step">G</span><div><h4>Nối social vào cùng intent map</h4><p>Kết nối platform properties cho các account được Google hỗ trợ. Dùng query và post data để chọn topic, format và content cần làm tiếp; giữ website/money page làm lớp giải thích sâu và conversion.</p></div></li>
         </ol>
       </div>
     </section>
@@ -366,6 +380,7 @@
             <tr class="searchable"><td class="priority">P1</td><td>3 trang use case ngách</td><td>Chọn ba giao điểm ngành × vấn đề mà HWM có kinh nghiệm và bằng chứng thật.</td><td>Index/citation, impressions, assisted leads</td><td>30–45 ngày</td></tr>
             <tr class="searchable"><td class="priority">P1</td><td>Complete topic cluster quanh một money page</td><td>Chọn một service page; lập intent map, pillar, supporting pages và internal-link ledger; bổ sung một original statistic đủ minh bạch để người khác có thể trích dẫn.</td><td>Indexed pages, contextual links, referring domains, citation, visits và qualified leads từ money page</td><td>8–12 tuần</td></tr>
             <tr class="searchable"><td class="priority">P1</td><td>Agent-readable pilot trên một topic cluster</td><td>Tạo Markdown representations, thêm <code>rel="alternate"</code>, scoped <code>llms.txt</code> và <code>rel="describedby"</code>; giữ một control cluster chưa thay đổi để so sánh crawl behavior.</td><td>Server-log fetches, URL discovery, status codes, citation source và thay đổi crawl path theo user agent</td><td>4–8 tuần</td></tr>
+            <tr class="searchable"><td class="priority">P1</td><td>Social Search cluster pilot</td><td>Chọn một intent cluster; triển khai trên website và hai platform được Search Console hỗ trợ. Gắn annotation khi đổi title/caption, không thay nhiều biến cùng lúc.</td><td>Query group, impression, click, post/format tạo traffic, assisted visit và qualified lead về money page</td><td>6–8 tuần</td></tr>
             <tr class="searchable"><td class="priority">P1</td><td>YouTube theo prompt</td><td>Tiêu đề và cấu trúc dựa trên câu hỏi thật; transcript rõ; nội dung vẫn phải hữu ích với người xem.</td><td>Citation theo video, watch quality, branded search</td><td>30–60 ngày</td></tr>
             <tr class="searchable"><td class="priority">P2</td><td>Community listening</td><td>Theo dõi subreddit/diễn đàn nơi Shopify, ecommerce và Klaviyo problems được bàn luận; chỉ tham gia khi có giá trị thật.</td><td>Chủ đề lặp lại, sentiment, câu hỏi chưa được trả lời</td><td>Hàng tuần</td></tr>
           </tbody>
@@ -473,22 +488,50 @@
         <p><b>Mapped tactic:</b> <a href="#library-agent-discovery-8">semantics ≠ adoption</a></p>
         <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml" target="_blank" rel="noopener">Mở registry gốc ↗</a>
       </div></article>
+      <article class="source-card text-only searchable" id="s15" style="margin-top:20px"><div>
+        <span class="source-meta">Nguồn 15 · X post · Rob Hoffman · 18/08/2026 · Truy xuất 19/08/2026</span><h3>AEO and Social has converged after Google's recent update</h3>
+        <p>Rob diễn giải thay đổi Search Console thành một thesis tăng trưởng: founder sớm nhận ra AEO và social đang hội tụ sẽ có cơ hội lớn.</p>
+        <p><b>Giá trị:</b> chỉ ra strategic implication đáng theo dõi. <b>Giới hạn:</b> post không có setup hoặc outcome; attached video không được dùng làm bằng chứng trong bản cập nhật này. “Once-in-a-lifetime” là framing của tác giả.</p>
+        <p><b>Mapped tactic:</b> <a href="#library-social-search-5">thesis cần cross-check</a></p>
+        <a href="https://x.com/RobHoffman_/status/2089832083233423615" target="_blank" rel="noopener">Mở post gốc ↗</a>
+      </div></article>
+      <article class="source-card text-only searchable" id="s16" style="margin-top:20px"><div>
+        <span class="source-meta">Nguồn 16 · Quoted X Note · Neil Patel · 18/08/2026 · Truy xuất 19/08/2026</span><h3>Your social posts used to die in 48 hours. But Google just changed everything.</h3>
+        <p>Neil đề xuất dùng câu hỏi người dùng đang search làm input cho từng social post và xem mỗi post như một search asset có thể tiếp tục tạo traffic sau vòng đời feed.</p>
+        <p><b>Giá trị:</b> workflow nối search intent với social editorial. <b>Giới hạn:</b> không công bố case data; câu “ranking for months” là khả năng, không phải outcome mặc định được Google đảm bảo.</p>
+        <p><b>Mapped tactics:</b> <a href="#library-social-search-2">query → content</a> · <a href="#library-social-search-3">vòng đời search</a> · <a href="#library-social-search-5">giới hạn claim</a></p>
+        <a href="https://x.com/neilpatel/status/2089517680017432863" target="_blank" rel="noopener">Mở quoted post gốc ↗</a>
+      </div></article>
+      <article class="source-card text-only searchable" id="s17" style="margin-top:20px"><div>
+        <span class="source-meta">Nguồn 17 · Google Search Central · 07/07/2026 · Truy xuất 19/08/2026</span><h3>See how content from social and video platforms performs on Google Search</h3>
+        <p>Google công bố Search Console platform properties cho Instagram, TikTok, X và YouTube, gồm Performance report, Insights và Achievements; dữ liệu có query, post, click và impression từ Google Search.</p>
+        <p><b>Giá trị:</b> primary source xác nhận feature, platform scope và report fields. <b>Giới hạn:</b> đo visibility/traffic, không hứa ranking, citation, conversion hoặc thời gian một post tiếp tục hoạt động.</p>
+        <p><b>Mapped tactic:</b> <a href="#library-social-search-1">platform property baseline</a> · <a href="#library-social-search-5">measurement ≠ outcome</a></p>
+        <a href="https://developers.google.com/search/blog/2026/07/search-console-social-video-platforms" target="_blank" rel="noopener">Mở thông báo Google ↗</a>
+      </div></article>
+      <article class="source-card text-only searchable" id="s18" style="margin-top:20px"><div>
+        <span class="source-meta">Nguồn 18 · Google Search Central guide · 29/07/2026 · Truy xuất 19/08/2026</span><h3>Platform properties roll out globally, plus a new social and video performance guide</h3>
+        <p>Google xác nhận global availability và hướng dẫn dùng query group, 24-hour filter, export nhiều property, annotation, page filter và comparison mode để học từ Search performance của social/video content.</p>
+        <p><b>Giá trị:</b> primary source cho measurement loop sau khi kết nối platform. <b>Giới hạn:</b> là analytics guidance; correlation hoặc before/after không tự động chứng minh title, caption hay format gây ra thay đổi.</p>
+        <p><b>Mapped tactics:</b> <a href="#library-social-search-2">query → content</a> · <a href="#library-social-search-3">content cũ phục hồi</a> · <a href="#library-social-search-4">so sánh và annotation</a></p>
+        <a href="https://developers.google.com/search/blog/2026/07/platform-properties-social-video-guide" target="_blank" rel="noopener">Mở guide Google ↗</a>
+      </div></article>
       <div style="margin-top:28px">
         <details open><summary>Những claim đáng theo dõi từ nguồn 01</summary><p>Gamma cho biết referral traffic từ ChatGPT từng tăng 8× nhưng vẫn chiếm dưới 1%; AEO là một trong các kênh tăng nhanh nhất của họ; hơn 90% phần AEO consumer được quy cho ChatGPT; và nội dung Reddit mới có thể mất 30–45 ngày để xuất hiện dưới dạng citation. Đây đều là tuyên bố từ người được phỏng vấn, không phải số liệu HWM đã xác minh.<a href="#s1">[1]</a></p></details>
         <details><summary>Giả thuyết chưa nên coi là fact</summary><p>Citation có “half-life”; memory của LLM tạo first-mover advantage; Claude sẽ giống app store còn ChatGPT giống Google Search; Instagram và LinkedIn sẽ ảnh hưởng search mạnh hơn trong 6–12 tháng. Các ý này hữu ích để thiết kế thử nghiệm nhưng cần thêm nguồn đối chiếu.<a href="#s1">[1]</a></p></details>
-        <details><summary>Điểm cần kiểm chứng từ nguồn 04–14</summary><p>Agent có tạo content map tốt hơn research thủ công không; hệ thống “autopilot” có tạo khách hàng thật không; paid mentions có làm tăng citation bền vững không; YouTube Shorts có ảnh hưởng recommendation hay chỉ giúp Gemini truy cập nội dung; topic depth có giữ tác động khi methodology được replicated độc lập không; và discovery metadata mới có khiến agent fetch đúng Markdown/<code>llms.txt</code> trong traffic thật hay không.<a href="#s4">[4]</a><a href="#s7">[7]</a><a href="#s10">[10]</a><a href="#s11">[11]</a><a href="#s13">[13]</a></p></details>
+        <details><summary>Điểm cần kiểm chứng từ nguồn 04–18</summary><p>Agent có tạo content map tốt hơn research thủ công không; hệ thống “autopilot” có tạo khách hàng thật không; paid mentions có làm tăng citation bền vững không; YouTube Shorts có ảnh hưởng recommendation hay chỉ giúp Gemini truy cập nội dung; topic depth có giữ tác động khi methodology được replicated độc lập không; discovery metadata mới có khiến agent fetch đúng Markdown/<code>llms.txt</code> trong traffic thật hay không; và social Search visibility có chuyển thành qualified lead hay chỉ dừng ở impression/click.<a href="#s4">[4]</a><a href="#s7">[7]</a><a href="#s10">[10]</a><a href="#s11">[11]</a><a href="#s13">[13]</a><a href="#s17">[17]</a><a href="#s18">[18]</a></p></details>
         <details><summary>Điểm đạo đức và rủi ro</summary><p>Không biến AEO thành spam, nội dung giả danh người dùng hoặc thao túng sentiment. Cách tiếp cận bền hơn cho HWM là tạo nội dung có bằng chứng, tham gia cộng đồng đúng ngữ cảnh và công khai giới hạn của từng claim.</p></details>
       </div>
     </section>
 
-    <footer><span>HWM × AEO Source Library · Version 0.10.0</span><span>68 mục · 11 category · 14 nguồn có deep link</span></footer>
+    <footer><span>HWM × AEO Source Library · Version 0.11.0</span><span>74 mục · 12 category · 18 nguồn có deep link</span></footer>
   </main>
   <script>
     const pageFile='aoe-hwm-research.html';
     const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const clean=s=>String(s??'').replace(/\s+/g,' ').trim();
     const categoryLabels={
-      'operating':'Vận hành & chiến lược','research':'Nghiên cứu prompt & đối thủ','owned':'Website & nội dung sở hữu','community':'Community & Reddit','third-party':'Nguồn bên thứ ba','engines':'Theo từng answer engine','measurement':'Đo lường & attribution','agent-layer':'Hạ tầng cho agent','automation':'Automation & tooling','video':'YouTube & video','governance':'Bằng chứng, rủi ro & đạo đức'
+      'operating':'Vận hành & chiến lược','research':'Nghiên cứu prompt & đối thủ','owned':'Website & nội dung sở hữu','community':'Community & Reddit','third-party':'Nguồn bên thứ ba','social':'Social content & search','engines':'Theo từng answer engine','measurement':'Đo lường & attribution','agent-layer':'Hạ tầng cho agent','automation':'Automation & tooling','video':'YouTube & video','governance':'Bằng chứng, rủi ro & đạo đức'
     };
     const priorityOrder={P0:0,P1:1,P2:2,P3:3};
     const gammaCategory={'tip-he-thong':'operating','tip-nghien-cuu':'research','tip-content':'owned','tip-reddit':'community','tip-engine':'engines','tip-do-luong':'measurement','tip-rui-ro':'governance'};
@@ -504,7 +547,7 @@
     ];
     const fieldMeta=[['P1','research','s4'],['P2','automation','s8'],['P3','automation','s5'],['P3','third-party','s6'],['P2','video','s7,s9']];
     const topicalMeta=[['P1','owned'],['P2','operating'],['P1','owned'],['P1','research'],['P1','owned'],['P2','governance'],['P1','third-party'],['P2','measurement']];
-    const experimentCategories=['measurement','measurement','owned','owned','agent-layer','video','community'];
+    const experimentCategories=['measurement','measurement','owned','owned','agent-layer','social','video','community'];
     const libraryItems=[];
     function priorityForGamma(n){return Object.entries(gammaPriority).find(([,nums])=>nums.includes(n))?.[0]||'P3'}
     function citationsFrom(el){return [...new Set([...el.querySelectorAll('a[href^="#s"]')].map(a=>a.getAttribute('href').slice(1)))]}
@@ -517,7 +560,7 @@
       el.id=`library-gamma-${String(n).padStart(2,'0')}`;
       addItem({priority:priorityForGamma(n),category:gammaCategory[group]||'operating',title:el.querySelector('h4')?.textContent,excerpt:el.querySelector('p')?.textContent,evidence:el.querySelector('.evidence')?.textContent,sources:citationsFrom(el),detail:`#${el.id}`,origin:'Gamma'});
     });
-    document.querySelectorAll('.finding:not(.topical-finding):not(.agent-discovery-finding)').forEach((el,i)=>{
+    document.querySelectorAll('.finding:not(.topical-finding):not(.agent-discovery-finding):not(.social-search-finding)').forEach((el,i)=>{
       const [priority,category]=reverseMeta[i]; el.id=`library-reverse-${i+1}`;
       addItem({priority,category,title:el.querySelector('b')?.textContent,excerpt:el.querySelector('p')?.textContent,evidence:el.querySelector('.eyebrow')?.textContent,sources:citationsFrom(el),detail:`#${el.id}`,origin:'Reverse Mullet'});
     });
@@ -527,6 +570,10 @@
     });
     document.querySelectorAll('.agent-discovery-finding').forEach((el,i)=>{
       el.id=`library-agent-discovery-${i+1}`;
+      addItem({priority:el.dataset.priority,category:el.dataset.category,title:el.querySelector('b')?.textContent,excerpt:el.querySelector('p')?.textContent,evidence:el.querySelector('.eyebrow')?.textContent,sources:el.dataset.sources.split(','),detail:`#${el.id}`,origin:el.dataset.origin});
+    });
+    document.querySelectorAll('.social-search-finding').forEach((el,i)=>{
+      el.id=`library-social-search-${i+1}`;
       addItem({priority:el.dataset.priority,category:el.dataset.category,title:el.querySelector('b')?.textContent,excerpt:el.querySelector('p')?.textContent,evidence:el.querySelector('.eyebrow')?.textContent,sources:el.dataset.sources.split(','),detail:`#${el.id}`,origin:el.dataset.origin});
     });
     document.querySelectorAll('.field-card').forEach((el,i)=>{
@@ -562,7 +609,7 @@
       if(!card.querySelector('.source-deep-link')) card.querySelector('div:last-child')?.insertAdjacentHTML('beforeend',` <a class="source-deep-link" href="${pageFile}?source=${id}">Xem tổng hợp riêng →</a>`);
     });
 
-    const sourceMap={s1:'#cach-ho-lam',s2:'#cross-check',s3:'#agent-web',s4:'#library-field-1',s5:'#library-field-3',s6:'#library-field-4',s7:'#library-field-5',s8:'#library-field-2',s9:'#library-field-5',s10:'#topical-authority',s11:'#ian-discovery',s12:'#zeno-agent-readable',s13:'#llmstxt-standards',s14:'#llmstxt-standards'};
+    const sourceMap={s1:'#cach-ho-lam',s2:'#cross-check',s3:'#agent-web',s4:'#library-field-1',s5:'#library-field-3',s6:'#library-field-4',s7:'#library-field-5',s8:'#library-field-2',s9:'#library-field-5',s10:'#topical-authority',s11:'#ian-discovery',s12:'#zeno-agent-readable',s13:'#llmstxt-standards',s14:'#llmstxt-standards',s15:'#social-search',s16:'#social-search',s17:'#social-search',s18:'#social-search'};
     function cleanClone(node){
       const clone=node.cloneNode(true); clone.removeAttribute?.('id'); clone.classList?.remove('main-section-hidden');
       clone.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id'));
